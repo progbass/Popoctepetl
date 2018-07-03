@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone","plugins"],function($,e,n){var t=n.View.extend({el:"section#contacto",initialize:function(){},render:function(){var e=this},events:{"click a.tab":function(e){this.manageTabs($(e.currentTarget).attr("href").replace("#",""))}}});return t});

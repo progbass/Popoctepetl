@@ -1,0 +1,104 @@
+
+$default_rounded_amount: 5px;
+
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+
+
+@mixin round-corners($amount: $default_rounded_amount){
+  border-radius: $amount;
+  -moz-border-radius: $amount;
+  -webkit-border-radius: $amount;
+}
+
+@mixin box-shadow($top, $left, $blur, $blur2, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $blur2 $color;
+    -moz-box-shadow:inset $top $left $blur $blur2 $color;
+    box-shadow:inset $top $left $blur $blur2 $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $blur2 $color;
+    -moz-box-shadow: $top $left $blur $blur2 $color;
+    box-shadow: $top $left $blur $blur2 $color;
+  }
+}
+
+
+
+
+@mixin multipleTransition($params...){
+	-webkit-transition: $params;
+    -moz-transition: $params;
+    -ms-transition: $params;
+    -o-transition: $params;
+    transition: $params;
+}
+
+@mixin transition($params, $easing: ease) {
+    -webkit-transition: $params $easing;
+    -moz-transition: $params $easing;
+    -ms-transition: $params $easing;
+    -o-transition: $params $easing;
+    transition: $params $easing;
+}
+
+
+
+
+@mixin triangle($dir, $size, $color) {
+    border: $size transparent solid;
+ 
+    @if ($dir == "top" or $dir == "up") {
+        border-bottom-color: $color;
+    }
+    @else if ($dir == "right" or $dir == "after") {
+        border-left-color: $color;
+    }
+    @else if ($dir == "bottom" or $dir == "down") {
+        border-top-color: $color;
+    }
+    @else if ($dir == "left" or $dir == "before") {
+        border-right-color: $color;
+    }
+}
+
+
+
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+
+
+
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+
+@mixin image-replace($imageURL) {
+	background: url($imageURL) no-repeat;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+
+
+

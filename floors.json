@@ -1,0 +1,44 @@
+[
+	{
+		"title":	"Planta-1",
+		"uri":		"img/floors/planta1.jpg",
+		"thumb": 	"img/floors/thumbs/planta1.jpg"
+	},
+
+	{
+		"title":	"Estacionamiento",
+		"uri":		"img/floors/estacionamiento.jpg",
+		"thumb": 	"img/floors/thumbs/estacionamiento.jpg"
+	},
+
+	{
+		"title":	"Planta Baja",
+		"uri":		"img/floors/planta_baja.jpg",
+		"thumb": 	"img/floors/thumbs/planta_baja.jpg"
+	},
+	
+	{
+		"title":	"Planta Tipo",
+		"uri":		"img/floors/planta_tipo.jpg",
+		"thumb": 	"img/floors/thumbs/planta_tipo.jpg"
+	},
+	
+	
+	{
+		"title":	"Roof Garden",
+		"uri":		"img/floors/roof_garden.jpg",
+		"thumb": 	"img/floors/thumbs/roof_garden.jpg"
+	},
+	{
+		"title":	"Corte Transversal",
+		"uri":		"img/floors/corte_transversal.jpg",
+		"thumb": 	"img/floors/thumbs/corte_transversal.jpg"
+	},
+	{
+		"title":	"Corte Longitudinal",
+		"uri":		"img/floors/corte_longitudinal-roofgarden.jpg",
+		"thumb": 	"img/floors/thumbs/corte_longitudinal-roofgarden.jpg"
+	}
+	
+
+]

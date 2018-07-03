@@ -1,0 +1,44 @@
+[
+	{
+		"title":	"Render 1",
+		"uri":		"img/renders/DEK-1.jpg",
+		"thumb": 	"img/renders/thumbs/DEK-1.jpg"
+	},
+	{
+		"title":	"Render 2",
+		"uri":		"img/renders/DEK-2.jpg",
+		"thumb": 	"img/renders/thumbs/DEK-2.jpg"
+	},
+	{
+		"title":	"Render 3",
+		"uri":		"img/renders/DEK-3.jpg",
+		"thumb": 	"img/renders/thumbs/DEK-3.jpg"
+	},
+	
+	
+	
+	{
+		"title":	"Render 1",
+		"uri":		"img/renders/Dek-1b.jpg",
+		"thumb": 	"img/renders/thumbs/Dek-1b.jpg"
+	},
+	{
+		"title":	"Render 4",
+		"uri":		"img/renders/DEK-4.jpg",
+		"thumb": 	"img/renders/thumbs/DEK-4.jpg"
+	},
+
+
+
+	{
+		"title":	"Render 2",
+		"uri":		"img/renders/Dek-2b.jpg",
+		"thumb": 	"img/renders/thumbs/Dek-2b.jpg"
+	},
+	{
+		"title":	"Render 3",
+		"uri":		"img/renders/Dek-3b.jpg",
+		"thumb": 	"img/renders/thumbs/Dek-3b.jpg"
+	}	
+	
+]
