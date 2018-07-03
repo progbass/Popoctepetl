@@ -4,15 +4,10 @@
 @import "mixins";
 
 
-
-
 /* ==========================================================================
    LAYOUT STYLES
    ========================================================================== */
-   
-   
-   
-$reference-width: 1024;
+$reference-width: 1030;
 $max-width:	960px;
 $menu-height: 60px;
 $menu-mobile-height: 80px;
@@ -108,6 +103,9 @@ body{
 		&:nth-child(5){
 			background-image: url($images-directory+"bg-render5.jpg") 
 		}
+		&:nth-child(6){
+			background-image: url($images-directory+"bg-render6.jpg") 
+		}
 	}
 
 	//////
@@ -177,6 +175,7 @@ header{
 		width: 70%;
 		height: 100%;
 		background: rgba(#231F20, .9);
+		text-transform: uppercase;
 		
 		//width: percentage($section-width/$reference-width);
 		//margin: auto;
@@ -190,7 +189,6 @@ header{
 			height: 100%;
 			padding: 10px 0;  margin: 0;
 			list-style: none;
-			text-transform: lowercase;
 			text-align: center;
 			line-height: 3.65em;
 			display: flex;
@@ -230,23 +228,30 @@ header{
 					color: #fff;
 				}
 			}
-		}
 
-		.submenu{
-			position: absolute;
-			max-height:0;
-			overflow:hidden;
-			transition:max-height 0.3s ease-out; 
-			height:auto;
-			left: 0; top: ($menu-height - 10px);
-			background: rgba(#231F20, .8);
-			margin: 0; padding: 0;
-			list-style: none;
-			text-align: center;
 
-			a:hover,
-			a.active{
-				color: #fff;
+			.submenu{
+				position: absolute;
+				max-height:0;
+				overflow:hidden;
+				transition:max-height 0.3s ease-out; 
+				height:auto;
+				left: 0; top: ($menu-height - 10px);
+				background: rgba(#231F20, .9);
+				margin: 0; padding: 0;
+				list-style: none;
+				text-align: center;
+
+				> li {
+					a{
+						color: #C0C2C4;
+					}
+
+					a:hover,
+					a.active{
+						color: #fff;
+					}
+				}
 			}
 		}
 	}
@@ -324,8 +329,6 @@ header{
 			@include vertical-align();
 			position: absolute;
 		}
-
-
 
 		// MOBILE MENU ICON
 		.mobile_icon{
@@ -416,17 +419,15 @@ header{
 						}
 					}
 				}
-			}
 
-			.submenu{
-				width: 100%;
-				position: relative;
-				top: 0;
+				// SUBMENU
+				.submenu{
+					width: 100%;
+					position: relative;
+					top: 0;
+				}
 			}
 		}
-		
-		
-		
 		
 		// SOCIAL NETWORKS
 		#social_networks{
@@ -502,12 +503,8 @@ section{
 	@include breakpoint( $bp-480  ) {
 		&.window{
 			width: 92.5%;
-			
 			color: #dedede;
 		}
-		
-		
-		
 	}
 	
 }
@@ -517,12 +514,16 @@ section{
 
 #proyecto{
 
+	@media screen and (min-width: 680px  ) {
+		width: percentage(420/$reference-width);
+		min-width: 420px;
+		margin-right: percentage(140/$reference-width);
+	}
+
 	.wrapper{
 		padding-bottom: 6.26em;
 	}
 
-	
-	
 	nav{
 		@include vertical-align();
 		position: absolute;
@@ -580,7 +581,7 @@ section{
 			float: left;
 			width: 20%;
 			padding: 1% 2%;
-			background: rgba($id-color, .6);
+			background: rgba($id-color, .9);
 			
 			h2{
 				text-transform: uppercase;
@@ -588,7 +589,18 @@ section{
 			
 			ul{
 				list-style: disc;
-				margin-bottom: 25x;
+				margin: 0 0 25px; padding: 0;
+				li{
+					list-style: disc;
+				}
+			}
+
+			img{
+				width: 100%;
+				height: auto;
+				max-width: 300px;
+				margin: auto;
+				display: block
 			}
 		}
 	}
@@ -601,18 +613,14 @@ section{
 		img{
 			width: 35%;
 			margin-top: 10px;
-			max-width: 200px;
+			max-width: 200px !important;
 		}
 	}
-	
-	
-	
 	
 	
 	//////////////////////////////////////////////////////
 	/// MEDIA QUERIES
 	//////////////////////////////////////////////////////
-
 	@include breakpoint( $bp-960  ) {
 		nav{
 			left: -12%;
@@ -622,14 +630,11 @@ section{
 	
 	//////
 	@include breakpoint( $bp-480  ) {
-	
 		.container{
 			background: none;
 			padding-top: 1em;
 			
 		}
-
-
 
 		h2{
 			line-height: 1em;
@@ -642,9 +647,7 @@ section{
 			top: 0; left: -4%;
 			background: #fff;
 			
-			
 			@include transform(none); 
-			
 			
 			a{
 				width: auto;
@@ -655,8 +658,6 @@ section{
 				font-size: 1em;
 				line-height: 1.75em;
 				background-size: 100% auto;
-				
-				
 				
 				&.next{
 					background: url($images-directory+"icon-slideNav-mobile-next.svg") no-repeat right top;
@@ -686,14 +687,11 @@ section{
 					max-height: 80%;
 				}
 			}
-			
 		}
-		
 		
 		.slider_holder{
 			padding-top: 60px;
 		}
-
 
 		.slider{
 			min-height: 480px;
@@ -711,7 +709,7 @@ section{
 
 #buro{
 	.container{
-		background: rgba($id-color4, .5);
+		background: rgba($id-color, .9);
 		padding: 5%;
 	}
 		
@@ -753,8 +751,6 @@ section{
 	width: 100%;
 	height: $section-height;
 	//overflow: hidden;
-
-
 		
 	&:before{
 		content: '';
@@ -765,15 +761,10 @@ section{
 		width: 100%;
 		background: #fff;
 	}
-
-
-
 	
 	h2{
 		display: none;
-	}
-	
-	
+	}	
 	
 	.container{
 		position: relative;
@@ -834,6 +825,15 @@ section{
 					
 					width: auto;
 					height: 100%;
+				}
+			}
+
+			.info{
+				padding-left: 35%;
+				&__title{
+					text-transform: uppercase;
+					padding-bottom: 0.5em;
+					border-bottom: solid 3px $id-color2;
 				}
 			}
 			
@@ -1038,8 +1038,6 @@ section{
 		    }
 		}
 	}
-	
-	
 }
 
 
@@ -1050,7 +1048,7 @@ section{
 	width: 100%;
 	height: auto;//$section-height;
 	//overflow: hidden;
-	color: #fff;
+	color: #222;
 		
 	&:before{
 		content: '';
@@ -1065,7 +1063,7 @@ section{
 	
 	.wrapper{
 		position: relative;	
-		height: 100vh;
+		height: calc(100vh - #{$menu-height});
 		min-height: 800px;
 		//padding-top: $menu-height;
 
@@ -1096,8 +1094,7 @@ section{
 		
 		ul{
 			list-style: none;
-			margin: 0; padding: 0 2em;	
-			
+			margin: 0; padding: 0;
 			
 			li{
 				margin-bottom: 24px;
@@ -1119,8 +1116,7 @@ section{
 				}
 			}
 		}
-		
-		
+
 		.container{
 			width: 80%;
 			border-left: solid 2px #fff;
@@ -1205,17 +1201,17 @@ section{
 		
 		.map_holder{
 			position: relative;
-			height: 65%;
+			height: 100%;
 			background: rgba(#fff, .4);
 			
 			a.location{
 				position: absolute;
-				top: 1em; left: 1em;
+				bottom: 1em; right: 1em;
 				padding: .5em .75em;
 				
 				color: #fff;
 				text-decoration: none;
-				background: $id-color3;
+				background: $id-color2;
 				
 				@include transition(background 220ms);
 				

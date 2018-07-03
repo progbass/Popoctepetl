@@ -268,6 +268,8 @@ body {
       background-image: url("../img/bg-render4.jpg"); }
     #bg_container .image:nth-child(5) {
       background-image: url("../img/bg-render5.jpg"); }
+    #bg_container .image:nth-child(6) {
+      background-image: url("../img/bg-render6.jpg"); }
   @media (max-width: 480px) {
     #bg_container:before {
       background: rgba(0, 0, 0, 0.85); } }
@@ -299,7 +301,8 @@ header {
     display: block;
     width: 70%;
     height: 100%;
-    background: rgba(35, 31, 32, 0.9); }
+    background: rgba(35, 31, 32, 0.9);
+    text-transform: uppercase; }
     header nav #main_menu {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -308,7 +311,6 @@ header {
       padding: 10px 0;
       margin: 0;
       list-style: none;
-      text-transform: lowercase;
       text-align: center;
       line-height: 3.65em;
       display: flex;
@@ -338,30 +340,32 @@ header {
         header nav #main_menu > li a:hover,
         header nav #main_menu > li a.active {
           color: #fff; }
-    header nav .submenu {
-      position: absolute;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      height: auto;
-      left: 0;
-      top: 50px;
-      background: rgba(35, 31, 32, 0.8);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      text-align: center; }
-      header nav .submenu a:hover,
-      header nav .submenu a.active {
-        color: #fff; }
+      header nav #main_menu .submenu {
+        position: absolute;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        height: auto;
+        left: 0;
+        top: 50px;
+        background: rgba(35, 31, 32, 0.9);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: center; }
+        header nav #main_menu .submenu > li a {
+          color: #C0C2C4; }
+        header nav #main_menu .submenu > li a:hover,
+        header nav #main_menu .submenu > li a.active {
+          color: #fff; }
   header #social_networks {
     order: 1;
     float: right;
     position: relative;
     height: 100%;
     min-width: 100px;
-    width: 11.1328125%;
-    padding: 0 0.9765625%;
+    width: 11.067961165%;
+    padding: 0 0.9708737864%;
     margin: 0;
     border: 0;
     list-style: none;
@@ -477,10 +481,10 @@ header {
               transition: padding-top 0.3s ease; }
               header nav #main_menu li a:active, header nav #main_menu li a.active {
                 border: none; }
-        header nav .submenu {
-          width: 100%;
-          position: relative;
-          top: 0; }
+          header nav #main_menu .submenu {
+            width: 100%;
+            position: relative;
+            top: 0; }
       header #social_networks {
         order: 0;
         width: 100%;
@@ -518,6 +522,12 @@ section {
     section.window {
       width: 92.5%;
       color: #dedede; } }
+
+@media screen and (min-width: 680px) {
+  #proyecto {
+    width: 40.7766990291%;
+    min-width: 420px;
+    margin-right: 13.5922330097%; } }
 
 #proyecto .wrapper {
   padding-bottom: 6.26em; }
@@ -568,12 +578,21 @@ section {
     float: left;
     width: 20%;
     padding: 1% 2%;
-    background: rgba(35, 31, 32, 0.6); }
+    background: rgba(35, 31, 32, 0.9); }
     #proyecto .slider .slide h2 {
       text-transform: uppercase; }
     #proyecto .slider .slide ul {
       list-style: disc;
-      margin-bottom: 25x; }
+      margin: 0 0 25px;
+      padding: 0; }
+      #proyecto .slider .slide ul li {
+        list-style: disc; }
+    #proyecto .slider .slide img {
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+      margin: auto;
+      display: block; }
 
 #proyecto .logo_holder {
   text-align: center;
@@ -581,7 +600,7 @@ section {
   #proyecto .logo_holder img {
     width: 35%;
     margin-top: 10px;
-    max-width: 200px; }
+    max-width: 200px !important; }
 
 @media (max-width: 960px) {
   #proyecto nav {
@@ -636,7 +655,7 @@ section {
       padding: 24px 20px; } }
 
 #buro .container {
-  background: rgba(0, 138, 171, 0.5);
+  background: rgba(35, 31, 32, 0.9);
   padding: 5%; }
 
 #buro .logo_holder {
@@ -675,7 +694,7 @@ section {
     position: relative;
     float: left;
     height: 100%;
-    width: 86.9140625%; }
+    width: 86.9902912621%; }
     #galeria .col-left .video_holder {
       position: relative;
       margin: auto;
@@ -711,6 +730,12 @@ section {
           margin: auto;
           width: auto;
           height: 100%; }
+      #galeria .col-left .gallery .info {
+        padding-left: 35%; }
+        #galeria .col-left .gallery .info__title {
+          text-transform: uppercase;
+          padding-bottom: 0.5em;
+          border-bottom: solid 3px #FF6A00; }
       #galeria .col-left .gallery ul.thumbs_list {
         list-style: none;
         margin: 0 0;
@@ -752,7 +777,7 @@ section {
   #galeria .col-right {
     position: relative;
     float: right;
-    width: 13.0859375%;
+    width: 13.0097087379%;
     height: 100%;
     background: #fff; }
     #galeria .col-right ul {
@@ -848,7 +873,7 @@ section {
   top: 0;
   width: 100%;
   height: auto;
-  color: #fff; }
+  color: #222; }
   #contacto:before {
     content: '';
     display: block;
@@ -859,7 +884,7 @@ section {
     background: #FFF; }
   #contacto .wrapper {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 60px);
     min-height: 800px;
     display: flex;
     flex-flow: row wrap;
@@ -869,7 +894,7 @@ section {
     flex: 30%;
     position: relative;
     height: 100%;
-    width: 26.5625%;
+    width: 26.4077669903%;
     background: #FFF; }
     #contacto .col-left h2 {
       color: #fff;
@@ -881,7 +906,7 @@ section {
     #contacto .col-left ul {
       list-style: none;
       margin: 0;
-      padding: 0 2em; }
+      padding: 0; }
       #contacto .col-left ul li {
         margin-bottom: 24px; }
         #contacto .col-left ul li span {
@@ -902,7 +927,7 @@ section {
   #contacto .col-right {
     flex: 70%;
     height: 100%;
-    width: 73.4375%;
+    width: 73.0097087379%;
     background: rgba(0, 138, 171, 0.05); }
     #contacto .col-right img.map {
       width: 100%;
@@ -957,16 +982,16 @@ section {
             text-decoration: underline; }
     #contacto .col-right .map_holder {
       position: relative;
-      height: 65%;
+      height: 100%;
       background: rgba(255, 255, 255, 0.4); }
       #contacto .col-right .map_holder a.location {
         position: absolute;
-        top: 1em;
-        left: 1em;
+        bottom: 1em;
+        right: 1em;
         padding: .5em .75em;
         color: #fff;
         text-decoration: none;
-        background: #008aab;
+        background: #FF6A00;
         -webkit-transition: background 220ms ease;
         -moz-transition: background 220ms ease;
         -ms-transition: background 220ms ease;

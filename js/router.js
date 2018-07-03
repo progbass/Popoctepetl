@@ -1,7 +1,5 @@
 // Filename: router.js
 define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone){
-
- 
   var mobileMode = false;
   
   var gotoSection = function( _section ){
@@ -22,9 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
 	  mobileMode = _mode || true;
   }
 
-  
-  
-  
+
   var AppRouter = Backbone.Router.extend({
         routes: {
           "": "proyecto", 
@@ -51,11 +47,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
   
   //HISTORY OBJECT
   Backbone.history.start();
-  
-  
   return AppRouter;
-  
-  
 });
 
 		

@@ -70,17 +70,13 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
         initialize : function(){
             //slide template
             this.template = _.template("<img src='<%= thumb %>' alt='<%= title %>' />");
-
         },
         render : function(){
-        	
         	//generate html template
             $(this.el).html( this.template( this.model.toJSON() ) );
             
-            
             //display view
             $(this.thumbsList).append( this.el );
-            
             
             return this;
         },
@@ -98,7 +94,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 					return;
 				}
 			});
-			//console.log( this.el );
 			
 			//
 	    	actual_list.select(this.model);
@@ -131,9 +126,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       //RENDER
       render: function () {
       	var scope = this;
-      	
-      	
-      	//
       	
       	//config accordeon
       	//this.config_accordeon();
@@ -180,47 +172,29 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	    renders_list.bind('thumbs:selected', scope.loadRender);
 	    renders_list.add([
 			{
-				"title":	"Render 1",
-				"uri":		"img/renders/denn_1.jpg",
+				"uri":		"img/renders/popo_1.jpg",
 				"thumb": 	"img/renders/thumbs/denn_1.jpg"
 			},
 			{
-				"title":	"Render 2",
-				"uri":		"img/renders/denn_2.jpg",
+				"uri":		"img/renders/popo_2.jpg",
 				"thumb": 	"img/renders/thumbs/denn_2.jpg"
 			},
 			{
-				"title":	"Render 3",
-				"uri":		"img/renders/denn_3.jpg",
+				"uri":		"img/renders/popo_3.jpg",
 				"thumb": 	"img/renders/thumbs/denn_3.jpg"
 			},
-			
-			
-			
 			{
-				"title":	"Render 4",
-				"uri":		"img/renders/denn_4.jpg",
+				"uri":		"img/renders/popo_4.jpg",
 				"thumb": 	"img/renders/thumbs/denn_4.jpg"
 			},
 			{
-				"title":	"Render 5",
-				"uri":		"img/renders/denn_5.jpg",
+				"uri":		"img/renders/popo_5.jpg",
 				"thumb": 	"img/renders/thumbs/denn_5.jpg"
 			},
-		
-		
-		
 			{
-				"title":	"Render 6",
-				"uri":		"img/renders/denn_6.jpg",
+				"uri":		"img/renders/popo_6.jpg",
 				"thumb": 	"img/renders/thumbs/denn_6.jpg"
-			},
-			{
-				"title":	"Render 7",
-				"uri":		"img/renders/denn_7.jpg",
-				"thumb": 	"img/renders/thumbs/denn_7.jpg"
 			}	
-			
 		]);
 		renders_list.loadCompleteHandler();
 		/*
@@ -230,7 +204,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	      //error: loadCompleteHandler
 	    });
 		*/
-	    
 	    
 	    //config swipe detection and actions
 		Hammer.Swipe({
@@ -249,9 +222,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	    
 		    //select thumb
 		    $("section#galeria .thumbs_list li:eq("+actualIndex+")").click();
-
-		});
-	 	
+		});	
 	 },
 	 
 	 
@@ -272,46 +243,41 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	    floors_list.bind('thumbs:selected', scope.loadRender);
 	    floors_list.add([
 			{
-				"title":	"Planta-1",
-				"uri":		"img/floors/planta1.jpg",
-				"thumb": 	"img/floors/thumbs/planta1.jpg"
-			},
-
-			{
-				"title":	"Estacionamiento",
-				"uri":		"img/floors/estacionamiento.jpg",
-				"thumb": 	"img/floors/thumbs/estacionamiento.jpg"
-			},
-
-			{
 				"title":	"Planta Baja",
 				"uri":		"img/floors/planta_baja.jpg",
-				"thumb": 	"img/floors/thumbs/planta_baja.jpg"
+				"thumb": 	"img/floors/thumbs/planta_baja.jpg",
+				"info":     "<p>Cuenta con un acceso peatonal directo sobre Av. Popocatépetl así como por la plaza interior del desarrollo. De igual manera para la entrada y salida vehicular.</p><p>En planta baja, se cuenta con una bahía de ascenso y descenso además de control de accesos, vestíbulo, espacio de oficinas, áreas de servicios y elevadores para sótanos de estacionamiento y pisos de oficina.</p>"
 			},
-			
+			{
+				"title":	"Planta 3",
+				"uri":		"img/floors/planta3.jpg",
+				"thumb": 	"img/floors/thumbs/planta1.jpg",
+				"info":     "<p>La planta del nivel 3 fue diseñada para poder contar con un espacio de comercio de doble altura y un segundo piso cubriendo una mayor área de comercio para el edificio de uso de los inquilinos o bien puede eventualmente funcionar como un espacio de apoyo para alguna de las oficinas.</p>"
+			},
 			{
 				"title":	"Planta Tipo",
 				"uri":		"img/floors/planta_tipo.jpg",
-				"thumb": 	"img/floors/thumbs/planta_tipo.jpg"
-			},
-			
-			
-			{
-				"title":	"Roof Garden",
-				"uri":		"img/floors/roof_garden.jpg",
-				"thumb": 	"img/floors/thumbs/roof_garden.jpg"
+				"thumb": 	"img/floors/thumbs/planta_tipo.jpg",
+				"info":     "<p>Las plantas son sumamente eficientes y libres de columnas para poder tener el mayor espacio abierto de oficinas y las fachadas principales con un diseño que genera de acuerdo a su ubicación una alta eficiencia energética y una muy buena iluminación natural de los espacios.</p>"
 			},
 			{
-				"title":	"Corte Transversal",
-				"uri":		"img/floors/corte_transversal.jpg",
-				"thumb": 	"img/floors/thumbs/corte_transversal.jpg"
+				"title":	"Oficinas",
+				"uri":		"img/floors/oficinas.jpg",
+				"thumb": 	"img/floors/thumbs/roof_garden.jpg",
+				"info":     "<p>Cuenta con un total de 14,723 m2 rentables de oficinas corporativas distribuidos en 19 niveles de aproximadamente 886.74 m2 rentables cada uno.</p>"
+			},
+			{
+				"title":	"Estacionamiento",
+				"uri":		"img/floors/estacionamiento.jpg",
+				"thumb": 	"img/floors/thumbs/estacionamiento.jpg",
+				"info":     "<p>Cuenta con 9 sótanos altos y bajos de estacionamiento para cubrir la demanda de las oficinas corporativas y de la zona.</p><p>El diseño cumple con todos los requisitos de dimensiones y operatividad. Todos los sótanos cuentan con dos núcleos de servicios central independientes de la vivienda, tres escaleras internas presurizadas, dos elevadores que dan acceso al lobby del corporativo y dos elevadores que dan acceso al lobby de comercio de la vivienda.</p>"
 			},
 			{
 				"title":	"Corte Longitudinal",
 				"uri":		"img/floors/corte_longitudinal.jpg",
-				"thumb": 	"img/floors/thumbs/corte_longitudinal.jpg"
+				"thumb": 	"img/floors/thumbs/corte_longitudinal.jpg",
+				"info":     ""
 			}
-
 		]);
 
 		floors_list.loadCompleteHandler();
@@ -353,13 +319,13 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 loadRender: function(){
 		 //get container
 	 	 var photoHolder = $(this.el).find(".photo_holder");
+	 	 var infoHolder = $(this.el).find(".info");
 	 	 
 	 	 //create image 
 	 	 var image = new Image();
 	 	 image.src = actual_list.selectedThumb().attributes.uri;
 	 	 image.alt = actual_list.selectedThumb().attributes.title;
 	 	 image.onload = function(){
-		 	
 	 	 	photoHolder.removeClass('loading');
 	 	 };
 	 	 
@@ -368,6 +334,12 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 photoHolder.html( image );
 	     photoHolder.find("img").hide().fadeIn(600);
 
+	     // show additional information
+	     console.log(actual_list.selectedThumb())
+	     if( actual_list.selectedThumb().attributes.title )
+	     	infoHolder.find(".info__title").html( actual_list.selectedThumb().attributes.title );
+	     if( actual_list.selectedThumb().attributes.info )
+	     	infoHolder.find(".info__content").html( actual_list.selectedThumb().attributes.info );
 	 },
 	 
 	 displayList: function(){
@@ -400,7 +372,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 $(scope.el).find("a.tab").removeClass("active");
 		 $(scope.el).find("a[href='#"+_target+"']").addClass("active");
 		 
-		 
 		 //load tab content
 		 switch(_target){
 		 	case "recorrido":
@@ -419,7 +390,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 		content = "recorrido.html"; 
 		 }
 		 
-		 $(scope.el).find(".content_loader").load( content, function() {
+		$(scope.el).find(".content_loader").load( content, function() {
 		 	if(_target == "renders"){
 			 	
 			 	actual_list = renders_list;
@@ -439,12 +410,10 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			 	else
 			 		scope.displayList();
 		 	}
-		 	
-		 	
-		 });
+		});
 		 
-		 //update last tab
-		 scope.lastTab = _target;
+		//update last tab
+		scope.lastTab = _target;
 	 },
       
       

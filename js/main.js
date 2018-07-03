@@ -48,7 +48,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	});
 	$("#main_menu > li.galeria .submenu li > a").each(function(index){
 		$(this).click(function(e){
-			var tabType = index === 1 ? 'plantas' : 'renders';
+			var tabType = index !== 0 ? 'plantas' : 'renders';
 	      	view_galeria.manageTabs( tabType );
 		});
 	});
