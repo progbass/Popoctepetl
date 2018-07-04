@@ -7,6 +7,7 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,700");
 html,
 button,
 input,
@@ -215,6 +216,10 @@ header nav #main_menu:after {
   h3 {
     page-break-after: avoid; } }
 
+@font-face {
+  font-family: 'Knockout';
+  src: url("../fonts/Knockout-48Featherweight.ttf") format("truetype"); }
+
 /* ==========================================================================
    LAYOUT STYLES
    ========================================================================== */
@@ -227,9 +232,12 @@ html, body {
   background: #333; }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 14px;
   font-weight: 300; }
+
+h1, h2, h3, h4, h5 {
+  font-family: "Oswald", sans-serif; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
@@ -277,7 +285,7 @@ body {
 header {
   position: relative;
   z-index: 11;
-  height: 60px;
+  height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between; }
@@ -301,7 +309,7 @@ header {
     display: block;
     width: 70%;
     height: 100%;
-    background: rgba(35, 31, 32, 0.9);
+    background: rgba(35, 31, 32, 0.78);
     text-transform: uppercase; }
     header nav #main_menu {
       -webkit-box-sizing: border-box;
@@ -320,16 +328,16 @@ header {
         height: 100%;
         margin: 0;
         padding: 0;
-        white-space: nowrap; }
+        white-space: nowrap;
+        font-family: "Oswald", sans-serif; }
         header nav #main_menu > li a {
           display: block;
           padding: 0 1.5em;
           height: 100%;
           color: #FF6A00;
-          font-size: 1.063em;
+          font-size: 1.12em;
           font-weight: normal;
           text-decoration: none;
-          line-height: 2.875em;
           -webkit-transition: background 0.2s ease;
           -moz-transition: background 0.2s ease;
           -ms-transition: background 0.2s ease;
@@ -347,17 +355,24 @@ header {
         transition: max-height 0.3s ease-out;
         height: auto;
         left: 0;
-        top: 50px;
+        top: 60px;
         background: rgba(35, 31, 32, 0.9);
         margin: 0;
         padding: 0;
         list-style: none;
-        text-align: center; }
-        header nav #main_menu .submenu > li a {
-          color: #C0C2C4; }
-        header nav #main_menu .submenu > li a:hover,
-        header nav #main_menu .submenu > li a.active {
-          color: #fff; }
+        text-align: center;
+        font-family: "Oswald";
+        line-height: 2.5em; }
+        header nav #main_menu .submenu > li {
+          margin-bottom: 1.12em; }
+          header nav #main_menu .submenu > li:first-child {
+            margin-top: 1.12em; }
+          header nav #main_menu .submenu > li a {
+            color: #C0C2C4;
+            font-size: 0.875em; }
+          header nav #main_menu .submenu > li a:hover,
+          header nav #main_menu .submenu > li a.active {
+            color: #fff; }
   header #social_networks {
     order: 1;
     float: right;
@@ -449,7 +464,7 @@ header {
         height: auto;
         position: absolute;
         left: 0;
-        top: 60px;
+        top: 70px;
         background: rgba(0, 0, 0, 0.9); }
         header nav.cssControlled:hover {
           display: block; }
@@ -501,16 +516,20 @@ section {
   display: none; }
   section h2 {
     margin: 0;
-    padding: 0 0 5px;
+    padding: 0 0;
     font-size: 1.28571428571429em;
     font-weight: normal;
     text-transform: capitalize;
-    color: #fff;
-    border-bottom: solid 1px #fff; }
+    color: #fff; }
   section.window {
     color: #fafafa;
     margin: auto;
     width: 72%; }
+    @media screen and (min-width: 680px) {
+      section.window {
+        width: 40.7766990291%;
+        min-width: 420px;
+        margin-right: 13.5922330097%; } }
     section.window .container {
       position: relative; }
   @media (max-width: 960px) {
@@ -522,12 +541,6 @@ section {
     section.window {
       width: 92.5%;
       color: #dedede; } }
-
-@media screen and (min-width: 680px) {
-  #proyecto {
-    width: 40.7766990291%;
-    min-width: 420px;
-    margin-right: 13.5922330097%; } }
 
 #proyecto .wrapper {
   padding-bottom: 6.26em; }
@@ -578,9 +591,20 @@ section {
     float: left;
     width: 20%;
     padding: 1% 2%;
-    background: rgba(35, 31, 32, 0.9); }
+    background: rgba(35, 31, 32, 0.78);
+    line-height: 1.5em;
+    text-align: justify; }
     #proyecto .slider .slide h2 {
-      text-transform: uppercase; }
+      font-size: 1.25em;
+      text-transform: uppercase;
+      margin: 0 auto 0.75em; }
+    #proyecto .slider .slide h3 {
+      font-size: 1em;
+      text-transform: uppercase;
+      margin: 0 auto 0.25em;
+      font-weight: normal; }
+    #proyecto .slider .slide p {
+      margin: 0 auto 1.75em; }
     #proyecto .slider .slide ul {
       list-style: disc;
       margin: 0 0 25px;
@@ -591,7 +615,7 @@ section {
       width: 100%;
       height: auto;
       max-width: 300px;
-      margin: auto;
+      margin: 0.5em auto;
       display: block; }
 
 #proyecto .logo_holder {
@@ -655,16 +679,14 @@ section {
       padding: 24px 20px; } }
 
 #buro .container {
-  background: rgba(35, 31, 32, 0.9);
-  padding: 5%; }
+  background: rgba(35, 31, 32, 0.78);
+  padding: 5% 12%; }
 
-#buro .logo_holder {
-  text-align: center; }
-  #buro .logo_holder img {
-    max-width: 15%;
-    width: 100%;
-    height: auto;
-    margin-top: 15px; }
+#buro .logo_holder img {
+  max-width: 15%;
+  width: 100%;
+  height: auto;
+  margin-top: 15px; }
 
 @media (max-width: 480px) {
   #buro .container {
@@ -675,13 +697,14 @@ section {
   position: relative;
   top: 0;
   width: 100%;
-  height: 100vh; }
+  min-height: 100vh;
+  background: #fff; }
   #galeria:before {
     content: '';
     display: block;
     position: absolute;
-    height: 60px;
-    top: -60px;
+    height: 70px;
+    top: -70px;
     width: 100%;
     background: #fff; }
   #galeria h2 {
@@ -689,11 +712,10 @@ section {
   #galeria .container {
     position: relative;
     background: white;
-    height: 100%; }
+    height: 100%;
+    display: flex; }
   #galeria .col-left {
     position: relative;
-    float: left;
-    height: 100%;
     width: 86.9902912621%; }
     #galeria .col-left .video_holder {
       position: relative;
@@ -720,22 +742,37 @@ section {
       height: 100%; }
       #galeria .col-left .gallery .photo_holder {
         position: relative;
-        height: 76%;
         padding: 2% 0;
         text-align: center; }
         #galeria .col-left .gallery .photo_holder.loading {
           background: url("../img/loader.gif") no-repeat center; }
         #galeria .col-left .gallery .photo_holder img {
           position: relative;
-          margin: auto;
-          width: auto;
-          height: 100%; }
+          margin: auto; }
+          #galeria .col-left .gallery .photo_holder img.vertical {
+            width: auto;
+            height: 100%;
+            max-height: 600px; }
+          #galeria .col-left .gallery .photo_holder img.horizontal {
+            height: auto;
+            width: 100%;
+            max-width: 700px; }
       #galeria .col-left .gallery .info {
-        padding-left: 35%; }
+        padding: 5em 0 0 35%;
+        width: 80%; }
         #galeria .col-left .gallery .info__title {
-          text-transform: uppercase;
-          padding-bottom: 0.5em;
-          border-bottom: solid 3px #FF6A00; }
+          font-size: 1.5em;
+          letter-spacing: 0.05em;
+          text-transform: uppercase; }
+          #galeria .col-left .gallery .info__title:after {
+            content: '';
+            display: block;
+            position: relative;
+            left: -78%;
+            width: 178%;
+            height: 3px;
+            background: #FF6A00;
+            margin-top: 0.5em; }
       #galeria .col-left .gallery ul.thumbs_list {
         list-style: none;
         margin: 0 0;
@@ -776,9 +813,7 @@ section {
             height: auto; }
   #galeria .col-right {
     position: relative;
-    float: right;
     width: 13.0097087379%;
-    height: 100%;
     background: #fff; }
     #galeria .col-right ul {
       margin: 0;
@@ -827,6 +862,14 @@ section {
             position: relative;
             width: 90%;
             height: auto; }
+        #galeria .col-left .gallery .info {
+          padding: 0;
+          width: 72%;
+          min-width: 300px;
+          margin: auto; }
+          #galeria .col-left .gallery .info__title:after {
+            width: 100%;
+            left: 0; }
         #galeria .col-left .gallery ul.thumbs_list {
           margin-bottom: 2em; }
         #galeria .col-left .video_holder iframe {
@@ -878,13 +921,13 @@ section {
     content: '';
     display: block;
     position: absolute;
-    height: 60px;
-    top: -60px;
+    height: 70px;
+    top: -70px;
     width: 100%;
     background: #FFF; }
   #contacto .wrapper {
     position: relative;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 70px);
     min-height: 800px;
     display: flex;
     flex-flow: row wrap;

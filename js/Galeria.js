@@ -326,6 +326,8 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 	 image.src = actual_list.selectedThumb().attributes.uri;
 	 	 image.alt = actual_list.selectedThumb().attributes.title;
 	 	 image.onload = function(){
+	 	 	var isHorizontal = this.height < this.width;
+	 	 	this.className = isHorizontal ? 'horizontal' : 'vertical';
 	 	 	photoHolder.removeClass('loading');
 	 	 };
 	 	 
@@ -335,9 +337,13 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	     photoHolder.find("img").hide().fadeIn(600);
 
 	     // show additional information
-	     console.log(actual_list.selectedThumb())
-	     if( actual_list.selectedThumb().attributes.title )
-	     	infoHolder.find(".info__title").html( actual_list.selectedThumb().attributes.title );
+	     if( actual_list.selectedThumb().attributes.title ){
+	     	infoHolder.find(".info__title")
+	     	.show()
+	     	.html( actual_list.selectedThumb().attributes.title );
+	     } else {
+	     	infoHolder.find(".info__title").hide()
+	     }
 	     if( actual_list.selectedThumb().attributes.info )
 	     	infoHolder.find(".info__content").html( actual_list.selectedThumb().attributes.info );
 	 },

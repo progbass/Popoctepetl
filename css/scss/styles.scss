@@ -2,6 +2,11 @@
 @import "../../bower_components/breakpoint-sass/stylesheets/breakpoint";
 @import "helpers";
 @import "mixins";
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+@font-face {
+  font-family: 'Knockout';
+  src: url('../fonts/Knockout-48Featherweight.ttf') format('truetype'), /* Safari, Android, iOS */
+}
 
 
 /* ==========================================================================
@@ -9,9 +14,13 @@
    ========================================================================== */
 $reference-width: 1030;
 $max-width:	960px;
-$menu-height: 60px;
+$menu-height: 70px;
 $menu-mobile-height: 80px;
 $images-directory: '../img/';
+$component-opacity: 0.78;
+
+$font-header: 'Oswald';
+$font-content: 'Oswald';
 
 $id-color: #231F20;
 $id-color2: #FF6A00;
@@ -34,20 +43,20 @@ $bp-480: max-width 480px;//34.2em;
 
 html{
   box-sizing: border-box;
- }
-
+}
 html, body{
 	position: relative;
 	height: 100%;
 	background: #333;
 }
-
 body{
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Oswald', sans-serif;
 	font-size: 14px;
 	font-weight: 300;
 }
-
+h1, h2, h3, h4, h5{
+	font-family: $font-header, sans-serif;
+}
 
 
 *, *:before, *:after {
@@ -60,8 +69,6 @@ body{
 	width: 100%;
 	min-height: 100%;
 }
-
-
 
 
 #bg_container{
@@ -133,7 +140,7 @@ header{
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	
+
 	///////////////
 	// LOGO
 	.logo{
@@ -174,7 +181,7 @@ header{
 		display: block;
 		width: 70%;
 		height: 100%;
-		background: rgba(#231F20, .9);
+		background: rgba($id-color, $component-opacity);
 		text-transform: uppercase;
 		
 		//width: percentage($section-width/$reference-width);
@@ -203,6 +210,7 @@ header{
 				margin: 0; padding: 0;
 				//width: 25%;
 				white-space: nowrap;
+				font-family: $font-header, sans-serif;
 				
 				// MENU BUTTONS
 				a{
@@ -210,10 +218,9 @@ header{
 					padding: 0 1.5em;
 					height: 100%;
 					color: $id-color2;
-					font-size: 1.063em;
+					font-size: 1.12em;
 					font-weight: normal;
 					text-decoration: none;
-					line-height: 2.875em;
 					@include transition( background .2s );
 					
 				}
@@ -234,17 +241,26 @@ header{
 				position: absolute;
 				max-height:0;
 				overflow:hidden;
-				transition:max-height 0.3s ease-out; 
+				transition: max-height 0.3s ease-out; 
 				height:auto;
 				left: 0; top: ($menu-height - 10px);
 				background: rgba(#231F20, .9);
-				margin: 0; padding: 0;
+				margin: 0;
+				padding: 0;
 				list-style: none;
 				text-align: center;
+				font-family: $font-content;
+				line-height: 2.5em;
 
 				> li {
+					margin-bottom: 1.12em;
+					&:first-child{
+						margin-top: 1.12em;
+					}
+
 					a{
 						color: #C0C2C4;
+						font-size: 0.875em;
 					}
 
 					a:hover,
@@ -464,25 +480,25 @@ section{
 	display: none;
 	
 	h2{
-		margin: 0; padding: 0 0 5px;
+		margin: 0; padding: 0 0;
 		font-size: 1.28571428571429em;
 		font-weight: normal;
 		text-transform: capitalize;
 		color: #fff;
-		border-bottom: solid 1px #fff;
 	}
 	
 	&.window{	
 		color: #fafafa;
 		margin: auto;
 		width: 72%;
-		//width: percentage($section-width / $reference-width);
-		//left: percentage(($section-xPos+8) / $reference-width);
-		
+		@media screen and (min-width: 680px  ) {
+			width: percentage(420/$reference-width);
+			min-width: 420px;
+			margin-right: percentage(140/$reference-width);
+		}
+
 		.container{
 			position: relative;
-			//padding: 5%;
-			//background: rgba($id-color, .6);
 		}
 	}
 	
@@ -513,13 +529,6 @@ section{
 
 
 #proyecto{
-
-	@media screen and (min-width: 680px  ) {
-		width: percentage(420/$reference-width);
-		min-width: 420px;
-		margin-right: percentage(140/$reference-width);
-	}
-
 	.wrapper{
 		padding-bottom: 6.26em;
 	}
@@ -581,12 +590,24 @@ section{
 			float: left;
 			width: 20%;
 			padding: 1% 2%;
-			background: rgba($id-color, .9);
+			background: rgba($id-color, $component-opacity);
+			line-height: 1.5em;
+			text-align: justify;
 			
 			h2{
+				font-size: 1.25em;
 				text-transform: uppercase;
+				margin: 0 auto 0.75em;
 			}
-			
+			h3{
+				font-size: 1em;
+				text-transform: uppercase;
+				margin: 0 auto 0.25em;
+				font-weight: normal
+			}
+			p{
+				margin: 0 auto 1.75em;
+			}
 			ul{
 				list-style: disc;
 				margin: 0 0 25px; padding: 0;
@@ -594,12 +615,11 @@ section{
 					list-style: disc;
 				}
 			}
-
 			img{
 				width: 100%;
 				height: auto;
 				max-width: 300px;
-				margin: auto;
+				margin: 0.5em auto;
 				display: block
 			}
 		}
@@ -709,19 +729,13 @@ section{
 
 #buro{
 	.container{
-		background: rgba($id-color, .9);
-		padding: 5%;
+		background: rgba($id-color, $component-opacity);
+		padding: 5% 12%;;
 	}
-		
-	
 	.wrapper{
 	}
 	
-	
-	
 	.logo_holder{
-		text-align: center;
-		
 		img{
 			max-width: 15%;
 			width: 100%;
@@ -749,7 +763,8 @@ section{
 	position: relative; //absolute;
 	top: 0;
 	width: 100%;
-	height: $section-height;
+	min-height: 100vh;//$section-height;
+	background: #fff;
 	//overflow: hidden;
 		
 	&:before{
@@ -770,17 +785,13 @@ section{
 		position: relative;
 		background: rgba(255, 255, 255, 1);	
 		height: 100%;
+		display: flex;
 		//margin-top: $menu-height;
 	}
 	
-	
-	
 	.col-left{
 		position: relative;
-		float: left;
-		height: 100%;
 		width: percentage( ((($reference-width) - $socialNetworks-width) / 1px) / $reference-width );
-		
 		
 		//VIDEO HOLDEr
 		.video_holder{
@@ -811,7 +822,7 @@ section{
 			
 			.photo_holder{
 				position: relative;
-				height: 76%;
+				//height: 76%;
 				padding: 2% 0;
 				text-align: center;
 				
@@ -822,18 +833,36 @@ section{
 				img{
 					position: relative;
 					margin: auto;
-					
-					width: auto;
-					height: 100%;
+					&.vertical{
+						width: auto;
+						height: 100%;
+						max-height: 600px;
+					}
+					&.horizontal{
+						height: auto;
+						width: 100%;
+						max-width: 700px;
+					}
 				}
 			}
 
 			.info{
-				padding-left: 35%;
+				padding: 5em 0 0 35%;
+				width: 80%;
 				&__title{
+					font-size: 1.5em;
+					letter-spacing: 0.05em;
 					text-transform: uppercase;
-					padding-bottom: 0.5em;
-					border-bottom: solid 3px $id-color2;
+					&:after{
+						content: '';
+						display: block;
+						position: relative;
+						left: -78%;
+						width: 178%;
+						height: 3px;
+						background: $id-color2;
+						margin-top: 0.5em;
+					}
 				}
 			}
 			
@@ -889,14 +918,11 @@ section{
 				}
 			}
 		}
-		
 	}
 	
 	.col-right{
 		position: relative;
-		float: right;
 		width: percentage( ($socialNetworks-width / 1px) / $reference-width );
-		height: 100%;	
 		background: #fff;
 		
 		ul{
@@ -924,10 +950,6 @@ section{
 			}
 		}
 	}
-	
-	
-	
-	
 	
 	///RESPONSIVE RULES
 	@include breakpoint( $bp-960  ) {
@@ -968,7 +990,16 @@ section{
 					}
 				}
 				
-				
+				.info{
+					padding: 0;
+					width: 72%;
+					min-width: 300px;
+					margin: auto;
+					&__title:after{
+						width: 100%;
+						left: 0;
+					}
+				}
 				
 				ul.thumbs_list{
 					margin-bottom: 2em;
