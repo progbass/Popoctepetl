@@ -224,35 +224,35 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	    floors_list.add([
 			{
 				"title":	"Planta Baja",
-				"uri":		"img/floors/planta_baja.jpg",
+				"uri":		"img/floors/planta_baja.png",
 				"thumb": 	"img/floors/thumbs/planta_baja.jpg",
 				"info":     "<p>Cuenta con un acceso peatonal directo sobre Av. Popocatépetl así como por la plaza interior del desarrollo. De igual manera para la entrada y salida vehicular.</p><p>En planta baja, se cuenta con una bahía de ascenso y descenso además de control de accesos, vestíbulo, espacio de oficinas, áreas de servicios y elevadores para sótanos de estacionamiento y pisos de oficina.</p>",
 				"showInfo": true
 			},
 			{
 				"title":	"Planta 3",
-				"uri":		"img/floors/planta3.jpg",
+				"uri":		"img/floors/planta3.png",
 				"thumb": 	"img/floors/thumbs/planta1.jpg",
 				"info":     "<p>La planta del nivel 3 fue diseñada para poder contar con un espacio de comercio de doble altura y un segundo piso cubriendo una mayor área de comercio para el edificio de uso de los inquilinos o bien puede eventualmente funcionar como un espacio de apoyo para alguna de las oficinas.</p>",
 				"showInfo": true
 			},
 			{
 				"title":	"Planta Tipo",
-				"uri":		"img/floors/planta_tipo.jpg",
+				"uri":		"img/floors/planta_tipo.png",
 				"thumb": 	"img/floors/thumbs/planta_tipo.jpg",
 				"info":     "<p>Las plantas son sumamente eficientes y libres de columnas para poder tener el mayor espacio abierto de oficinas y las fachadas principales con un diseño que genera de acuerdo a su ubicación una alta eficiencia energética y una muy buena iluminación natural de los espacios.</p>",
 				"showInfo": true
 			},
 			{
 				"title":	"Oficinas",
-				"uri":		"img/floors/oficinas.jpg",
+				"uri":		"img/floors/oficinas.png",
 				"thumb": 	"img/floors/thumbs/roof_garden.jpg",
 				"info":     "<p>Cuenta con un total de 14,723 m2 rentables de oficinas corporativas distribuidos en 19 niveles de aproximadamente 886.74 m2 rentables cada uno.</p>",
 				"showInfo": true
 			},
 			{
 				"title":	"Estacionamiento",
-				"uri":		"img/floors/estacionamiento.jpg",
+				"uri":		"img/floors/estacionamiento.png",
 				"thumb": 	"img/floors/thumbs/estacionamiento.jpg",
 				"info":     "<p>Cuenta con 9 sótanos altos y bajos de estacionamiento para cubrir la demanda de las oficinas corporativas y de la zona.</p><p>El diseño cumple con todos los requisitos de dimensiones y operatividad. Todos los sótanos cuentan con dos núcleos de servicios central independientes de la vivienda, tres escaleras internas presurizadas, dos elevadores que dan acceso al lobby del corporativo y dos elevadores que dan acceso al lobby de comercio de la vivienda.</p>",
 				"showInfo": true
@@ -305,7 +305,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	    sideViews_list.add([
 			{
 				"title":	"Corte Longitudinal",
-				"uri":		"img/floors/corte_longitudinal.jpg",
+				"uri":		"img/floors/corte_longitudinal.png",
 				"thumb": 	"img/floors/thumbs/corte_longitudinal.jpg",
 				"info":     "",
 				"showInfo": true
