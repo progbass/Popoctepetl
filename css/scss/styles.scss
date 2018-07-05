@@ -14,7 +14,7 @@
    ========================================================================== */
 $reference-width: 1030;
 $max-width:	960px;
-$menu-height: 70px;
+$menu-height: 10vh;
 $menu-mobile-height: 80px;
 $images-directory: '../img/';
 $component-opacity: 0.78;
@@ -56,6 +56,7 @@ body{
 }
 h1, h2, h3, h4, h5{
 	font-family: $font-header, sans-serif;
+	letter-spacing: 0.04em;
 }
 
 
@@ -82,10 +83,8 @@ h1, h2, h3, h4, h5{
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		background: rgba(0,0,0,.4);
-		
+		background: rgba(0,0,0,.4);		
 	}
-
 
 	.image{
 		position: absolute;
@@ -128,15 +127,13 @@ h1, h2, h3, h4, h5{
 			
 		}
 	}
-	
 }
-
-
 
 header{
 	position: relative;
 	z-index: 11;
 	height: $menu-height;
+	min-height: 70px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -145,11 +142,11 @@ header{
 	// LOGO
 	.logo{
 		position: relative;
-		//width: percentage(115/880);
 		min-width: 100px;
-		height: 85%;
+		height: 80%;
 		text-align: center;
-		left: 15%; top: 50%;
+		left: percentage((($reference-width - 770)/2)/$reference-width);
+		top: 50%;
 		transform: translate(-50%, -50%);
 		
 		a{
@@ -166,12 +163,9 @@ header{
 		}
 	}
 
-
-
 	.mobile_icon{
 		display: none;
 	}
-	
 	
 	nav{
 		//float: right;
@@ -179,20 +173,16 @@ header{
 		//left: percentage(($section-xPos+8) / $reference-width);
 		//top:0;
 		display: block;
-		width: 70%;
+		width: percentage(770/$reference-width);
 		height: 100%;
 		background: rgba($id-color, $component-opacity);
 		text-transform: uppercase;
-		
-		//width: percentage($section-width/$reference-width);
-		//margin: auto;
 			
-			
+		// MAIN MENU	
 		#main_menu{
 			-webkit-box-sizing: border-box;
 			   -moz-box-sizing: border-box;
 			        box-sizing: border-box;
-			//float: right;
 			height: 100%;
 			padding: 10px 0;  margin: 0;
 			list-style: none;
@@ -203,7 +193,8 @@ header{
 			
 			@extend .clearfix;
 			
-			> li{
+			& > li{
+				display: flex;
 				position: relative;
 				//float: left;
 				height: 100%;
@@ -215,10 +206,11 @@ header{
 				// MENU BUTTONS
 				a{
 					display: block;
+					align-self: center;
 					padding: 0 1.5em;
-					height: 100%;
+					//height: 100%;
 					color: $id-color2;
-					font-size: 1.12em;
+					font-size: 1rem;
 					font-weight: normal;
 					text-decoration: none;
 					@include transition( background .2s );
@@ -243,7 +235,7 @@ header{
 				overflow:hidden;
 				transition: max-height 0.3s ease-out; 
 				height:auto;
-				left: 0; top: ($menu-height - 10px);
+				left: 0; top: calc(#{$menu-height} - 10px);
 				background: rgba(#231F20, .9);
 				margin: 0;
 				padding: 0;
@@ -311,13 +303,7 @@ header{
 				}
 			}
 		}
-		
 	}
-	
-	
-	
-	
-
 	
 	//////////////////////////////////////////////////////
 	/// MEDIA QUERIES
@@ -329,7 +315,6 @@ header{
 			display: none
 		}
 	}
-	
 	
 	//////
 	@include breakpoint( $bp-680  ) {
@@ -380,9 +365,6 @@ header{
 			}
 		}
 		
-		
-
-
 		// COLLAPSABLE MENU HOLDER
 		nav{
 			display: none;
@@ -394,8 +376,7 @@ header{
 			
 			&.cssControlled:hover{
 				display: block;	
-			}
-				
+			}	
 				
 			// MAIN MENU
 			#main_menu{
@@ -469,12 +450,6 @@ header{
 	}
 }
 
-
-
-
-
-
-
 section{
 	position: relative;
 	display: none;
@@ -488,12 +463,13 @@ section{
 	}
 	
 	&.window{	
+		$floating-window-width: 400;
 		color: #fafafa;
 		margin: auto;
 		width: 72%;
 		@media screen and (min-width: 680px  ) {
-			width: percentage(420/$reference-width);
-			min-width: 420px;
+			width: percentage($floating-window-width/$reference-width);
+			min-width: #{$floating-window-width}px;
 			margin-right: percentage(140/$reference-width);
 		}
 
@@ -521,12 +497,8 @@ section{
 			width: 92.5%;
 			color: #dedede;
 		}
-	}
-	
+	}	
 }
-
-
-
 
 #proyecto{
 	.wrapper{
@@ -589,34 +561,36 @@ section{
 			position: relative;
 			float: left;
 			width: 20%;
-			padding: 1% 2%;
+			padding: 2.5rem 2.75rem;
 			background: rgba($id-color, $component-opacity);
-			line-height: 1.5em;
+			line-height: 1.25em;
 			text-align: justify;
 			
 			h2{
-				font-size: 1.25em;
+				font-size: 0.875rem;
+				font-weight: bold;
 				text-transform: uppercase;
-				margin: 0 auto 0.75em;
+				margin: 0 auto 1.12rem;
 			}
 			h3{
-				font-size: 1em;
+				font-size: 0.75rem;
 				text-transform: uppercase;
-				margin: 0 auto 0.25em;
+				margin: 0 auto 0.12rem;
 				font-weight: normal
 			}
 			p{
-				margin: 0 auto 1.75em;
+				font-weight: 300;
+				margin: 0 auto 1.75rem;
+			}
+			ol, ul{
+				padding: 0 0 0 0.875rem;
+				margin-bottom: 2em;
 			}
 			ul{
 				list-style: disc;
-				margin: 0 0 25px; padding: 0;
-				li{
-					list-style: disc;
-				}
 			}
 			img{
-				width: 100%;
+				width: 70%;
 				height: auto;
 				max-width: 300px;
 				margin: 0.5em auto;
@@ -625,15 +599,14 @@ section{
 		}
 	}
 	
-	
+	// SUSTENTABILIDAD TAB
 	.logo_holder{
-		text-align: center;
-		margin: 0;
-		
 		img{
-			width: 35%;
+			width: 50%;
 			margin-top: 10px;
-			max-width: 200px !important;
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+			max-width: 170px !important;
 		}
 	}
 	
@@ -653,7 +626,6 @@ section{
 		.container{
 			background: none;
 			padding-top: 1em;
-			
 		}
 
 		h2{
@@ -723,10 +695,6 @@ section{
 	}
 }
 
-
-
-
-
 #buro{
 	.container{
 		background: rgba($id-color, $component-opacity);
@@ -756,9 +724,6 @@ section{
 	}
 }
 
-
-
-
 #galeria{
 	position: relative; //absolute;
 	top: 0;
@@ -782,16 +747,15 @@ section{
 	}	
 	
 	.container{
-		position: relative;
-		background: rgba(255, 255, 255, 1);	
-		height: 100%;
 		display: flex;
-		//margin-top: $menu-height;
+		position: relative;
+		height: 100%;
+		background: rgba(255, 255, 255, 1);
 	}
 	
 	.col-left{
 		position: relative;
-		width: percentage( ((($reference-width) - $socialNetworks-width) / 1px) / $reference-width );
+		flex: 1 0 percentage( ((($reference-width) - $socialNetworks-width) / 1px) / $reference-width );
 		
 		//VIDEO HOLDEr
 		.video_holder{
@@ -803,7 +767,6 @@ section{
 			
 			@include vertical-align();
 			
-			
 			iframe{
 				position: absolute;
 				top: 0; bottom: 0;
@@ -813,17 +776,16 @@ section{
 			}
 		}
 		
-		
-		
 		//GALLERY HOLDER
 		.gallery{
 			position: relative;
 			height: 100%;
 			
+			// MAIN PHOTO HOLDER
 			.photo_holder{
 				position: relative;
 				//height: 76%;
-				padding: 2% 0;
+				padding: 6vh 0;
 				text-align: center;
 				
 				&.loading{
@@ -834,25 +796,36 @@ section{
 					position: relative;
 					margin: auto;
 					&.vertical{
-						width: auto;
-						height: 100%;
-						max-height: 600px;
+						// width: auto;
+						// height: 100%;
+						// max-height: 600px;
+						max-width: percentage(400/$reference-width);
+						width: 100%;
+						height: auto;
 					}
 					&.horizontal{
-						height: auto;
 						width: 100%;
-						max-width: 700px;
+						height: auto;
+						max-width: percentage(640/$reference-width);
+					}
+
+					&.floor{
+						max-width: percentage(980/$reference-width);
 					}
 				}
 			}
 
+			// PHOTO INFORMATION
 			.info{
-				padding: 5em 0 0 35%;
-				width: 80%;
+				position: relative;
+				padding: 6vh 0 0;
+				width: percentage(310/$reference-width);
+				left: percentage(270/$reference-width);
 				&__title{
-					font-size: 1.5em;
+					font-size: 0.925rem;
 					letter-spacing: 0.05em;
 					text-transform: uppercase;
+					margin: 0 0;
 					&:after{
 						content: '';
 						display: block;
@@ -861,15 +834,16 @@ section{
 						width: 178%;
 						height: 3px;
 						background: $id-color2;
-						margin-top: 0.5em;
+						margin-top: 0.325em;
 					}
 				}
 			}
 			
+			// THUMBNAILS LIST
 			ul.thumbs_list{
 				//height: 20%;
 				list-style: none;
-				margin: 0 0; padding: 0 20px;
+				margin: 0 0 5vh; padding: 0 20px;
 				text-align: center;
 				
 				li{
@@ -921,6 +895,7 @@ section{
 	}
 	
 	.col-right{
+		display: none;
 		position: relative;
 		width: percentage( ($socialNetworks-width / 1px) / $reference-width );
 		background: #fff;
@@ -1071,8 +1046,6 @@ section{
 	}
 }
 
-
-
 #contacto{
 	position: relative;//absolute;
 	top: 0;
@@ -1091,7 +1064,6 @@ section{
 		background: #FFF;
 	}
 	
-	
 	.wrapper{
 		position: relative;	
 		height: calc(100vh - #{$menu-height});
@@ -1105,24 +1077,23 @@ section{
 	}
 	
 	.col-left{
-		flex: 30%;
-		//float: left;
+		display: flex;
+		flex: 0 0 percentage(($reference-width - 770)/$reference-width);
 		position: relative;
 		height: 100%;
-		width: percentage(272/$reference-width);
-		background: #FFF;	
+		background: #FFF;
+		flex-flow: column;
+		justify-content: space-between;	
 		
 		h2{
-			color: #fff;
+			color: $id-color;
 			text-transform: capitalize;
 			margin-bottom: 20px;
 		}
-		
 		a{
-			color: #fff;
+			color: $id-color;
 			text-decoration: none;
 		}
-		
 		ul{
 			list-style: none;
 			margin: 0; padding: 0;
@@ -1151,8 +1122,12 @@ section{
 		.container{
 			width: 80%;
 			border-left: solid 2px #fff;
-			margin: 1.5em auto;
+			margin: 6vh auto;
 			//@include vertical-align();
+		}
+		.contact-details{
+			width: 80%;
+			margin: 6vh auto;
 		}
 	}
 	
