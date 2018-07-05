@@ -14,12 +14,9 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
   		$("#main_menu a[href='"+_section+"']").addClass('active');
   };
   
-  
-  
   var setMobileMode = function( _mode ){
 	  mobileMode = _mode || true;
   }
-
 
   var AppRouter = Backbone.Router.extend({
         routes: {
@@ -29,8 +26,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
           "contacto": "contacto",
           "buro": "buro"
         },
-        
-        
+               
         proyecto: function(){
 	       // gotoSection('#proyecto');
         },

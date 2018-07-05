@@ -15,9 +15,8 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
+    
     <body>
-
-
     	<!-- BACKGROUND CONTAINER -->
     	<div id="bg_container">
     		<div class="image"></div>
@@ -30,84 +29,82 @@
     	</div>
     	<!-- /BACKGROUND CONTAINER -->
 
+		<!-- HEADER -->
+    	<header>
+    		<!-- logo -->
+    		<div class="logo" >
+    			<a href="#proyecto">
+    				<img src="img/logo-denn.svg" alt="Dek" />
+    			</a>
+    		</div>
 
+    		<a class="mobile_icon"></a>
+    		
+    		<!-- menu -->
+    		<nav>
+	        
+		        <!-- social networks -->
+		        <ol id="social_networks">
+		        	<!--
+			        <li><a href="http://www.facebook.com" class="fb"><img src="img/icon-fb.svg" alt="Facebook"></a></li>
+			        <li><a href="http://www.twitter.com" class="twitter"><img src="img/icon-twitter.svg" alt="Twitter"></a></a></li>
+			        -->
+			        <li><a href="mailto:dek@quierocasa.com.mx" class="mail"><img src="img/icon-mail.svg" alt="Mail"></a></a></li>
+		        </ol>
+    		
+		        <ol id="main_menu">
+			        <li class="proyecto">
+			        	<a href="#proyecto">El Proyecto</a>
+			        	<ul class="submenu">
+			        		<li>
+			        			<a href="#">POPOCATÉPETL 526</a>
+			        		</li>
+			        		<li>
+			        			<a href="#">ENRIQUE NORTEN</a>
+			        		</li>
+			        		<li>
+			        			<a href="#">CARACTERÍSTICAS</a>
+			        		<li>
+			        			<a href="#">SUSTENTABILIDAD</a>
+			        		</li>
+			        	</ul>
+			       	</li>
+			        <li class="galeria">
+			        	<a href="#galeria">Visuales</a>
+			        	<ul class="submenu">
+			        		<li>
+			        			<a href="#galeria" data-type="renders">Renders</a>
+			        			<a href="#galeria" data-type="plantas">Plantas</a>
+			        			<a href="#galeria" data-type="cortes">Corte Esquemático</a>
+			        		</li>
+			        	</ul>
+			       	</li>
+			        <li>
+			        	<a href="#contacto">Ubicación y Contacto</a>
+			        	<ul class="submenu">
+			        		<li>
+			        			<a href="#">Principales Vialidades</a>
+			        		</li>
+			        		<li>
+			        			<a href="#">Servicios</a>
+			        		</li>
+			        		<li>
+			        			<a href="#">Hospitales</a>
+			        		<li>
+			        			<a href="#">Sitios de Inter&eacute;s y Parques</a>
+			        		</li>
+			        	</ul>
+			       	</li>
+			        <li>
+			        	<a href="#buro">Buro</a>
+			       	</li>
+		        </ol>
+    		</nav>
+    	</header>
+    	<!-- END: HEADER -->
 
         <!-- MAIN WRAPPER -->
         <div id="main_wrap">
-        	<!-- HEADER -->
-        	<header>
-        		<!-- logo -->
-        		<div class="logo" >
-        			<a href="#proyecto">
-        				<img src="img/logo-denn.svg" alt="Dek" />
-        			</a>
-        		</div>
-
-        		<a class="mobile_icon"></a>
-        		
-        		<!-- menu -->
-        		<nav>
-		        
-			        <!-- social networks -->
-			        <ol id="social_networks">
-			        	<!--
-				        <li><a href="http://www.facebook.com" class="fb"><img src="img/icon-fb.svg" alt="Facebook"></a></li>
-				        <li><a href="http://www.twitter.com" class="twitter"><img src="img/icon-twitter.svg" alt="Twitter"></a></a></li>
-				        -->
-				        <li><a href="mailto:dek@quierocasa.com.mx" class="mail"><img src="img/icon-mail.svg" alt="Mail"></a></a></li>
-			        </ol>
-        		
-			        <ol id="main_menu">
-				        <li class="proyecto">
-				        	<a href="#proyecto">El Proyecto</a>
-				        	<ul class="submenu">
-				        		<li>
-				        			<a href="#">POPOCATÉPETL 526</a>
-				        		</li>
-				        		<li>
-				        			<a href="#">ENRIQUE NORTEN</a>
-				        		</li>
-				        		<li>
-				        			<a href="#">CARACTERÍSTICAS</a>
-				        		<li>
-				        			<a href="#">SUSTENTABILIDAD</a>
-				        		</li>
-				        	</ul>
-				       	</li>
-				        <li class="galeria">
-				        	<a href="#galeria">Visuales</a>
-				        	<ul class="submenu">
-				        		<li>
-				        			<a href="#galeria" data-type="renders">Renders</a>
-				        			<a href="#galeria" data-type="plantas">Plantas</a>
-				        			<a href="#galeria" data-type="cortes">Corte Esquemático</a>
-				        		</li>
-				        	</ul>
-				       	</li>
-				        <li>
-				        	<a href="#contacto">Ubicación y Contacto</a>
-				        	<ul class="submenu">
-				        		<li>
-				        			<a href="#">Principales Vialidades</a>
-				        		</li>
-				        		<li>
-				        			<a href="#">Servicios</a>
-				        		</li>
-				        		<li>
-				        			<a href="#">Hospitales</a>
-				        		<li>
-				        			<a href="#">Sitios de Inter&eacute;s y Parques</a>
-				        		</li>
-				        	</ul>
-				       	</li>
-				        <li>
-				        	<a href="#buro">Buro</a>
-				       	</li>
-			        </ol>
-        		</nav>
-        	</header>
-        	<!-- END: HEADER -->
-        	
         	
         	<!-- PROYECTO -->
         	<section id="proyecto" class="window">
@@ -330,13 +327,10 @@
         		</div>
         	</section>
         	<!-- END: BURO -->
-
         </div>
         <!-- END: MAIN WRAPPER -->
 
-
         <!-- MAIN SCRIPT -->
         <script data-main="js/main" src="js/vendor/require-min.js"></script>
-        
     </body>
 </html>

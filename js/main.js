@@ -32,7 +32,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	
 	//MENU
 	var menuMobileOpen = false;
-	
 	$("header nav").removeClass("cssControlled");
 	$("#main_menu > li > a").click(function(){
 		if(menuMobileOpen)
@@ -130,18 +129,21 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	function loadSection() {
 		var target = null;
 	    var hash = (window.location.hash) || "#proyecto";
+	    $('header').toggleClass('white', false);
+
 	    switch(hash){
-		    	
 		    case "#proyecto":
 		    	target = view_proyecto;
 		    	break;
 		    	
 		    case "#galeria":
 		    	target = view_galeria;
+		    	$('header').toggleClass('white')
 		    	break;
 		    	
 		    case "#contacto":
 		    	target = view_contacto;
+		    	$('header').toggleClass('white')
 		    	break;
 
 		    case "#buro":
