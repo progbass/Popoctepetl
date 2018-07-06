@@ -14,6 +14,108 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script>
+        	var servicios = [
+        		{name: 'Pabellón del Valle', location: {lat: 19.373492, lng: -99.162379}},
+        		{name: 'Universidad Latinoamericana', location: {lat: 19.372827, lng: -99.167235}},
+        		{name: 'Sanborns', location: {lat: 19.369793, lng: -99.171307}},
+        		{name: 'Sams Club Universidad', location: {lat: 19.369663, lng: -99.164200}},
+        		{name: 'Walmart Universidad', location: {lat: 19.368657, lng: -99.164119}},
+        		{name: 'Bowling Alley', location: {lat: 19.367227, lng: -99.170945}},
+        		{name: 'Plaza Universidad', location: {lat: 19.367224, lng: -99.165981}},
+        		{name: 'Instituto México Secundaria', location: {lat: 19.365992, lng: -99.165298}},
+        		{name: 'Patio Universidad', location: {lat: 19.365841, lng: -99.166642}},
+        		{name: 'Centro Coyoacán', location: {lat: 19.359798, lng: -99.170062}}
+        	]
+        	var hospitales = [
+        		{name: 'bios medical center', location: {lat: 19.372071, lng: -99.166329}},
+        		{name: 'ISSTE', location: {lat: 19.372684, lng: -99.171231}},
+        		{name: 'IMSS', location: {lat: 19.368437, lng: -99.171671}},
+        		{name: 'Hospital San José', location: {lat: 19.363968, lng: -99.169536}},
+        		{name: 'Hospital General Xoco', location: {lat: 19.360123, lng: -99.162272}}
+        	]
+        	var sitiosInteres = [
+        		{name: 'Centro deportivo Benito Juárez', location: {lat: 19.371742, lng: -99.159677}},
+        		{name: 'Parque público Pascual Ortíz Rubio', location: {lat: 19.370866, lng: -99.168794}},
+        		{name: 'Centro cultural Roberto Cantoral', location: {lat: 19.362027, lng: -99.166368}},
+        		{name: 'Cineteca Nacional', location: {lat: 19.360684, lng: -99.164730}},
+        		{name: 'Centro Deportivo Coyoacán', location: {lat: 19.361788, lng: -99.161682}},
+        	];
+        	var targetLocation = {lat: 19.365496, lng: -99.165800};
+        	var markers = [];
+        	var map, infowindow;
+        	function initMap() {
+				infowindow = new google.maps.InfoWindow();
+		        map = new google.maps.Map(document.querySelector('#contacto .map_holder'), {
+		        	center: targetLocation,
+		        	zoom: 18
+		        });
+
+		        var targetMarker = new google.maps.Marker({
+	        		position: targetLocation,
+	        		map: map,
+	        		icon: 'img/map-location-icon.png'
+	        	})
+
+		        //
+		        var allMarkers = [servicios, hospitales, sitiosInteres];
+		        for(var i = 0; i<allMarkers.length; i++){
+		        	var currentMarkerList = allMarkers[i];
+		        	for(var j = 0; j<currentMarkerList.length; j++){
+			        	currentMarkerList[j].marker = new google.maps.Marker({
+			        		position: currentMarkerList[j].location,
+			        		map: map,
+			        		icon: 'img/map-marker-a.png'
+			        	})
+			        	currentMarkerList[j].marker.setMap(null);
+			        }
+		        }
+  				//setMarkers('servicios');
+		    }
+		    function setMarkers(type){
+		        deleteMarkers();
+		    	switch(type){
+		    		case 'hospitales':
+		    			markers = hospitales;
+		    			break;
+		    		case 'sitiosInteres':
+		    			markers = sitiosInteres;
+		    			break;
+		    		case 'servicios':
+		    		default:
+		    			markers = servicios;
+		    			break;
+		    	}
+		    	setMarkersOnMap(map);
+		    }
+		    function setMarkersOnMap(map){
+        		var bounds = new google.maps.LatLngBounds();
+		    	for (var i = 0; i < markers.length; i++) {
+		    		var marker = markers[i].marker;
+		        	marker.setMap(map);
+		        	bounds.extend(marker.position);
+		        	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					    return function() {
+					      infowindow.setContent(markers[i].name);
+					      infowindow.open(map, marker);
+					    }
+					})(marker, i));
+		        }
+		        map.fitBounds(bounds);
+		  //       var listener = google.maps.event.addListener(map, "idle", function () {
+				//     map.setZoom(18);
+				//     google.maps.event.removeListener(listener);
+				// });
+		    }
+		    function deleteMarkers() {
+		        for (var i = 0; i < markers.length; i++) {
+		    		var marker = markers[i].marker;
+		        	marker.setMap(null);
+		        }
+		        markers = [];
+		     }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZKeqPDUOxBExapt7pR6uwvBWKot6TJSo&callback=initMap" async defer></script>
     </head>
     
     <body>
@@ -79,23 +181,21 @@
 			        		</li>
 			        	</ul>
 			       	</li>
-			        <li>
+			        <li class="contacto">
 			        	<a href="#contacto">Ubicación y Contacto</a>
-			        	<!--
 			        	<ul class="submenu">
 			        		<li>
-			        			<a href="#">Principales Vialidades</a>
+			        			<a href="#contacto">Principales Vialidades</a>
 			        		</li>
 			        		<li>
-			        			<a href="#">Servicios</a>
+			        			<a href="#contacto" data-type="servicios">Servicios</a>
 			        		</li>
 			        		<li>
-			        			<a href="#">Hospitales</a>
+			        			<a href="#contacto" data-type="hospitales">Hospitales</a>
 			        		<li>
-			        			<a href="#">Sitios de Inter&eacute;s y Parques</a>
+			        			<a href="#contacto" data-type="sitiosInteres">Sitios de Inter&eacute;s y Parques</a>
 			        		</li>
 			        	</ul>
-			        	-->
 			       	</li>
 			        <li>
 			        	<a href="#buro">Buro</a>
@@ -107,228 +207,229 @@
 
         <!-- MAIN WRAPPER -->
         <div id="main_wrap">
-        	
-        	<!-- PROYECTO -->
-        	<section id="proyecto" class="window">
-        		<div class="wrapper">
-		        	<div class="container">
-		        	
-		        		<!-- Nav -->
-		        		<nav>
-			        		<a href="#" class="prev">Anterior</a>
-			        		<a href="#" class="next"> Siguiente</a>
-		        		</nav>
-		        	
-		        		<!-- Slider -->
-		        		<div class="slider_holder">
-		        			<ul class="slider">
-		        				<!-- Intro -->
-		        				<li class="slide">
-						        	<h2>POPOCATÉPETL 526</h2>
-						        	
-						        	<p>Se desplanta sobre un terrero de 4,000m2, que permitirá el desarrollo mixto compuesto de un edificio corporativo, vivienda y comercio con un total de aproximadamente 41,000m2 construidos.</p>
-
-						        	<p>Distribuidos en diecinueve niveles de oficinas corporativas, planta baja, dos niveles para comercio o servicios, una gran plaza central y más 9 sótanos de estacionamiento que cubrirán la demanda del mismo.</p>
-		        				</li>
-
-
-		        				<!-- Proyecto -->
-		        				<li class="slide">
-						        	<h2>POPOCATÉPETL 526</h2>
-						        	
-						        	<p>Se localiza en uno de los corredores con mayor conectividad movimiento financiero en la Ciudad de México, el corredor Insurgentes.</p>
-
-						        	<p>Proyecto mixto del reconocido Arquitecto Enrique Norten, se desarrolla sobre un desplante de 4,000m2. El corporativo se compone con un total de 14,000m2 rentables de oficinas, una  plaza comercial de 1,000m2 y vivienda de 26,000m2 formando un total de casi 41,000m2 construídos del complejo total.</p>
-
-						        	<p>La entrega de los espacios de oficina de Popocatépetl 526 para su acondicionamiento se tiene contemplada para el primer cuatrimestre del 2021 y la operación del edificio será en el segundo cuatrimestre del 2021.</p>
-
-						        	<p>Popocatépetl 526, cuenta con una ubicación privilegiada, se localiza entre Av. Popocatépetl y Mayorazgo de Solis, a unos pasos de Av. Universidad, Av. Coyoacán y Av. Cuauhtémoc, algunas de las avenidas de mayor afluencia en la zona Sur de la Ciudad de México. Su ubicación estratégica permitirá a los usuarios y visitantes del corporativo un fácil acceso vehicular así mismo una gran movilidad con la variedad de transporte público de la zona en ambos sentidos.</p>
-
-						        	<p>Conoce más del proyecto dando click en <a href="www.agatha.com.mx" target="_blank">www.agatha.com.mx</a></p>
-		        				</li>
-
-
-								<!-- Enrique Norten -->
-		        				<li class="slide">
-						        	<h2>ENRIQUE NORTEN</h2>
-						        	
-						        	<p>Reconocido arquitecto mexicano, titular de la Cátedra Miller en la Universidad de Pennsylvania y ha sido profesor en las universidades de Yale, UCLA, Cornell, Parsons, Pratt Institute y Harvard. Ha recibido múltiples reconocimientos y galardones: en 1998 recibió el Premio Pabellón Mies Van Der Rohe de Arquitectura Latinoamericana y desde 1999 es Miembro honorario del American Institute of Architects. En 2013, fue reconocido con el Project Merit Award de la AIA NY Design por el proyecto del New York Public Library; obtuvo el “International Award” por la Sociedad Americana de Arquitectos Registrados [SARA]. Recibió el Premio “Trayectorias 2014” por el Colegio de Arquitectos de la Ciudad de México, así como el Premio a la Expresión Artística de la Fundación José Limón en Nueva York. Recibe también la Richard J. Neutra Medal for Professional Excellence 2015.</p>
-
-						        	<img style="margin-top: 3.5rem" src="img/enrique-norten.jpg" alt="Imagen Enrique Norten Arquitecto" />
-		        				</li>
-		        				
-		        				
-		        				<!-- Características -->
-		        				<li class="slide">
-						        	<h2>Caracter&iacute;sticas</h2>
-						        	
-						        	<h3>Fachada</h3>
-						        	<p>Las fachadas del edificio son de muro cortina con el sistema "Duo Vent" (doble vidrio) de alta eficiencia, que genera ahorros en energía eléctrica, iluminación y aires acondicionados prefabricados verticales para dar mayor sombra en el interior de los espacios.</p>
-
-									<h3>Núcleos de Servicio</h3>
-									<p>Cada nivel de oficinas tiene el núcleo de servicios que se entrega totalmente terminado e instalaciones funcionando:</p>
-
-									<ol>
-										<li>Vestíbulo de elevadores.</li>
-										<li>Sanitarios para mujeres y hombres con un ducto vertical para instalaciones hidráulicas y sanitarias, así como extracción mecánica de aire.</li>
-										<li>Vestíbulo para elevador de servicio (montacargas).</li>
-										<li>Cuarto de aseo.</li>
-										<li>Ducto vertical para el sistema de protección contra incendio.</li>
-										<li>Cuarto técnico para la Unidad Manejadora de Aire UMA´s por cada nivel.</li>
-										<li>Cuarto eléctrico, ductos de control y comunicaciones.</li>
-										<li>Dos escaleras de emergencia presurizadas.</li>
-									</ol>
-
-									<h3>Sistema contra Incendios</h3>
-									<p>El edificio cuenta con la infraestructura para el sistema central de rociadores, detectores de humo, alarmas, además de salidas de emergencia, escaleras de emergencia e hidrantes por piso; además de tomas siamesas en el exterior del edificio. Los pisos de oficina se entregan con la conexión a punta para que cada inquilino haga su distribución interna.</p>
-
-									<h3>Andén de Servicio</h3>
-									<p>Ubicado en el sótano 1 de estacionamiento con conexión directa al elevador de servicio, el edificio cuenta con un área para carga y descarga independiente a la circulación y estacionamiento del corporativo.</p>
-
-									<h3>Extracción de Sótanos</h3>
-									<p>Todos los niveles de estacionamiento al encontrarse bajo el nivel de banqueta cuentan con el sistema de extracción de gases a base de detectores y sensores de bióxido de carbono, conectados al sistema inteligente y al sistema de emergencia del edificio.</p>
-		        				</li>
-			        			
-			        			<!-- Sustentabilidad -->
-		        				<li class="slide">
-			        				<h2>Sustentabilidad</h2>
-
-		        					<p>Popocatépetl 526 contempla las más inovadoras tendencias internacionales de los edificios sustentables. La certificación LEED es un reconocimiento internacional que verifica que un edificio sea diseñado y construido bajo lineamientos que protegen el medio ambiente generando las siguientes ventajas: </p>
-		        					
-			        				<ul>
-				        				<li>Ahorro y eficiencia en consumo de energéticos.</li>
-										<li>Ahorro y eficiencia en el acondicionamiento de interiores.</li>
-										<li>Eficiencia en el uso y consumo de agua.</li>
-										<li>Reducción de emociones CO2.</li>
-										<li>Calidad medio-ambiental.</li>
-										<li>Administración de recursos naturales.</li>
-			        				</ul>	
-			        				
-			        				<div class="logo_holder">
-			        					<img src="img/sustentabilidad.svg" alt="US Green Building Council Member" />
-			        				</div>
-			        			</li>
-				        	</ul>
-		        		</div>
-		        		<!-- Slider -->
-		        		
-		        	</div>
-        		</div>
-        	</section>
-        	<!-- END: PROYECTO -->
-        	
-        	        	
-        	
-        	<!-- GALERIA -->
-        	<section id="galeria">
-        		<div class="container">
-	        		<h2>Galer&iacute;a</h2>
-		        	<div class="col-left content_loader">
-			        </div>
-		        	
-		        	<div class="col-right">
-			        	<ul>
-				        	<!-- <li><a href="#recorrido" class="tab">Recorrido</a></li> -->
-				        	<li><a href="#renders" class="tab">Renders</a></li>
-				        	<li><a href="#plantas" class="tab">Plantas</a></li>
-			        	</ul>
-		        	</div>
-        		</div>
-        	</section>
-        	<!-- END: GALERIA -->
-        	
-        	
-        	
-        	<!-- CONTACTO -->
-        	<section id="contacto">
-	        	
-        		<div class="wrapper">
-		        	<div class="col-left">
-		        		<div class="container">
-				        	<div>
-					        	Popocatépetl 526 se encuentra ubicado sobre Avenida Popocatépetl, en la colonia Xoco; uno de los principales ejes de la ciudad con gran afluencia vehicular y peatonal.
-				        	</div>
-		        		</div>
-		        		<div class="contact-details">
-		        			<ul>
-					        	<li>
-						        	Contacto CBRE<br>
-						        	Pauline del Ángel<br>
-						        	t. 8526 8829<br>
-						        	<a href="mailto:pauline.delangel@cbre.com">pauline.delangel@cbre.com</a>
-					        	</li>
-					        	<li>
-						        	CBRE<br>
-						        	Building Representation Popocatépetl 526<br>
-						        	Torre Virreyes I Pedregal 24, 17th floor<br>
-						        	Lomas de Chapultepec I Mexico City, DF 11040<br>
-						        	t. <a href="phone:+52 (555) 5284 0005">+52 (555) 5284 0005</a> I D <a href="phone:+52 (555) 5284 0005">+52 (55) 8226 8829</a>
-					        	</li>
-				        	</ul>
-		        		</div>
-		        	</div>
-
-
-
-		        	<div class="col-right" >
-						<!-- Form 
-		        		<img src="img/map.jpg" alt="Denn México" class="map" />
-			        	<div class="form_holder">
-				        	<form id="contact_form" action="#" enctype="multipart/form-data" >
-					        	<fieldset>
-					        		<div class="row first">
-						        		<!-- email
-							        	<div class="input_holder">
-								        	<label for="mail_txt">Correo Electr&oacute;nico</label>
-								        	<input type="text" name="mail_txt" id="mail_txt" value="" />
-							        	</div>
-							        	<!-- telephone 
-							        	<div class="input_holder">
-								        	<label for="telephone_txt">Tel.</label>
-								        	<input type="text" name="telephone_txt" id="telephone_txt" value="" />
-							        	</div>
-					        		</div>
-					        		
-						        	<div class="row name">
-						        		<!-- name
-							        	<div class="input_holder">
-								        	<label for="name_txt">Nombre</label>
-								        	<input type="text" name="name_txt" id="name_txt" value="" />
-							        	</div>
-						        	</div>
-						        	
-						        	<!-- submit
-						        	<input type="submit" name="submit_btn" id="submit_btn" value="Enviar" class="" />
-					        	</fieldset>
-				        	</form>
-			        	</div>-->
+        	<div class="main_wrap__container" >
+	        	<!-- PROYECTO -->
+	        	<section id="proyecto" class="window">
+	        		<div class="wrapper">
+			        	<div class="container">
 			        	
-			        	<!-- Map -->
-			        	<div class="map_holder">
-				        	<a href="https://www.google.com.mx/maps/place/Av.+Popocat%C3%A9petl+526,+Xoco,+03330+Ciudad+de+M%C3%A9xico,+CDMX/@19.3653201,-99.1677955,17z/data=!4m5!3m4!1s0x85d1ffbe42ec3c1b:0xfb58e9fa366d26e8!8m2!3d19.3653821!4d-99.1657221" class="location">Ver en Google Maps</a>
+			        		<!-- Nav -->
+			        		<nav>
+				        		<a href="#" class="prev">Anterior</a>
+				        		<a href="#" class="next"> Siguiente</a>
+			        		</nav>
+			        	
+			        		<!-- Slider -->
+			        		<div class="slider_holder">
+			        			<ul class="slider">
+			        				<!-- Intro -->
+			        				<li class="slide">
+							        	<h2>POPOCATÉPETL 526</h2>
+							        	
+							        	<p>Se desplanta sobre un terrero de 4,000m2, que permitirá el desarrollo mixto compuesto de un edificio corporativo, vivienda y comercio con un total de aproximadamente 41,000m2 construidos.</p>
 
-				        	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.0885045050654!2d-99.16779545010294!3d19.365320090687355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ffbe42ec3c1b%3A0xfb58e9fa366d26e8!2sAv.+Popocat%C3%A9petl+526%2C+Xoco%2C+03330+Ciudad+de+M%C3%A9xico%2C+CDMX!5e0!3m2!1sen!2smx!4v1530590357094" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+							        	<p>Distribuidos en diecinueve niveles de oficinas corporativas, planta baja, dos niveles para comercio o servicios, una gran plaza central y más 9 sótanos de estacionamiento que cubrirán la demanda del mismo.</p>
+			        				</li>
+
+
+			        				<!-- Proyecto -->
+			        				<li class="slide">
+							        	<h2>POPOCATÉPETL 526</h2>
+							        	
+							        	<p>Se localiza en uno de los corredores con mayor conectividad movimiento financiero en la Ciudad de México, el corredor Insurgentes.</p>
+
+							        	<p>Proyecto mixto del reconocido Arquitecto Enrique Norten, se desarrolla sobre un desplante de 4,000m2. El corporativo se compone con un total de 14,000m2 rentables de oficinas, una  plaza comercial de 1,000m2 y vivienda de 26,000m2 formando un total de casi 41,000m2 construídos del complejo total.</p>
+
+							        	<p>La entrega de los espacios de oficina de Popocatépetl 526 para su acondicionamiento se tiene contemplada para el primer cuatrimestre del 2021 y la operación del edificio será en el segundo cuatrimestre del 2021.</p>
+
+							        	<p>Popocatépetl 526, cuenta con una ubicación privilegiada, se localiza entre Av. Popocatépetl y Mayorazgo de Solis, a unos pasos de Av. Universidad, Av. Coyoacán y Av. Cuauhtémoc, algunas de las avenidas de mayor afluencia en la zona Sur de la Ciudad de México. Su ubicación estratégica permitirá a los usuarios y visitantes del corporativo un fácil acceso vehicular así mismo una gran movilidad con la variedad de transporte público de la zona en ambos sentidos.</p>
+
+							        	<p>Conoce más del proyecto dando click en <a href="www.agatha.com.mx" target="_blank">www.agatha.com.mx</a></p>
+			        				</li>
+
+
+									<!-- Enrique Norten -->
+			        				<li class="slide">
+							        	<h2>ENRIQUE NORTEN</h2>
+							        	
+							        	<p>Reconocido arquitecto mexicano, titular de la Cátedra Miller en la Universidad de Pennsylvania y ha sido profesor en las universidades de Yale, UCLA, Cornell, Parsons, Pratt Institute y Harvard. Ha recibido múltiples reconocimientos y galardones: en 1998 recibió el Premio Pabellón Mies Van Der Rohe de Arquitectura Latinoamericana y desde 1999 es Miembro honorario del American Institute of Architects. En 2013, fue reconocido con el Project Merit Award de la AIA NY Design por el proyecto del New York Public Library; obtuvo el “International Award” por la Sociedad Americana de Arquitectos Registrados [SARA]. Recibió el Premio “Trayectorias 2014” por el Colegio de Arquitectos de la Ciudad de México, así como el Premio a la Expresión Artística de la Fundación José Limón en Nueva York. Recibe también la Richard J. Neutra Medal for Professional Excellence 2015.</p>
+
+							        	<img style="margin-top: 3.5rem" src="img/enrique-norten.jpg" alt="Imagen Enrique Norten Arquitecto" />
+			        				</li>
+			        				
+			        				
+			        				<!-- Características -->
+			        				<li class="slide">
+							        	<h2>Caracter&iacute;sticas</h2>
+							        	
+							        	<h3>Fachada</h3>
+							        	<p>Las fachadas del edificio son de muro cortina con el sistema "Duo Vent" (doble vidrio) de alta eficiencia, que genera ahorros en energía eléctrica, iluminación y aires acondicionados prefabricados verticales para dar mayor sombra en el interior de los espacios.</p>
+
+										<h3>Núcleos de Servicio</h3>
+										<p>Cada nivel de oficinas tiene el núcleo de servicios que se entrega totalmente terminado e instalaciones funcionando:</p>
+
+										<ol>
+											<li>Vestíbulo de elevadores.</li>
+											<li>Sanitarios para mujeres y hombres con un ducto vertical para instalaciones hidráulicas y sanitarias, así como extracción mecánica de aire.</li>
+											<li>Vestíbulo para elevador de servicio (montacargas).</li>
+											<li>Cuarto de aseo.</li>
+											<li>Ducto vertical para el sistema de protección contra incendio.</li>
+											<li>Cuarto técnico para la Unidad Manejadora de Aire UMA´s por cada nivel.</li>
+											<li>Cuarto eléctrico, ductos de control y comunicaciones.</li>
+											<li>Dos escaleras de emergencia presurizadas.</li>
+										</ol>
+
+										<h3>Sistema contra Incendios</h3>
+										<p>El edificio cuenta con la infraestructura para el sistema central de rociadores, detectores de humo, alarmas, además de salidas de emergencia, escaleras de emergencia e hidrantes por piso; además de tomas siamesas en el exterior del edificio. Los pisos de oficina se entregan con la conexión a punta para que cada inquilino haga su distribución interna.</p>
+
+										<h3>Andén de Servicio</h3>
+										<p>Ubicado en el sótano 1 de estacionamiento con conexión directa al elevador de servicio, el edificio cuenta con un área para carga y descarga independiente a la circulación y estacionamiento del corporativo.</p>
+
+										<h3>Extracción de Sótanos</h3>
+										<p>Todos los niveles de estacionamiento al encontrarse bajo el nivel de banqueta cuentan con el sistema de extracción de gases a base de detectores y sensores de bióxido de carbono, conectados al sistema inteligente y al sistema de emergencia del edificio.</p>
+			        				</li>
+				        			
+				        			<!-- Sustentabilidad -->
+			        				<li class="slide">
+				        				<h2>Sustentabilidad</h2>
+
+			        					<p>Popocatépetl 526 contempla las más inovadoras tendencias internacionales de los edificios sustentables. La certificación LEED es un reconocimiento internacional que verifica que un edificio sea diseñado y construido bajo lineamientos que protegen el medio ambiente generando las siguientes ventajas: </p>
+			        					
+				        				<ul>
+					        				<li>Ahorro y eficiencia en consumo de energéticos.</li>
+											<li>Ahorro y eficiencia en el acondicionamiento de interiores.</li>
+											<li>Eficiencia en el uso y consumo de agua.</li>
+											<li>Reducción de emociones CO2.</li>
+											<li>Calidad medio-ambiental.</li>
+											<li>Administración de recursos naturales.</li>
+				        				</ul>	
+				        				
+				        				<div class="logo_holder">
+				        					<img src="img/sustentabilidad.svg" alt="US Green Building Council Member" />
+				        				</div>
+				        			</li>
+					        	</ul>
+			        		</div>
+			        		<!-- Slider -->
+			        		
+			        	</div>
+	        		</div>
+	        	</section>
+	        	<!-- END: PROYECTO -->
+	        	
+	        	        	
+	        	
+	        	<!-- GALERIA -->
+	        	<section id="galeria">
+	        		<div class="container">
+		        		<h2>Galer&iacute;a</h2>
+			        	<div class="col-left content_loader">
 				        </div>
-		        	</div>
-	        	</div>
-        	</section>
-        	<!-- END: CONTACTO -->
+			        	
+			        	<div class="col-right">
+				        	<ul>
+					        	<li><a href="#renders" class="tab">Renders</a></li>
+					        	<li><a href="#plantas" class="tab">Plantas</a></li>
+					        	<li><a href="#cortes" class="tab">Esquemas</a></li>
+				        	</ul>
+			        	</div>
+	        		</div>
+	        	</section>
+	        	<!-- END: GALERIA -->
+	        	
+	        	
+	        	
+	        	<!-- CONTACTO -->
+	        	<section id="contacto">
+		        	
+	        		<div class="wrapper">
+			        	<div class="col-left">
+			        		<div class="container">
+					        	<div>
+						        	Popocatépetl 526 se encuentra ubicado sobre Avenida Popocatépetl, en la colonia Xoco; uno de los principales ejes de la ciudad con gran afluencia vehicular y peatonal.
+					        	</div>
+			        		</div>
+			        		<div class="contact-details">
+			        			<ul>
+						        	<li>
+							        	Contacto CBRE<br>
+							        	Pauline del Ángel<br>
+							        	t. 8526 8829<br>
+							        	<a href="mailto:pauline.delangel@cbre.com">pauline.delangel@cbre.com</a>
+						        	</li>
+						        	<li>
+							        	CBRE<br>
+							        	Building Representation Popocatépetl 526<br>
+							        	Torre Virreyes I Pedregal 24, 17th floor<br>
+							        	Lomas de Chapultepec I Mexico City, DF 11040<br>
+							        	t. <a href="phone:+52 (555) 5284 0005">+52 (555) 5284 0005</a> I D <a href="phone:+52 (555) 5284 0005">+52 (55) 8226 8829</a>
+						        	</li>
+					        	</ul>
+			        		</div>
+			        	</div>
 
 
-        	<!-- BURO -->
-        	<section id="buro" class="window">
-        		<div class="wrapper">
-		        	<div class="container">	
-						<div class="logo_holder">
-							<img src="img/logo-buro.svg" alt="Logo Buro" class="logo" />   
-						</div> 
-						        	
-			        	<p>Buro es una empresa mexicana de desarrollo inmobiliario con más de 30 años de experiencia en el mercado, comprometida con los más altos estándares de calidad y ética. Buro se enfoca en la de usos mixtos de gran escala que se integran al tejido urbano y social a través de diseños arquitectónicos innovadores y espacios recreativos; es por ello que Buro genera gran valor para sus clientes, inversionistas y miembros de la comunidad donde desarrolla.</p>
-			        	<p>Buro se ha centrado en proporcionar una solución integral de desarrollos de oficinas y usos mixtos que giran alrededor del usuario y del entorno en donde se localizan, generando una infraestructura de oportunidad para el cliente, el barrio y la ciudad. Prueba de este trabajo se ve reflejado en desarrollos como: TecnoParque, Torre Polanco, DEK Polanco, Puerta Polanco y Moliere 46, entre otros.</p>    		
+
+			        	<div class="col-right" >
+							<!-- Form 
+			        		<img src="img/map.jpg" alt="Denn México" class="map" />
+				        	<div class="form_holder">
+					        	<form id="contact_form" action="#" enctype="multipart/form-data" >
+						        	<fieldset>
+						        		<div class="row first">
+							        		<!-- email
+								        	<div class="input_holder">
+									        	<label for="mail_txt">Correo Electr&oacute;nico</label>
+									        	<input type="text" name="mail_txt" id="mail_txt" value="" />
+								        	</div>
+								        	<!-- telephone 
+								        	<div class="input_holder">
+									        	<label for="telephone_txt">Tel.</label>
+									        	<input type="text" name="telephone_txt" id="telephone_txt" value="" />
+								        	</div>
+						        		</div>
+						        		
+							        	<div class="row name">
+							        		<!-- name
+								        	<div class="input_holder">
+									        	<label for="name_txt">Nombre</label>
+									        	<input type="text" name="name_txt" id="name_txt" value="" />
+								        	</div>
+							        	</div>
+							        	
+							        	<!-- submit
+							        	<input type="submit" name="submit_btn" id="submit_btn" value="Enviar" class="" />
+						        	</fieldset>
+					        	</form>
+				        	</div>-->
+				        	
+				        	<!-- Map -->
+				        	<div class="map_holder">
+					        	<!-- <a href="https://www.google.com.mx/maps/place/Av.+Popocat%C3%A9petl+526,+Xoco,+03330+Ciudad+de+M%C3%A9xico,+CDMX/@19.3653201,-99.1677955,17z/data=!4m5!3m4!1s0x85d1ffbe42ec3c1b:0xfb58e9fa366d26e8!8m2!3d19.3653821!4d-99.1657221" class="location">Ver en Google Maps</a>
+
+					        	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.0885045050654!2d-99.16779545010294!3d19.365320090687355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ffbe42ec3c1b%3A0xfb58e9fa366d26e8!2sAv.+Popocat%C3%A9petl+526%2C+Xoco%2C+03330+Ciudad+de+M%C3%A9xico%2C+CDMX!5e0!3m2!1sen!2smx!4v1530590357094" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+					        </div>
+			        	</div>
 		        	</div>
-        		</div>
-        	</section>
-        	<!-- END: BURO -->
+	        	</section>
+	        	<!-- END: CONTACTO -->
+
+
+	        	<!-- BURO -->
+	        	<section id="buro" class="window">
+	        		<div class="wrapper">
+			        	<div class="container">	
+							<div class="logo_holder">
+								<img src="img/logo-buro.svg" alt="Logo Buro" class="logo" />   
+							</div> 
+							        	
+				        	<p>Buro es una empresa mexicana de desarrollo inmobiliario con más de 30 años de experiencia en el mercado, comprometida con los más altos estándares de calidad y ética. Buro se enfoca en la de usos mixtos de gran escala que se integran al tejido urbano y social a través de diseños arquitectónicos innovadores y espacios recreativos; es por ello que Buro genera gran valor para sus clientes, inversionistas y miembros de la comunidad donde desarrolla.</p>
+				        	<p>Buro se ha centrado en proporcionar una solución integral de desarrollos de oficinas y usos mixtos que giran alrededor del usuario y del entorno en donde se localizan, generando una infraestructura de oportunidad para el cliente, el barrio y la ciudad. Prueba de este trabajo se ve reflejado en desarrollos como: TecnoParque, Torre Polanco, DEK Polanco, Puerta Polanco y Moliere 46, entre otros.</p>    		
+			        	</div>
+	        		</div>
+	        	</section>
+	        	<!-- END: BURO -->
+	        </div>
         </div>
         <!-- END: MAIN WRAPPER -->
 

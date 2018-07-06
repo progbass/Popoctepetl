@@ -51,6 +51,13 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	      	view_galeria.manageTabs( tabType );
 		});
 	});
+	$("#main_menu > li.contacto .submenu li > a").each(function(index){
+		$(this).click(function(e){
+			var tabType = e.target.dataset.type;
+	      	window.setMarkers( tabType );
+	      	return false;
+		});
+	});
 	$("header a.mobile_icon").click(function(){
 		//toggle flag
 		if(!menuMobileOpen)

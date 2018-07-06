@@ -15,6 +15,7 @@
 $reference-width: 1030;
 $max-width:	960px;
 $menu-height: 10vh;
+$menu-min-height: 70px;
 $menu-mobile-height: 80px;
 $images-directory: '../img/';
 $component-opacity: 0.78;
@@ -66,11 +67,25 @@ h1, h2, h3, h4, h5{
 
 
 #main_wrap{
-	position: fixed;
+	position: relative;
 	width: 100%;
-	height: (100vh - $menu-height);
-	margin-top: $menu-height;
-	overflow: auto;
+	height: 100vh;
+	overflow: hidden;
+
+	// 'Padding Top'
+	&:before{
+		content: '';
+		display: block;
+		position: relative;
+		width: 100%;
+		height: $menu-height;
+		min-height: $menu-min-height;
+	}
+	.main_wrap__container{
+		overflow: scroll;
+    	height: 90vh;
+    	min-height: calc(90vh - $menu-min-height);
+	}
 }
 
 
@@ -136,16 +151,26 @@ header{
 	top: 0;
 	z-index: 11;
 	height: $menu-height;
-	min-height: 70px;
+	min-height: $menu-min-height;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 
+	// WHITE HEADER
 	&.white{
-		background: white
+		background: white;
+		// Mobile Menu
+		.mobile_icon{
+			&:before {
+			  background: $id-color;
+			  box-shadow: 
+			    0 0.357em 0 0 $id-color,
+			    0 0.75em 0 0 $id-color;
+			}
+		}
 	}
 
-	///////////////
+	/////////////////////
 	// LOGO
 	.logo{
 		position: relative;
@@ -169,11 +194,15 @@ header{
 			height: 100%;
 		}
 	}
-
+	
+	/////////////////////
+	// MOBILE MENU ICON
 	.mobile_icon{
 		display: none;
 	}
 	
+	/////////////////////
+	// NAVIGATION MENU
 	nav{
 		//float: right;
 		//position: absolute;
@@ -221,7 +250,6 @@ header{
 					font-weight: normal;
 					text-decoration: none;
 					@include transition( background .2s );
-					
 				}
 				
 				&:hover{
@@ -235,14 +263,14 @@ header{
 				}
 			}
 
-
 			.submenu{
 				position: absolute;
 				max-height:0;
 				overflow:hidden;
 				transition: max-height 0.3s ease-out; 
 				height:auto;
-				left: 0; top: calc(#{$menu-height} - 10px);
+				left: 0; bottom: -9px;
+				transform: translateY(100%);
 				background: rgba(#231F20, .9);
 				margin: 0;
 				padding: 0;
@@ -324,7 +352,7 @@ header{
 	}
 	
 	//////
-	@include breakpoint( $bp-680  ) {
+	@include breakpoint( $bp-680 ) {
 		background: rgba(#231F20, .9);
 
 		// LOGO
@@ -428,7 +456,8 @@ header{
 				.submenu{
 					width: 100%;
 					position: relative;
-					top: 0;
+					bottom: auto;
+					transform: none;
 				}
 			}
 		}
@@ -735,19 +764,9 @@ section{
 	position: relative; //absolute;
 	top: 0;
 	width: 100%;
-	min-height: 100vh;//$section-height;
+	min-height: 100%;
+	height: 100%;
 	background: #fff;
-	//overflow: hidden;
-		
-	&:before{
-		content: '';
-		display: block;
-		position: absolute;
-		height: $menu-height;
-		top: -$menu-height;
-		width: 100%;
-		background: #fff;
-	}
 	
 	h2{
 		display: none;
@@ -755,15 +774,17 @@ section{
 	
 	.container{
 		display: flex;
+		flex-flow: row wrap;
 		position: relative;
-		height: 100%;
+		min-height: 100%;
 		background: rgba(255, 255, 255, 1);
 	}
 	
 	.col-left{
 		position: relative;
 		flex: 1 0 percentage( ((($reference-width) - $socialNetworks-width) / 1px) / $reference-width );
-		
+		align-self: center;
+
 		//VIDEO HOLDEr
 		.video_holder{
 			position: relative;
@@ -803,9 +824,6 @@ section{
 					position: relative;
 					margin: auto;
 					&.vertical{
-						// width: auto;
-						// height: 100%;
-						// max-height: 600px;
 						max-width: percentage(400/$reference-width);
 						width: 100%;
 						height: auto;
@@ -818,6 +836,16 @@ section{
 
 					&.floor{
 						max-width: percentage(980/$reference-width);
+					}
+
+
+					@include breakpoint( $bp-680  ) {
+						&.vertical{
+							max-width: none;
+						}
+						&.horizontal{
+							max-width: none;
+						}
 					}
 				}
 			}
@@ -837,8 +865,8 @@ section{
 						content: '';
 						display: block;
 						position: relative;
-						left: -78%;
-						width: 178%;
+						right: 100%;
+						width: 200%;
 						height: 3px;
 						background: $id-color2;
 						margin-top: 0.325em;
@@ -876,7 +904,6 @@ section{
 					
 					&:hover,
 					&.selected{
-						
 						&:before{
 							-webkit-box-shadow: inset 0px 0px 0px 4px $id-color2;
 							-moz-box-shadow: inset 0px 0px 0px 4px $id-color2;
@@ -884,12 +911,9 @@ section{
 						}
 					}
 					
-					
 					a{
 						display: block;
 						height: 100%;
-						
-						
 					}
 					img{
 						display: inline-block;
@@ -934,14 +958,13 @@ section{
 	}
 	
 	///RESPONSIVE RULES
-	@include breakpoint( $bp-960  ) {
-		height: 100%;
-		overflow: visible;
+	@include breakpoint( $bp-960 ) {
+		//height: auto;
+		//overflow: visible;
 		
 		.container{
-			height: auto;
 			margin: 0;
-			//border-top: solid $menu-height;
+			flex-flow: row wrap;
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
@@ -954,13 +977,10 @@ section{
 		}
 		
 		.col-left{
-			float: none;
 			width: 100%;
-			padding-top: 70px;
+			order: 1;
 			
 			.gallery{
-				//padding-top: 70px;
-				
 				.photo_holder{
 					height: auto; //65%;
 					padding: 0 0 2em;
@@ -977,6 +997,7 @@ section{
 					width: 72%;
 					min-width: 300px;
 					margin: auto;
+					left: 0;
 					&__title:after{
 						width: 100%;
 						left: 0;
@@ -986,34 +1007,21 @@ section{
 				ul.thumbs_list{
 					margin-bottom: 2em;
 				}
-				
 			}
 			
-			
-			
 			.video_holder{
-				
 				iframe{
 					margin: 0;
 					
 				}
-				
 			}
-			
-			
-			
-			
-			
 		}
 	
 		.col-right{
-			position: absolute;
-			top:0;
-			float: none;
+			display: block;
 		    width: 100%;
 		    height: 70px;
 		    text-align: center;
-		    
 		    
 		    ul{
 		    	height: 100%;
@@ -1023,7 +1031,7 @@ section{
 			    
 			    li{
 			    	float: left;
-			    	width: 50%;//33.3333333%;
+			    	width: 33.3333333%;
 			    	height: 100%;
 				    margin: 0;
 				    line-height: 5em;
@@ -1037,8 +1045,7 @@ section{
 					   -moz-box-sizing: border-box;
 					   box-sizing: border-box;
 				    }
-				    
-				    
+
 				    a,
 				    a:hover,
 				    a.active,
@@ -1051,14 +1058,21 @@ section{
 		    }
 		}
 	}
+
+	///RESPONSIVE RULES
+	@include breakpoint( $bp-680 ) {
+		.container{
+			align-content: flex-start;
+		}
+	}
 }
 
 #contacto{
 	position: relative;//absolute;
 	top: 0;
 	width: 100%;
-	height: auto;//$section-height;
-	//overflow: hidden;
+	height: 100%;//$section-height;
+	min-height: 100%;
 	color: #222;
 		
 	&:before{
@@ -1074,7 +1088,7 @@ section{
 	.wrapper{
 		position: relative;	
 		height: calc(100vh - #{$menu-height});
-		min-height: 800px;
+		min-height: 100%;
 		//padding-top: $menu-height;
 
 		display: flex;
