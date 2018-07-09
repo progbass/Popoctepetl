@@ -14,108 +14,6 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script>
-        	var servicios = [
-        		{name: 'Pabellón del Valle', location: {lat: 19.373492, lng: -99.162379}},
-        		{name: 'Universidad Latinoamericana', location: {lat: 19.372827, lng: -99.167235}},
-        		{name: 'Sanborns', location: {lat: 19.369793, lng: -99.171307}},
-        		{name: 'Sams Club Universidad', location: {lat: 19.369663, lng: -99.164200}},
-        		{name: 'Walmart Universidad', location: {lat: 19.368657, lng: -99.164119}},
-        		{name: 'Bowling Alley', location: {lat: 19.367227, lng: -99.170945}},
-        		{name: 'Plaza Universidad', location: {lat: 19.367224, lng: -99.165981}},
-        		{name: 'Instituto México Secundaria', location: {lat: 19.365992, lng: -99.165298}},
-        		{name: 'Patio Universidad', location: {lat: 19.365841, lng: -99.166642}},
-        		{name: 'Centro Coyoacán', location: {lat: 19.359798, lng: -99.170062}}
-        	]
-        	var hospitales = [
-        		{name: 'bios medical center', location: {lat: 19.372071, lng: -99.166329}},
-        		{name: 'ISSTE', location: {lat: 19.372684, lng: -99.171231}},
-        		{name: 'IMSS', location: {lat: 19.368437, lng: -99.171671}},
-        		{name: 'Hospital San José', location: {lat: 19.363968, lng: -99.169536}},
-        		{name: 'Hospital General Xoco', location: {lat: 19.360123, lng: -99.162272}}
-        	]
-        	var sitiosInteres = [
-        		{name: 'Centro deportivo Benito Juárez', location: {lat: 19.371742, lng: -99.159677}},
-        		{name: 'Parque público Pascual Ortíz Rubio', location: {lat: 19.370866, lng: -99.168794}},
-        		{name: 'Centro cultural Roberto Cantoral', location: {lat: 19.362027, lng: -99.166368}},
-        		{name: 'Cineteca Nacional', location: {lat: 19.360684, lng: -99.164730}},
-        		{name: 'Centro Deportivo Coyoacán', location: {lat: 19.361788, lng: -99.161682}},
-        	];
-        	var targetLocation = {lat: 19.365496, lng: -99.165800};
-        	var markers = [];
-        	var map, infowindow;
-        	function initMap() {
-				infowindow = new google.maps.InfoWindow();
-		        map = new google.maps.Map(document.querySelector('#contacto .map_holder'), {
-		        	center: targetLocation,
-		        	zoom: 18
-		        });
-
-		        var targetMarker = new google.maps.Marker({
-	        		position: targetLocation,
-	        		map: map,
-	        		icon: 'img/map-location-icon.png'
-	        	})
-
-		        //
-		        var allMarkers = [servicios, hospitales, sitiosInteres];
-		        for(var i = 0; i<allMarkers.length; i++){
-		        	var currentMarkerList = allMarkers[i];
-		        	for(var j = 0; j<currentMarkerList.length; j++){
-			        	currentMarkerList[j].marker = new google.maps.Marker({
-			        		position: currentMarkerList[j].location,
-			        		map: map,
-			        		icon: 'img/map-marker-a.png'
-			        	})
-			        	currentMarkerList[j].marker.setMap(null);
-			        }
-		        }
-  				//setMarkers('servicios');
-		    }
-		    function setMarkers(type){
-		        deleteMarkers();
-		    	switch(type){
-		    		case 'hospitales':
-		    			markers = hospitales;
-		    			break;
-		    		case 'sitiosInteres':
-		    			markers = sitiosInteres;
-		    			break;
-		    		case 'servicios':
-		    		default:
-		    			markers = servicios;
-		    			break;
-		    	}
-		    	setMarkersOnMap(map);
-		    }
-		    function setMarkersOnMap(map){
-        		var bounds = new google.maps.LatLngBounds();
-		    	for (var i = 0; i < markers.length; i++) {
-		    		var marker = markers[i].marker;
-		        	marker.setMap(map);
-		        	bounds.extend(marker.position);
-		        	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-					    return function() {
-					      infowindow.setContent(markers[i].name);
-					      infowindow.open(map, marker);
-					    }
-					})(marker, i));
-		        }
-		        map.fitBounds(bounds);
-		  //       var listener = google.maps.event.addListener(map, "idle", function () {
-				//     map.setZoom(18);
-				//     google.maps.event.removeListener(listener);
-				// });
-		    }
-		    function deleteMarkers() {
-		        for (var i = 0; i < markers.length; i++) {
-		    		var marker = markers[i].marker;
-		        	marker.setMap(null);
-		        }
-		        markers = [];
-		     }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZKeqPDUOxBExapt7pR6uwvBWKot6TJSo&callback=initMap" async defer></script>
     </head>
     
     <body>
@@ -144,7 +42,6 @@
     		
     		<!-- menu -->
     		<nav>
-	        
 		        <!-- social networks -->
 		        <ol id="social_networks">
 		        	<!--
@@ -231,7 +128,6 @@
 							        	<p>Distribuidos en diecinueve niveles de oficinas corporativas, planta baja, dos niveles para comercio o servicios, una gran plaza central y más 9 sótanos de estacionamiento que cubrirán la demanda del mismo.</p>
 			        				</li>
 
-
 			        				<!-- Proyecto -->
 			        				<li class="slide">
 							        	<h2>POPOCATÉPETL 526</h2>
@@ -247,7 +143,6 @@
 							        	<p>Conoce más del proyecto dando click en <a href="www.agatha.com.mx" target="_blank">www.agatha.com.mx</a></p>
 			        				</li>
 
-
 									<!-- Enrique Norten -->
 			        				<li class="slide">
 							        	<h2>ENRIQUE NORTEN</h2>
@@ -256,7 +151,6 @@
 
 							        	<img style="margin-top: 3.5rem" src="img/enrique-norten.jpg" alt="Imagen Enrique Norten Arquitecto" />
 			        				</li>
-			        				
 			        				
 			        				<!-- Características -->
 			        				<li class="slide">
@@ -311,7 +205,6 @@
 					        	</ul>
 			        		</div>
 			        		<!-- Slider -->
-			        		
 			        	</div>
 	        		</div>
 	        	</section>
@@ -335,11 +228,8 @@
 	        	</section>
 	        	<!-- END: GALERIA -->
 	        	
-	        	
-	        	
 	        	<!-- CONTACTO -->
 	        	<section id="contacto">
-		        	
 	        		<div class="wrapper">
 			        	<div class="col-left">
 			        		<div class="container">
@@ -371,11 +261,15 @@
 				        	<div class="map_holder"></div>
 			        	</div>
 
-			        	<div class="locations-index"></div>
+			        	<div class="locations-index">
+			        		<h3 class="title"></h3>
+			        		<div class="list-container">
+			        			<ol class="list"></ol>
+			        		</div>
+			        	</div>
 		        	</div>
 	        	</section>
 	        	<!-- END: CONTACTO -->
-
 
 	        	<!-- BURO -->
 	        	<section id="buro" class="window">

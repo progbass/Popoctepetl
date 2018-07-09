@@ -88,7 +88,6 @@ h1, h2, h3, h4, h5{
 	}
 }
 
-
 #bg_container{
 	position: fixed;
 	top: 0; left: 0;
@@ -1135,11 +1134,42 @@ section{
 		//padding-top: $menu-height;
 
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row nowrap;
 		box-sizing: border-box;
 		overflow: hidden;
 	}
-	
+
+	////////////////////
+	// LOCATIONS INDEX
+	.locations-index{
+		position: relative;
+		flex: 0 0 percentage(150/$reference-width);
+		background: #fff;
+		text-transform: uppercase;
+		
+		// List title
+		.title{
+			margin: 0; padding: 0.25em 0.5em;
+			font-weight: normal;
+			background: $id-color2;
+			color: #fff;
+		}
+
+		// Locations list
+		.list-container{
+			padding: 0.5em;
+		}
+		.list{
+			position: relative;
+			margin: 0; padding: 0 0 0 1em;
+			.location{
+				
+			}
+		}
+	}
+
+	////////////////////////////////
+	// LEFT COLUMN / CONTACT INFO
 	.col-left{
 		display: flex;
 		flex: 0 0 percentage(($reference-width - 770)/$reference-width);
@@ -1194,13 +1224,12 @@ section{
 			margin: 6vh auto;
 		}
 	}
-	
-	.col-right{
 
-		flex: 70%;
-		//float: left;
+	////////////////////////////////
+	// RIGHT COLUMN / MAP CONTAINER
+	.col-right{
+		flex: 1; //percentage(752/$reference-width);
 		height: 100%;
-		width: percentage(752/$reference-width);
 		background: rgba($id-color3, .05);	
 		
 
@@ -1302,14 +1331,9 @@ section{
 			
 			
 		}
-	}
-	
-	
-	
-	
+	}	
 	
 	///RESPONSIVE RULES
-	
 	@include breakpoint( $bp-960  ) {
 		height: 100%;
 		overflow: visible;

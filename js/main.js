@@ -25,6 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	var view_proyecto = new Proyecto();
 	var view_galeria = new Galeria();
 	var view_contacto = new Contacto();
+	var contactoType;
 	
 	//MENU
 	var menuMobileOpen = false;
@@ -50,8 +51,8 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	$("#main_menu > li.contacto .submenu li > a").each(function(index){
 		$(this).click(function(e){
 			var tabType = e.target.dataset.type;
-	      	window.setMarkers( tabType );
-	      	return false;
+	      	view_contacto.setMarkers( tabType );
+	      	contactoType = tabType;
 		});
 	});
 	$("header a.mobile_icon").click(function(){
@@ -130,9 +131,10 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	});
 	ssm.ready();
 	
-	/////////////
+	// LOAD SECTION FUNCTION
 	function loadSection() {
 		var target = null;
+		var params = {};
 	    var hash = (window.location.hash) || "#proyecto";
 	    $('header').toggleClass('white', false);
 
@@ -144,7 +146,10 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 		    	
 		    case "#contacto":
 		    	target = view_contacto;
-		    	$('header').toggleClass('white')
+		    	$('header').toggleClass('white');
+		    	if(contactoType){
+		    		params = {type: contactoType}
+		    	}
 		    	break;
 
 		    case "#buro":
@@ -163,10 +168,9 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 		    	target = view_proyecto;
 	    }
 	    
-	    
 	    //render target section
 	    if(target)
-	    	target.render();
+	    	target.render(params);
 	    
 	    //show/hide sections
 	    $("section").hide();
@@ -176,6 +180,20 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
   		$("#main_menu a").removeClass('active');
   		$("#main_menu a[href='"+hash+"']").addClass('active');
 	}
+
+	// LOAD GOOGLE MAPS SDK
+	window.initMap = function(){
+		view_contacto.initMap();
+	}
+	var gmapsSDK = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCZKeqPDUOxBExapt7pR6uwvBWKot6TJSo&callback=initMap";
+	$.ajax({
+	   url: gmapsSDK,
+	   dataType: "script",
+	   async: false,
+	   success: function(){
+	       console.log('script loaded');
+	   }
+	});
 });
 
 

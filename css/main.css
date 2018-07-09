@@ -994,9 +994,26 @@ section {
     height: calc(100vh - 10vh);
     min-height: 100%;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     box-sizing: border-box;
     overflow: hidden; }
+  #contacto .locations-index {
+    position: relative;
+    flex: 0 0 14.5631067961%;
+    background: #fff;
+    text-transform: uppercase; }
+    #contacto .locations-index .title {
+      margin: 0;
+      padding: 0.25em 0.5em;
+      font-weight: normal;
+      background: #FF6A00;
+      color: #fff; }
+    #contacto .locations-index .list-container {
+      padding: 0.5em; }
+    #contacto .locations-index .list {
+      position: relative;
+      margin: 0;
+      padding: 0 0 0 1em; }
   #contacto .col-left {
     display: flex;
     flex: 0 0 25.2427184466%;
@@ -1037,9 +1054,8 @@ section {
       width: 80%;
       margin: 6vh auto; }
   #contacto .col-right {
-    flex: 70%;
+    flex: 1;
     height: 100%;
-    width: 73.0097087379%;
     background: rgba(0, 138, 171, 0.05); }
     #contacto .col-right img.map {
       width: 100%;
