@@ -1,6 +1,5 @@
 requirejs.config({
     baseUrl: 'js',
-    
 	
 	paths: {
         "jquery":		'vendor/jquery-1.11.3.min',
@@ -12,7 +11,6 @@ requirejs.config({
         'router':		'min/router-min'
     },
     
-    
     shim: {
     	'plugins': {
     		deps: ['jquery']
@@ -21,14 +19,12 @@ requirejs.config({
     }
 });
 
-
-
+//
 define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Galeria.js', 'js/Contacto.js', 'ssm', 'plugins'], function($, _, Backbone, Router, Proyecto, Galeria, Contacto, ssm) {
 	//init sections
 	var view_proyecto = new Proyecto();
 	var view_galeria = new Galeria();
 	var view_contacto = new Contacto();
-	
 	
 	//MENU
 	var menuMobileOpen = false;
@@ -92,28 +88,30 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 		menuMobileOpen = target;
 	};
 	
-	
-	
 	//ROUTER
 	var router = new Router();
 	Backbone.history.on("all", loadSection);
 	
 	//load first section
-	loadSection();
-	
-	
+	// manin page backgrouds
+ 	$("#bg_container .image").eq(0).addClass('visible').addClass('move');
+	var backgroundContainer = document.querySelector('#main_wrap');
+	var backgroundListener = function(){
+		backgroundContainer.removeEventListener('click', backgroundListener);
+		loadSection();
+	}
+	backgroundContainer.addEventListener('click', backgroundListener);
+	var introInterval = setTimeout(backgroundListener, 2000);
 	
 	//STATE MANAGER
 	ssm.addState({
 		id: 'resize',
 		onResize: function(){
-			
 			//$("#slideHolder").width( $("#slideHolder").outerWidth() );
 			//setupSlider();
 			//Router.repositionStep( globals.actualPage );
 		}
 	});
-	
 	ssm.addState({
 		id: 'mobile',
 	    maxWidth: 681,
@@ -121,13 +119,13 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	        //mobileMode = true;
 	        //Router.setMobileMode(true);
 	        menuMobileOpen = false;
-	        $("header nav").hide();
+	        //$("header nav").hide();
 	    },
 	    onLeave: function(){
 	        //mobileMode = false;
 	       // Router.setMobileMode(false);
 	       menuMobileOpen = false
-	       $("header nav").show();	
+	       //$("header nav").show();	
 	    }
 	});
 	ssm.ready();
@@ -139,10 +137,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	    $('header').toggleClass('white', false);
 
 	    switch(hash){
-		    case "#proyecto":
-		    	target = view_proyecto;
-		    	break;
-		    	
 		    case "#galeria":
 		    	target = view_galeria;
 		    	$('header').toggleClass('white')
@@ -157,13 +151,14 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 		    	// manin page backgrouds
 			 	$("#bg_container .image").each( function(_index, _target){
 			 		if( _index !== 5 ){
-			 			$(_target).stop().delay(400).fadeOut(200)
+			 			$(_target).removeClass('visible');//stop().delay(400).fadeOut(200)
 			 		} else {
-						$(_target).stop().delay(400).fadeIn(800);
+						$(_target).addClass('visible');//stop().delay(400).fadeIn(800);
 					}
 				} );
 		    	break;
 		    
+		    case "#proyecto":
 		    default:
 		    	target = view_proyecto;
 	    }

@@ -48,7 +48,7 @@ html{
 html, body{
 	position: relative;
 	height: 100%;
-	background: #333;
+	background: #FFF;
 }
 body{
 	font-family: 'Oswald', sans-serif;
@@ -98,9 +98,10 @@ h1, h2, h3, h4, h5{
 	&:before{
 		content: "";
 		position: absolute;
+		z-index: 1;
 		width: 100%;
 		height: 100%;
-		background: rgba(0,0,0,.4);		
+		background: rgba(0,0,0,.05);		
 	}
 
 	.image{
@@ -110,18 +111,30 @@ h1, h2, h3, h4, h5{
 		background: no-repeat fixed center;
 		background-size: cover;
 		background-attachment: fixed;
+		opacity: 0;
+		transition: opacity 800ms ease, background-position 4s ease-out 400ms;
+
+		&.visible{
+			opacity: 1;
+		}
+		&.move{
+			background-position: center !important;
+		}
 
 		&:nth-child(1){
-			background-image: url($images-directory+"bg-render1.jpg") 
+			background-image: url($images-directory+"bg-render1.jpg");
+			background-position: center 20%;
 		}
 		&:nth-child(2){
-			background-image: url($images-directory+"bg-render2.jpg") 
+			background-image: url($images-directory+"bg-render2.jpg");
+			background-position: center bottom;
 		}
 		&:nth-child(3){
 			background-image: url($images-directory+"bg-render3.jpg") 
 		}
 		&:nth-child(4){
-			background-image: url($images-directory+"bg-render4.jpg") 
+			background-image: url($images-directory+"bg-render4.jpg");
+			background-position: center bottom;
 		}
 		&:nth-child(5){
 			background-image: url($images-directory+"bg-render5.jpg") 
@@ -138,10 +151,8 @@ h1, h2, h3, h4, h5{
 			// background-attachment: fixed;
 			// background-attachment: scroll;
 		}
-
 		&:before{
-			background: rgba(0,0,0,.85);
-			
+			background: rgba(0,0,0,.4);
 		}
 	}
 }
@@ -477,7 +488,6 @@ header{
 		}
 	}
 	
-	
 	//////
 	@include breakpoint( $bp-480  ) {
 		.mobile_icon{
@@ -550,27 +560,25 @@ section{
 		
 		a{
 			display: block;
-			
-			width: 42px;
-			height: 43px;
-			
+			width: 17px;
+			height: 29px;
+			background: no-repeat center bottom;
+			background-size: cover;
 			font-size: 1px;
 			text-indent: -9999em;
 			text-decoration: none;
 			color: #222;
 			
 			&.next{
-				background: url($images-directory+"icon-slideNav-next.svg") no-repeat top;
+				background-image: url($images-directory+"icon-slideNav-next.svg");
 				float: right;
-				
 				&:hover{
 					background-position: center bottom;
 				}
 			}
 			&.prev{
-				background: url($images-directory+"icon-slideNav-prev.svg") no-repeat top;
+				background-image: url($images-directory+"icon-slideNav-prev.svg");
 				float: left;
-				
 				&:hover{
 					background-position: center bottom;
 				}
@@ -812,14 +820,49 @@ section{
 			// MAIN PHOTO HOLDER
 			.photo_holder{
 				position: relative;
-				//height: 76%;
 				padding: 6vh 0;
 				text-align: center;
 				
+				// Loading Icon
 				&.loading{
 					background: url($images-directory+"loader.gif") no-repeat center;
 				}
+
+				// Navigatoin Buttons
+				a.navigation{
+					display: inline-block;
+					position: relative;
+					top: 50%;
+					transform: translateY(-50%);
+					width: 17px;
+					height: 29px;
+					
+					background: no-repeat center bottom;
+					background-size: cover;
+					font-size: 1px;
+					text-indent: -9999em;
+					text-decoration: none;
+					color: #222;
+					
+					&.next{
+						background-image: url($images-directory+"icon-slideNav-next.svg");
+						&:hover{
+							background-position: center bottom;
+						}
+					}
+					&.prev{
+						background-image: url($images-directory+"icon-slideNav-prev.svg");
+						&:hover{
+							background-position: center bottom;
+						}
+					}
+				}
 				
+				// Image Display
+				.images_display{
+					display: inline;
+					margin: 0 1em;
+				}
 				img{
 					position: relative;
 					margin: auto;
@@ -838,7 +881,7 @@ section{
 						max-width: percentage(980/$reference-width);
 					}
 
-
+					// Adjust images on specific breakpoints
 					@include breakpoint( $bp-680  ) {
 						&.vertical{
 							max-width: none;

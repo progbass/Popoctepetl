@@ -229,7 +229,7 @@ html {
 html, body {
   position: relative;
   height: 100%;
-  background: #333; }
+  background: #FFF; }
 
 body {
   font-family: 'Oswald', sans-serif;
@@ -269,31 +269,41 @@ h1, h2, h3, h4, h5 {
   #bg_container:before {
     content: "";
     position: absolute;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); }
+    background: rgba(0, 0, 0, 0.05); }
   #bg_container .image {
     position: absolute;
     width: 100%;
     height: 100%;
     background: no-repeat fixed center;
     background-size: cover;
-    background-attachment: fixed; }
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 800ms ease, background-position 4s ease-out 400ms; }
+    #bg_container .image.visible {
+      opacity: 1; }
+    #bg_container .image.move {
+      background-position: center !important; }
     #bg_container .image:nth-child(1) {
-      background-image: url("../img/bg-render1.jpg"); }
+      background-image: url("../img/bg-render1.jpg");
+      background-position: center 20%; }
     #bg_container .image:nth-child(2) {
-      background-image: url("../img/bg-render2.jpg"); }
+      background-image: url("../img/bg-render2.jpg");
+      background-position: center bottom; }
     #bg_container .image:nth-child(3) {
       background-image: url("../img/bg-render3.jpg"); }
     #bg_container .image:nth-child(4) {
-      background-image: url("../img/bg-render4.jpg"); }
+      background-image: url("../img/bg-render4.jpg");
+      background-position: center bottom; }
     #bg_container .image:nth-child(5) {
       background-image: url("../img/bg-render5.jpg"); }
     #bg_container .image:nth-child(6) {
       background-image: url("../img/bg-render6.jpg"); }
   @media (max-width: 480px) {
     #bg_container:before {
-      background: rgba(0, 0, 0, 0.85); } }
+      background: rgba(0, 0, 0, 0.4); } }
 
 header {
   position: fixed;
@@ -580,19 +590,21 @@ section {
   z-index: 10; }
   #proyecto nav a {
     display: block;
-    width: 42px;
-    height: 43px;
+    width: 17px;
+    height: 29px;
+    background: no-repeat center bottom;
+    background-size: cover;
     font-size: 1px;
     text-indent: -9999em;
     text-decoration: none;
     color: #222; }
     #proyecto nav a.next {
-      background: url("../img/icon-slideNav-next.svg") no-repeat top;
+      background-image: url("../img/icon-slideNav-next.svg");
       float: right; }
       #proyecto nav a.next:hover {
         background-position: center bottom; }
     #proyecto nav a.prev {
-      background: url("../img/icon-slideNav-prev.svg") no-repeat top;
+      background-image: url("../img/icon-slideNav-prev.svg");
       float: left; }
       #proyecto nav a.prev:hover {
         background-position: center bottom; }
@@ -764,6 +776,30 @@ section {
         text-align: center; }
         #galeria .col-left .gallery .photo_holder.loading {
           background: url("../img/loader.gif") no-repeat center; }
+        #galeria .col-left .gallery .photo_holder a.navigation {
+          display: inline-block;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 17px;
+          height: 29px;
+          background: no-repeat center bottom;
+          background-size: cover;
+          font-size: 1px;
+          text-indent: -9999em;
+          text-decoration: none;
+          color: #222; }
+          #galeria .col-left .gallery .photo_holder a.navigation.next {
+            background-image: url("../img/icon-slideNav-next.svg"); }
+            #galeria .col-left .gallery .photo_holder a.navigation.next:hover {
+              background-position: center bottom; }
+          #galeria .col-left .gallery .photo_holder a.navigation.prev {
+            background-image: url("../img/icon-slideNav-prev.svg"); }
+            #galeria .col-left .gallery .photo_holder a.navigation.prev:hover {
+              background-position: center bottom; }
+        #galeria .col-left .gallery .photo_holder .images_display {
+          display: inline;
+          margin: 0 1em; }
         #galeria .col-left .gallery .photo_holder img {
           position: relative;
           margin: auto; }

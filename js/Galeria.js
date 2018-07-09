@@ -92,14 +92,15 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       el: 'section#galeria',
       lastTab: "",
       tabType: "",
+      currentSlide: 0,
       rendersInit: false,
       floorsInit: false,
       sideViewsInit: false,
       
       //INITIALIZE
       initialize: function(){
-      	_.bindAll(this, 'manageTabs', 'configRenders', 'loadRender', 'displayList');
-      	
+      	_.bindAll(this, 'nextSlide', 'prevSlide', 'manageTabs', 'configRenders', 'loadRender', 'displayList');
+      	this.currentSlide = 0;
       	this.rendersInit = false;
 	    //this.config_accordeon();  
       },
@@ -152,62 +153,74 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			{
 				"uri":		"img/renders/popo_1.jpg",
 				"thumb": 	"img/renders/thumbs/denn_1.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_2.jpg",
 				"thumb": 	"img/renders/thumbs/denn_2.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_3.jpg",
 				"thumb": 	"img/renders/thumbs/denn_3.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_4.jpg",
 				"thumb": 	"img/renders/thumbs/denn_4.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_5.jpg",
 				"thumb": 	"img/renders/thumbs/denn_5.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_6.jpg",
 				"thumb": 	"img/renders/thumbs/denn_6.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_7.jpg",
 				"thumb": 	"img/renders/thumbs/denn_7.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_8.jpg",
 				"thumb": 	"img/renders/thumbs/denn_8.jpg",
-				"showInfo": false
+				"title":    "Interior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_9.jpg",
 				"thumb": 	"img/renders/thumbs/denn_9.jpg",
-				"showInfo": false
+				"title":    "Interior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_10.jpg",
 				"thumb": 	"img/renders/thumbs/denn_10.jpg",
-				"showInfo": false
+				"title":    "Interior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_11.jpg",
 				"thumb": 	"img/renders/thumbs/denn_11.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_12.jpg",
 				"thumb": 	"img/renders/thumbs/denn_12.jpg",
-				"showInfo": false
+				"title":    "Exterior",
+				"showInfo": true
 			}	
 		]);
 		renders_list.loadCompleteHandler();
@@ -366,7 +379,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 //DISPLAY IMAGE AND THUMBNAILS
 	 loadRender: function(type){
 		 //get container
-	 	 var photoHolder = $(this.el).find(".photo_holder");
+	 	 var photoHolder = $(this.el).find(".photo_holder .images_display");
 	 	 var infoHolder = $(this.el).find(".info");
 	 	 var imageType = type || 'render';
 
@@ -412,6 +425,25 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
         //load first thumb
         $("section#galeria .thumbs_list li").first().click();
     },
+
+    nextSlide: function(){
+    	console.log(this.currentSlide+'asdasdasd +')
+    	this.currentSlide++;
+    	if(this.currentSlide > actual_list.length-1){
+    		this.currentSlide = 0;
+    	}
+    	$("section#galeria .thumbs_list li").eq(this.currentSlide).click();
+    	return false;
+    },
+    prevSlide: function(){
+    	console.log(this.currentSlide+'asdasdasd -')
+    	this.currentSlide--;
+    	if(this.currentSlide < 0){
+    		this.currentSlide = actual_list.length-1;
+    	}
+    	$("section#galeria .thumbs_list li").eq(this.currentSlide).click();
+    	return false;
+    },
 	 
 	 /////////////////////////////////////////////////////////////////
 	 manageTabs: function( _target ){
@@ -446,6 +478,9 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 }
 		 
 		$(scope.el).find(".content_loader").load( content, function() {
+		 	$(scope.el).find("a.next").click(scope.nextSlide);
+			$(scope.el).find("a.prev").click(scope.prevSlide);
+
 		 	if(_target == "renders"){
 			 	actual_list = renders_list;
 		 		if(!scope.rendersInit)

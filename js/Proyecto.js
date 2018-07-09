@@ -92,10 +92,10 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 		// change main page backgroud
 	 	$("#bg_container .image").each( function(_index, _target){
 	 		if( scope.slide != $(_target).data('index')){
-	 			$(_target).stop().delay(400).fadeOut(200)
+	 			$(_target).removeClass('visible');//stop().delay(400).fadeOut(200)
 
 	 		} else {
-				$(_target).stop().delay(400).fadeIn(800);
+				$(_target).addClass('visible');//stop().delay(400).fadeIn(800);
 			}
 
 		} );
