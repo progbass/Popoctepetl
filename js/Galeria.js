@@ -270,35 +270,62 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"uri":		"img/floors/planta_baja.png",
 				"thumb": 	"img/floors/thumbs/planta_baja.jpg",
 				"info":     "<p>Cuenta con un acceso peatonal directo sobre Av. Popocatépetl así como por la plaza interior del desarrollo. De igual manera para la entrada y salida vehicular.</p><p>En planta baja, se cuenta con una bahía de ascenso y descenso además de control de accesos, vestíbulo, espacio de oficinas, áreas de servicios y elevadores para sótanos de estacionamiento y pisos de oficina.</p>",
-				"showInfo": true
+				"showInfo": true,
+				"colorCode": {
+					gray: 'Lobby',
+					gray2: 'Comercio',
+					green: 'Circulaciones'
+				}
 			},
 			{
 				"title":	"Planta 3",
 				"uri":		"img/floors/planta3.png",
 				"thumb": 	"img/floors/thumbs/planta1.jpg",
 				"info":     "<p>La planta del nivel 3 fue diseñada para poder contar con un espacio de comercio de doble altura y un segundo piso cubriendo una mayor área de comercio para el edificio de uso de los inquilinos o bien puede eventualmente funcionar como un espacio de apoyo para alguna de las oficinas.</p>",
-				"showInfo": true
+				"showInfo": true,
+				"colorCode": {
+					gray: 'Área de Oficinas',
+					blue: 'Servicios',
+					green: 'Circulaciones',
+					gray2: 'Vivienda'
+				}
 			},
 			{
 				"title":	"Planta Tipo",
 				"uri":		"img/floors/planta_tipo.png",
 				"thumb": 	"img/floors/thumbs/planta_tipo.jpg",
 				"info":     "<p>Las plantas son sumamente eficientes y libres de columnas para poder tener el mayor espacio abierto de oficinas y las fachadas principales con un diseño que genera de acuerdo a su ubicación una alta eficiencia energética y una muy buena iluminación natural de los espacios.</p>",
-				"showInfo": true
+				"showInfo": true,
+				"colorCode": {
+					gray: 'Área de Oficinas',
+					blue: 'Servicios',
+					green: 'Circulaciones',
+					gray2: 'Vivienda'
+				}
 			},
 			{
 				"title":	"Oficinas",
 				"uri":		"img/floors/oficinas.png",
 				"thumb": 	"img/floors/thumbs/roof_garden.jpg",
 				"info":     "<p>Cuenta con un total de 14,723 m2 rentables de oficinas corporativas distribuidos en 19 niveles de aproximadamente 886.74 m2 rentables cada uno.</p>",
-				"showInfo": true
+				"showInfo": true,
+				"colorCode": {
+					gray: 'Área de Oficinas',
+					blue: 'Servicios',
+					green: 'Circulaciones',
+					gray2: 'Vivienda'
+				}
 			},
 			{
 				"title":	"Estacionamiento",
 				"uri":		"img/floors/estacionamiento.png",
 				"thumb": 	"img/floors/thumbs/estacionamiento.jpg",
 				"info":     "<p>Cuenta con 9 sótanos altos y bajos de estacionamiento para cubrir la demanda de las oficinas corporativas y de la zona.</p><p>El diseño cumple con todos los requisitos de dimensiones y operatividad. Todos los sótanos cuentan con dos núcleos de servicios central independientes de la vivienda, tres escaleras internas presurizadas, dos elevadores que dan acceso al lobby del corporativo y dos elevadores que dan acceso al lobby de comercio de la vivienda.</p>",
-				"showInfo": true
+				"showInfo": true,
+				"colorCode": {
+					blue: 'Servicios',
+					green: 'Circulaciones'
+				}
 			}
 		]);
 
@@ -351,7 +378,12 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"uri":		"img/floors/corte_longitudinal.png",
 				"thumb": 	"img/floors/thumbs/corte_longitudinal.jpg",
 				"info":     "",
-				"showInfo": true
+				"showInfo": true,
+				"colorCode": {
+					gray: 'Oficinas',
+					blue: 'Vivienda',
+					green: 'Estacionamiento'
+				}
 			}
 		]);
 		sideViews_list.loadCompleteHandler();
@@ -378,6 +410,8 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 
 	 //DISPLAY IMAGE AND THUMBNAILS
 	 loadRender: function(type){
+	 	var selectedThumb = actual_list.selectedThumb();
+
 		 //get container
 	 	 var photoHolder = $(this.el).find(".photo_holder .images_display");
 	 	 var infoHolder = $(this.el).find(".info");
@@ -385,8 +419,8 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 
 	 	 //create image 
 	 	 var image = new Image();
-	 	 image.src = actual_list.selectedThumb().attributes.uri;
-	 	 image.alt = actual_list.selectedThumb().attributes.title;
+	 	 image.src = selectedThumb.attributes.uri;
+	 	 image.alt = selectedThumb.attributes.title;
 	 	 image.onload = function(){
 	 	 	var isHorizontal = this.height < this.width;
 	 	 	var className = isHorizontal ? 'horizontal' : 'vertical';
@@ -400,19 +434,34 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	     photoHolder.find("img").hide().fadeIn(600);
 
 	     // show additional information
-	     if(actual_list.selectedThumb().attributes.showInfo){
+	     if(selectedThumb.attributes.showInfo){
 	     	infoHolder.show();
-		    if( actual_list.selectedThumb().attributes.title ){
+		    if( selectedThumb.attributes.title ){
 		     	infoHolder.find(".info__title")
 		     	.show()
-		     	.html( actual_list.selectedThumb().attributes.title );
+		     	.html( selectedThumb.attributes.title );
 		    } else {
 		     	infoHolder.find(".info__title").hide()
 		    }
-		    if( actual_list.selectedThumb().attributes.info )
-		     	infoHolder.find(".info__content").html( actual_list.selectedThumb().attributes.info );
+		    if( selectedThumb.attributes.info )
+		     	infoHolder.find(".info__content").html( selectedThumb.attributes.info );
 		 } else {
 		 	infoHolder.hide();
+		 }
+
+		 //
+		 var colorCodesContainer = $(this.el).find('.color-codes');
+		 var colorCodes = selectedThumb.attributes.colorCode;
+		 if(colorCodes){
+		 	colorCodesContainer.show();
+		 	var codesContent =  '';
+		 	var codesList = colorCodesContainer.find('ol');
+		 	for(var i = 0; i < Object.keys(colorCodes).length-1; i++){
+		 		codesContent += "<li class='code "+Object.keys(colorCodes)[i]+"' >"+colorCodes[Object.keys(colorCodes)[i]]+"</li>";
+		 	}
+		 	codesList.html(codesContent);
+		 } else {
+		 	colorCodesContainer.hide()
 		 }
 	 },
 	 

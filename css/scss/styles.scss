@@ -856,6 +856,44 @@ section{
 						}
 					}
 				}
+
+				// Color Codes
+				.color-codes{
+					text-align: left;
+					position: absolute;
+					top: 20%;
+					left: percentage(145/$reference-width);
+
+					ol{
+						position: relative;
+						list-style: none;
+						margin: 0; padding: 0;
+					}
+					.code{
+						line-height: 2em;
+						font-size: 16px;
+
+						&:before{
+							content: '';
+							display: inline-block;
+							position: relative;
+							width: 20px; height: 20px;
+							margin-right: 1em;
+						}
+						&.gray:before{
+							background: #D2D4D5;
+						}
+						&.gray2:before{
+							background: #737477;
+						}
+						&.blue:before{
+							background: #96ACBC;
+						}
+						&.green:before{
+							background: #B8C9BF;
+						}
+					}
+				}
 				
 				// Image Display
 				.images_display{
@@ -877,6 +915,7 @@ section{
 					}
 
 					&.floor{
+						width: 90%;
 						max-width: percentage(980/$reference-width);
 					}
 
@@ -1105,6 +1144,22 @@ section{
 	@include breakpoint( $bp-680 ) {
 		.container{
 			align-content: flex-start;
+		}
+		.col-left{
+			.gallery{
+				.photo_holder{
+					a.navigation{
+						display: none;
+					}
+					.color-codes{
+						position: relative;
+						margin: auto;
+						left: auto;
+						top: auto;
+						display: inline-block;
+					}
+				}
+			}
 		}
 	}
 }

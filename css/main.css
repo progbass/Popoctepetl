@@ -797,6 +797,34 @@ section {
             background-image: url("../img/icon-slideNav-prev.svg"); }
             #galeria .col-left .gallery .photo_holder a.navigation.prev:hover {
               background-position: center bottom; }
+        #galeria .col-left .gallery .photo_holder .color-codes {
+          text-align: left;
+          position: absolute;
+          top: 20%;
+          left: 14.0776699029%; }
+          #galeria .col-left .gallery .photo_holder .color-codes ol {
+            position: relative;
+            list-style: none;
+            margin: 0;
+            padding: 0; }
+          #galeria .col-left .gallery .photo_holder .color-codes .code {
+            line-height: 2em;
+            font-size: 16px; }
+            #galeria .col-left .gallery .photo_holder .color-codes .code:before {
+              content: '';
+              display: inline-block;
+              position: relative;
+              width: 20px;
+              height: 20px;
+              margin-right: 1em; }
+            #galeria .col-left .gallery .photo_holder .color-codes .code.gray:before {
+              background: #D2D4D5; }
+            #galeria .col-left .gallery .photo_holder .color-codes .code.gray2:before {
+              background: #737477; }
+            #galeria .col-left .gallery .photo_holder .color-codes .code.blue:before {
+              background: #96ACBC; }
+            #galeria .col-left .gallery .photo_holder .color-codes .code.green:before {
+              background: #B8C9BF; }
         #galeria .col-left .gallery .photo_holder .images_display {
           display: inline;
           margin: 0 1em; }
@@ -812,6 +840,7 @@ section {
             height: auto;
             max-width: 62.1359223301%; }
           #galeria .col-left .gallery .photo_holder img.floor {
+            width: 90%;
             max-width: 95.145631068%; }
           @media (max-width: 680px) {
             #galeria .col-left .gallery .photo_holder img.vertical {
@@ -972,7 +1001,15 @@ section {
             background: none; } }
   @media (max-width: 680px) {
     #galeria .container {
-      align-content: flex-start; } }
+      align-content: flex-start; }
+    #galeria .col-left .gallery .photo_holder a.navigation {
+      display: none; }
+    #galeria .col-left .gallery .photo_holder .color-codes {
+      position: relative;
+      margin: auto;
+      left: auto;
+      top: auto;
+      display: inline-block; } }
 
 #contacto {
   position: relative;
