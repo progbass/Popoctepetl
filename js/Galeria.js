@@ -153,73 +153,75 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			{
 				"uri":		"img/renders/popo_1.jpg",
 				"thumb": 	"img/renders/thumbs/denn_1.jpg",
-				"title":    "Exterior",
+				"title":    "Exteriores",
 				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_2.jpg",
 				"thumb": 	"img/renders/thumbs/denn_2.jpg",
-				"title":    "Exterior",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_3.jpg",
-				"thumb": 	"img/renders/thumbs/denn_3.jpg",
-				"title":    "Exterior",
+				"title":    "Exteriores",
 				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_4.jpg",
 				"thumb": 	"img/renders/thumbs/denn_4.jpg",
-				"title":    "Exterior",
+				"title":    "Exteriores",
 				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_5.jpg",
 				"thumb": 	"img/renders/thumbs/denn_5.jpg",
-				"title":    "Exterior",
+				"title":    "Exteriores",
 				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_6.jpg",
 				"thumb": 	"img/renders/thumbs/denn_6.jpg",
-				"title":    "Exterior",
+				"title":    "Exteriores",
 				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_7.jpg",
 				"thumb": 	"img/renders/thumbs/denn_7.jpg",
-				"title":    "Exterior",
+				"title":    "Exteriores",
 				"showInfo": true
 			},
+
 			{
-				"uri":		"img/renders/popo_8.jpg",
-				"thumb": 	"img/renders/thumbs/denn_8.jpg",
-				"title":    "Interior",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_9.jpg",
-				"thumb": 	"img/renders/thumbs/denn_9.jpg",
-				"title":    "Interior",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_10.jpg",
-				"thumb": 	"img/renders/thumbs/denn_10.jpg",
-				"title":    "Interior",
+				"uri":		"img/renders/popo_3.jpg",
+				"thumb": 	"img/renders/thumbs/denn_3.jpg",
+				"title":    "Plaza Central",
 				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_11.jpg",
 				"thumb": 	"img/renders/thumbs/denn_11.jpg",
-				"title":    "Exterior",
+				"title":    "Plaza Central",
 				"showInfo": true
 			},
 			{
 				"uri":		"img/renders/popo_12.jpg",
 				"thumb": 	"img/renders/thumbs/denn_12.jpg",
-				"title":    "Exterior",
+				"title":    "Plaza Central",
+				"showInfo": true
+			},
+
+			{
+				"uri":		"img/renders/popo_8.jpg",
+				"thumb": 	"img/renders/thumbs/denn_8.jpg",
+				"title":    "Interiores",
+				"showInfo": true
+			},
+			{
+				"uri":		"img/renders/popo_9.jpg",
+				"thumb": 	"img/renders/thumbs/denn_9.jpg",
+				"title":    "Interiores",
+				"showInfo": true
+			},
+			{
+				"uri":		"img/renders/popo_10.jpg",
+				"thumb": 	"img/renders/thumbs/denn_10.jpg",
+				"title":    "Interiores",
 				"showInfo": true
 			}	
 		]);
@@ -286,8 +288,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"colorCode": {
 					gray: 'Área de Oficinas',
 					blue: 'Servicios',
-					green: 'Circulaciones',
-					gray2: 'Vivienda'
+					green: 'Circulaciones'
 				}
 			},
 			{
@@ -456,7 +457,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 	colorCodesContainer.show();
 		 	var codesContent =  '';
 		 	var codesList = colorCodesContainer.find('ol');
-		 	for(var i = 0; i < Object.keys(colorCodes).length-1; i++){
+		 	for(var i = 0; i < Object.keys(colorCodes).length; i++){
 		 		codesContent += "<li class='code "+Object.keys(colorCodes)[i]+"' >"+colorCodes[Object.keys(colorCodes)[i]]+"</li>";
 		 	}
 		 	codesList.html(codesContent);
@@ -519,7 +520,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 		break;
 		 	
 		 	case "plantas":
-		 		content = "renders.html";
+		 		content = "plantas.html";
 		 		break;
 		 	
 		 	default:

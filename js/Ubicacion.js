@@ -1,9 +1,9 @@
 define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone){
 	//VIEWS
-	var ContactoView = Backbone.View.extend({
+	var UbicacionView = Backbone.View.extend({
 	
 	  //PROPERTIES
-      el: 'section#contacto',
+      el: 'section#ubicacion',
       targetLocation: {lat: 19.365496, lng: -99.165800},
       markers: [],
       map: null, 
@@ -14,10 +14,9 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         {name: 'Sanborns', location: {lat: 19.369793, lng: -99.171307}},
         {name: 'Sams Club Universidad', location: {lat: 19.369663, lng: -99.164200}},
         {name: 'Walmart Universidad', location: {lat: 19.368657, lng: -99.164119}},
-        {name: 'Bowling Alley', location: {lat: 19.367227, lng: -99.170945}},
         {name: 'Plaza Universidad', location: {lat: 19.367224, lng: -99.165981}},
-        {name: 'Instituto México Secundaria', location: {lat: 19.365992, lng: -99.165298}},
-        {name: 'Patio Universidad', location: {lat: 19.365841, lng: -99.166642}},
+        {name: 'Instituto México Secundaria', location: {lat: 19.365992, lng: -99.164898}},
+        {name: 'Patio Universidad', location: {lat: 19.365841, lng: -99.166942}},
         {name: 'Centro Coyoacán', location: {lat: 19.359798, lng: -99.170062}}
       ],
       hospitales: [
@@ -28,6 +27,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         {name: 'Hospital General Xoco', location: {lat: 19.360123, lng: -99.162272}}
       ],
       sitiosInteres: [
+        {name: 'Bowling Alley', location: {lat: 19.367227, lng: -99.170945}},
         {name: 'Centro deportivo Benito Juárez', location: {lat: 19.371742, lng: -99.159677}},
         {name: 'Parque público Pascual Ortíz Rubio', location: {lat: 19.370866, lng: -99.168794}},
         {name: 'Centro cultural Roberto Cantoral', location: {lat: 19.362027, lng: -99.166368}},
@@ -44,6 +44,10 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
       render: function (params) {
       	var scope = this;
         this.toggleLocationsList(params.type !== undefined);
+        var listener = google.maps.event.addListener(this.map, "idle", function () {
+          scope.map.setZoom(18);
+          google.maps.event.removeListener(listener);
+        });
     	},
 
       toggleLocationsList: function(force){
@@ -60,6 +64,8 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
       },
 
       initMap: function(){
+        var scope = this;
+
         // Info Window
         this.infowindow = new google.maps.InfoWindow();
 
@@ -225,9 +231,9 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
           }
         ],
         {name: 'Styled Map'});
-        this.map = new google.maps.Map(document.querySelector('section#contacto .map_holder'), {
+        this.map = new google.maps.Map(document.querySelector('section#ubicacion .map_holder'), {
           center: this.targetLocation,
-          zoom: 18
+          zoom: 17
         });
         this.map.mapTypes.set('styled_map', styledMapType);
         this.map.setMapTypeId('styled_map');
@@ -236,7 +242,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         var targetMarker = new google.maps.Marker({
           position: this.targetLocation,
           map: this.map,
-          icon: '../img/map-location-icon.png'
+          icon: 'img/map-location-icon.png'
         })
 
         // Create all markers on map
@@ -248,9 +254,16 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
               position: currentMarkerList[j].location,
               map: this.map,
               icon: 'img/map-marker-a.png',
-              label: (j+1).toString(),
+              label: {text: (j+1).toString(), color: "white"}
             })
             currentMarkerList[j].marker.setMap(null);
+            currentMarkerList[j].marker.index = j;
+            currentMarkerList[j].marker.addListener('mouseover', function() {
+              $(scope.el).find('.locations-index .location').eq(this.index).addClass('active')
+            });
+            currentMarkerList[j].marker.addListener('mouseout', function() {
+              $(scope.el).find('.locations-index .location').eq(this.index).removeClass('active')
+            });
           }
         }
         //setMarkers('servicios');
@@ -284,7 +297,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         }
 
         // Feed locations list and title
-        var locationsIndex = $('#contacto .locations-index');
+        var locationsIndex = $('#ubicacion .locations-index');
         locationsIndex.find('.title').html(listTitle);
         for(var i = 0; i < this.markers.length-1; i++){
           locationsList += '<li class=\'location\' >'+this.markers[i].name+'</li>';
@@ -310,12 +323,6 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
           })(marker, i));
         }
         this.map.fitBounds(bounds);
-        
-        //
-        // var listener = google.maps.event.addListener(this.map, "idle", function () {
-        //   scope.map.setZoom(18);
-        //   google.maps.event.removeListener(listener);
-        // });
       },
 
       deleteMarkers: function(){
@@ -334,5 +341,5 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
       }
     });
     
-    return ContactoView;
+    return UbicacionView;
 });

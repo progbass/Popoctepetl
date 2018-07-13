@@ -141,6 +141,9 @@ h1, h2, h3, h4, h5{
 		&:nth-child(6){
 			background-image: url($images-directory+"bg-render6.jpg") 
 		}
+		&:nth-child(7){
+			background-image: url($images-directory+"bg-render7.jpg") 
+		}
 	}
 
 	//////
@@ -512,6 +515,14 @@ section{
 		color: #fafafa;
 		margin: auto;
 		width: 72%;
+		a{
+			color: white;
+			text-decoration: none;
+			&:hover{ color: $id-color2; }
+		}
+		.title{
+			text-transform: uppercase;
+		}
 		@media screen and (min-width: 680px  ) {
 			width: percentage($floating-window-width/$reference-width);
 			min-width: #{$floating-window-width}px;
@@ -767,6 +778,31 @@ section{
 	}
 }
 
+#contacto{
+	.container{
+		background: rgba($id-color, $component-opacity);
+		padding: 5% 12%;;
+	}
+	.wrapper{}
+	.contact-details{
+		list-style: none;
+		margin: 0; padding: 0;
+		li{
+			margin-bottom: 1em
+		}
+	}
+	
+	//////
+	@include breakpoint( $bp-480  ) {
+	
+		.container{
+			background: none;
+			padding-top: 1em;
+			
+		}
+	}
+}
+
 #galeria{
 	position: relative; //absolute;
 	top: 0;
@@ -815,6 +851,17 @@ section{
 		.gallery{
 			position: relative;
 			height: 100%;
+
+			&.renders{
+				.info{
+					&__title{
+						&:after{
+							width: 2em;
+							right: auto;
+						}
+					}
+				}
+			}
 			
 			// MAIN PHOTO HOLDER
 			.photo_holder{
@@ -957,6 +1004,7 @@ section{
 			
 			// THUMBNAILS LIST
 			ul.thumbs_list{
+				display: none;
 				//height: 20%;
 				list-style: none;
 				margin: 0 0 5vh; padding: 0 20px;
@@ -1164,7 +1212,7 @@ section{
 	}
 }
 
-#contacto{
+#ubicacion{
 	position: relative;//absolute;
 	top: 0;
 	width: 100%;
@@ -1198,7 +1246,7 @@ section{
 	// LOCATIONS INDEX
 	.locations-index{
 		position: relative;
-		flex: 0 0 percentage(150/$reference-width);
+		flex: 0 0 percentage(200/$reference-width);
 		background: #fff;
 		text-transform: uppercase;
 		
@@ -1218,7 +1266,9 @@ section{
 			position: relative;
 			margin: 0; padding: 0 0 0 1em;
 			.location{
-				
+				&.active{
+					color: $id-color2
+				}
 			}
 		}
 	}
@@ -1395,16 +1445,14 @@ section{
 		color: #222;
 
 		.wrapper{
-			height: auto;
+			//height: auto;
 		}
 	
 		.col-left{
 			//float: none;
-			width: 100%;
 		    bottom: auto;
 		    position: relative;
 		    padding: 5% 0;
-		    flex: 100%;
 		    height: auto;
 		    min-height: 250px;
 		    background: #fff;
@@ -1445,8 +1493,8 @@ section{
 		
 		.col-right{
 			//float: none;
-			flex: 100%;
-			width: 100%;
+			//flex: 100%;
+			//width: 100%;
 			
 			.form_holder{
 				position: relative;
@@ -1486,14 +1534,41 @@ section{
 					}
 				}
 			}
+		}
+	}
+	@include breakpoint( $bp-680  ) {
+		.wrapper{
+			flex-flow: column;
+			height: auto;
+		}
+		.col-left{
+			display: block;
+			width: 100%;
+			min-height: auto;
+			.container{
+				text-align: left;
+				width: 80%;
+			}
+			.contact-details{
+				ul li {
+					padding: 0;
+				}
+			}
+		}
+		.col-right{
 			.map_holder{
-				height: auto;
 				height: 480px;
-				pointer-events: none
+				pointer-events: none;
+				overflow: visible
+			}
+		}
+		.locations-index{
+			padding-bottom: 2em;
+			.title, .list-container{
+				padding: 0.75em 1em;
 			}
 		}
 	}
-	
 	
 	///
 	@include breakpoint( $bp-480  ) {

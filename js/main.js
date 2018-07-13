@@ -20,12 +20,14 @@ requirejs.config({
 });
 
 //
-define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Galeria.js', 'js/Contacto.js', 'ssm', 'plugins'], function($, _, Backbone, Router, Proyecto, Galeria, Contacto, ssm) {
+define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Galeria.js', 'js/Ubicacion.js', 'ssm', 'plugins'],
+function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
+	
 	//init sections
 	var view_proyecto = new Proyecto();
 	var view_galeria = new Galeria();
-	var view_contacto = new Contacto();
-	var contactoType;
+	var view_ubicacion = new Ubicacion();
+	var ubicacionType;
 	
 	//MENU
 	var menuMobileOpen = false;
@@ -34,9 +36,13 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 		if(menuMobileOpen)
 			showMobileMenu(false);
 	});
+	$("#main_menu > li.proyecto a.main-button").click(function(){
+		view_proyecto.gotToSlide(0);
+		if(menuMobileOpen)
+			showMobileMenu(false);
+	});
 	$("#main_menu > li.proyecto .submenu li").each(function(index){
 		$(this).click(function(){
-			console.log(view_proyecto)
 			view_proyecto.gotToSlide(index+1);
 			if(menuMobileOpen)
 				showMobileMenu(false);
@@ -48,11 +54,14 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	      	view_galeria.manageTabs( tabType );
 		});
 	});
-	$("#main_menu > li.contacto .submenu li > a").each(function(index){
+	$("#main_menu > li.ubicacion a.main-button").click(function(){
+		setTimeout(loadSection, 300)
+	});
+	$("#main_menu > li.ubicacion .submenu li > a").each(function(index){
 		$(this).click(function(e){
 			var tabType = e.target.dataset.type;
-	      	view_contacto.setMarkers( tabType );
-	      	contactoType = tabType;
+	      	view_ubicacion.setMarkers( tabType );
+	      	ubicacionType = tabType;
 		});
 	});
 	$("header a.mobile_icon").click(function(){
@@ -93,17 +102,27 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 	var router = new Router();
 	Backbone.history.on("all", loadSection);
 	
-	//load first section
-	// manin page backgrouds
+	// main page backgrouds
+ 	$("#bg_container .image").each( function(_index, _target){
+		 $(_target).data('index', _index);
+	} );
  	$("#bg_container .image").eq(0).addClass('visible').addClass('move');
-	var backgroundContainer = document.querySelector('#main_wrap');
-	var backgroundListener = function(){
-		backgroundContainer.removeEventListener('click', backgroundListener);
-		loadSection();
+
+ 	// Load first section
+ 	if(window.location.hash === "#proyecto" || window.location.hash === ""){
+		var backgroundContainer = window//document.querySelector('#main_wrap');
+		var backgroundListener = function(){
+			backgroundContainer.removeEventListener('click', backgroundListener);
+			loadSection();
+		}
+		backgroundContainer.addEventListener('click', backgroundListener);
+
+	} else if(window.location.hash === "#ubicacion"){
+		window.location = window.location.href.replace(/#ubicacion/, '');
+	} else {
+		loadSection()
 	}
-	backgroundContainer.addEventListener('click', backgroundListener);
-	var introInterval = setTimeout(backgroundListener, 2000);
-	
+
 	//STATE MANAGER
 	ssm.addState({
 		id: 'resize',
@@ -137,18 +156,18 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 		var params = {};
 	    var hash = (window.location.hash) || "#proyecto";
 	    $('header').toggleClass('white', false);
-
+	    
 	    switch(hash){
 		    case "#galeria":
 		    	target = view_galeria;
 		    	$('header').toggleClass('white')
 		    	break;
 		    	
-		    case "#contacto":
-		    	target = view_contacto;
+		    case "#ubicacion":
+		    	target = view_ubicacion;
 		    	$('header').toggleClass('white');
-		    	if(contactoType){
-		    		params = {type: contactoType}
+		    	if(ubicacionType){
+		    		params = {type: ubicacionType}
 		    	}
 		    	break;
 
@@ -156,6 +175,17 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 		    	// manin page backgrouds
 			 	$("#bg_container .image").each( function(_index, _target){
 			 		if( _index !== 5 ){
+			 			$(_target).removeClass('visible');//stop().delay(400).fadeOut(200)
+			 		} else {
+						$(_target).addClass('visible');//stop().delay(400).fadeIn(800);
+					}
+				} );
+		    	break;
+
+		    case "#contacto":
+		    	// manin page backgrouds
+			 	$("#bg_container .image").each( function(_index, _target){
+			 		if( _index !== 6 ){
 			 			$(_target).removeClass('visible');//stop().delay(400).fadeOut(200)
 			 		} else {
 						$(_target).addClass('visible');//stop().delay(400).fadeIn(800);
@@ -183,7 +213,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Gale
 
 	// LOAD GOOGLE MAPS SDK
 	window.initMap = function(){
-		view_contacto.initMap();
+		view_ubicacion.initMap();
 	}
 	var gmapsSDK = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCZKeqPDUOxBExapt7pR6uwvBWKot6TJSo&callback=initMap";
 	$.ajax({

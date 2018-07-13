@@ -24,6 +24,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
           "proyecto": "proyecto",
           "galeria": "galeria",
           "contacto": "contacto",
+          "ubicacion": "ubicacion",
           "buro": "buro"
         },
                
@@ -35,6 +36,9 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         },
         contacto: function(){
 	        //gotoSection('#contacto');
+        },
+        ubicacion: function(){
+          //gotoSection('#ubicacion');
         },
         buro: function(){
 	        //gotoSection('#buro');

@@ -10,28 +10,16 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
       initialize: function(){
       	_.bindAll(this, 'nextSlide', 'prevSlide', 'gotToSlide');
 
-	 	// manin page backgrouds
-	 	$("#bg_container .image").each( function(_index, _target){
-			 $(_target).data('index', _index);
-		} );
-
 		//confid indo slider
 	    this.config_slider();  
       },
-
-
-
       
       //RENDER
       render: function () {
       	var scope = this;
-      	
       	this.config_slider();
       	this.gotToSlide(0);
-      	   
 	 },
-	 
-	 
 	 
 	 //SLIDER
 	 config_slider: function(){
@@ -63,9 +51,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 	 
 	 gotToSlide: function( _target ){
 		 var scope = this;
-		 scope.slide =  Math.min(Math.max(parseInt(_target), 0), $(scope.el).find(".slider .slide").length - 1);
-		 
-		 
+		 scope.slide =  _target;//Math.min(Math.max(parseInt(_target), 0), $(scope.el).find(".slider .slide").length - 1);
 
 		 // eval navigation settings
 		 $(scope.el).find("a.next").show();
@@ -77,7 +63,6 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 			 $(scope.el).find("a.prev").fadeOut();
 		 }
 
-
 		 //automatic height
 		 $(scope.el).find(".slider").animate({
 		 	'height': $(scope.el).find(".slider .slide:nth-child("+(scope.slide+1)+")").outerHeight(true)
@@ -88,32 +73,22 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 		 	left: (-(scope.slide * 100)) + "%"
 		 }, 620, "easeInOutQuart");
 
-
 		// change main page backgroud
 	 	$("#bg_container .image").each( function(_index, _target){
-	 		if( scope.slide != $(_target).data('index')){
+	 		if( scope.slide+1 != $(_target).data('index')){
 	 			$(_target).removeClass('visible');//stop().delay(400).fadeOut(200)
-
 	 		} else {
 				$(_target).addClass('visible');//stop().delay(400).fadeIn(800);
 			}
-
 		} );
 	 },
-      
       
       //EVENTS
       events: {
 	      "click a.prev": "prevSlide",
 	      "click a.next": "nextSlide"
       }
-      
-      
-      
     });
-    
-    
-    
     
     return ProyectoView;
 });

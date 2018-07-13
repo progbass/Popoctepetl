@@ -26,6 +26,7 @@
     		<div class="image"></div>
     		<div class="image"></div>
     		<div class="image"></div>
+    		<div class="image"></div>
     	</div>
     	<!-- /BACKGROUND CONTAINER -->
 
@@ -53,7 +54,7 @@
     		
 		        <ol id="main_menu">
 			        <li class="proyecto">
-			        	<a href="#proyecto">El Proyecto</a>
+			        	<a class="main-button" href="#proyecto">El Proyecto</a>
 			        	<ul class="submenu">
 			        		<li>
 			        			<a href="#">POPOCATÉPETL 526</a>
@@ -72,30 +73,33 @@
 			        	<a href="#galeria">Visuales</a>
 			        	<ul class="submenu">
 			        		<li>
-			        			<a href="#galeria" data-type="renders">Renders</a>
+			        			<a href="#galeria" data-type="renders">Visualizaciones</a>
 			        			<a href="#galeria" data-type="plantas">Plantas</a>
 			        			<a href="#galeria" data-type="cortes">Corte Esquemático</a>
 			        		</li>
 			        	</ul>
 			       	</li>
-			        <li class="contacto">
-			        	<a href="#contacto">Ubicación y Contacto</a>
+			        <li class="ubicacion">
+			        	<a class="main-button" href="#ubicacion" data-type="servicios">Ubicación</a>
 			        	<ul class="submenu">
 			        		<li>
-			        			<a href="#contacto">Principales Vialidades</a>
+			        			<a href="#ubicacion" data-type="vialidades">Principales Vialidades</a>
 			        		</li>
 			        		<li>
-			        			<a href="#contacto" data-type="servicios">Servicios</a>
+			        			<a href="#ubicacion" data-type="servicios">Servicios</a>
 			        		</li>
 			        		<li>
-			        			<a href="#contacto" data-type="hospitales">Hospitales</a>
+			        			<a href="#ubicacion" data-type="hospitales">Hospitales</a>
 			        		<li>
-			        			<a href="#contacto" data-type="sitiosInteres">Sitios de Inter&eacute;s y Parques</a>
+			        			<a href="#ubicacion" data-type="sitiosInteres">Sitios de Inter&eacute;s y Parques</a>
 			        		</li>
 			        	</ul>
 			       	</li>
 			        <li>
 			        	<a href="#buro">Buro</a>
+			       	</li>
+			       	<li>
+			        	<a href="#contacto">Contacto</a>
 			       	</li>
 		        </ol>
     		</nav>
@@ -109,13 +113,13 @@
 	        	<section id="proyecto" class="window">
 	        		<div class="wrapper">
 			        	<div class="container">
-			        	
-			        		<!-- Nav -->
+			        		<!-- Nav 
 			        		<nav>
 				        		<a href="#" class="prev">Anterior</a>
 				        		<a href="#" class="next"> Siguiente</a>
 			        		</nav>
-			        	
+			        		-->
+
 			        		<!-- Slider -->
 			        		<div class="slider_holder">
 			        			<ul class="slider">
@@ -123,9 +127,8 @@
 			        				<li class="slide">
 							        	<h2>POPOCATÉPETL 526</h2>
 							        	
-							        	<p>Se desplanta sobre un terrero de 4,000m2, que permitirá el desarrollo mixto compuesto de un edificio corporativo, vivienda y comercio con un total de aproximadamente 41,000m2 construidos.</p>
-
-							        	<p>Distribuidos en diecinueve niveles de oficinas corporativas, planta baja, dos niveles para comercio o servicios, una gran plaza central y más 9 sótanos de estacionamiento que cubrirán la demanda del mismo.</p>
+							        	<p>Se desplanta sobre un terrero de 4,000m2, que permitirá el desarrollo mixto compuesto de un edificio corporativo, vivienda y comercio con un total de aproximadamente 41,000m2 construidos.<br/>
+										Distribuidos en diecinueve niveles de oficinas corporativas, planta baja, dos niveles para comercio o servicios, una gran plaza central y más 9 sótanos de estacionamiento que cubrirán la demanda del mismo.</p>
 			        				</li>
 
 			        				<!-- Proyecto -->
@@ -227,34 +230,9 @@
 	        	</section>
 	        	<!-- END: GALERIA -->
 	        	
-	        	<!-- CONTACTO -->
-	        	<section id="contacto">
+	        	<!-- UBICACION -->
+	        	<section id="ubicacion">
 	        		<div class="wrapper">
-			        	<div class="col-left">
-			        		<div class="container">
-					        	<div>
-						        	Popocatépetl 526 se encuentra ubicado sobre Avenida Popocatépetl, en la colonia Xoco; uno de los principales ejes de la ciudad con gran afluencia vehicular y peatonal.
-					        	</div>
-			        		</div>
-			        		<div class="contact-details">
-			        			<ul>
-						        	<li>
-							        	Contacto CBRE<br>
-							        	Pauline del Ángel<br>
-							        	t. 8526 8829<br>
-							        	<a href="mailto:pauline.delangel@cbre.com">pauline.delangel@cbre.com</a>
-						        	</li>
-						        	<li>
-							        	CBRE<br>
-							        	Building Representation Popocatépetl 526<br>
-							        	Torre Virreyes I Pedregal 24, 17th floor<br>
-							        	Lomas de Chapultepec I Mexico City, DF 11040<br>
-							        	t. <a href="phone:+52 (555) 5284 0005">+52 (555) 5284 0005</a> I D <a href="phone:+52 (555) 5284 0005">+52 (55) 8226 8829</a>
-						        	</li>
-					        	</ul>
-			        		</div>
-			        	</div>
-
 			        	<div class="col-right" >
 				        	<!-- Map -->
 				        	<div class="map_holder"></div>
@@ -268,7 +246,7 @@
 			        	</div>
 		        	</div>
 	        	</section>
-	        	<!-- END: CONTACTO -->
+	        	<!-- END: UBICACION -->
 
 	        	<!-- BURO -->
 	        	<section id="buro" class="window">
@@ -284,6 +262,35 @@
 	        		</div>
 	        	</section>
 	        	<!-- END: BURO -->
+
+	        	<!-- CONTACTO -->
+	        	<section id="contacto" class="window">
+	        		<div class="wrapper">
+			        	<div class="container">	
+							<h2 class="title">Contacto</h2>	
+				        	
+				        	<p>
+					        	Popocatépetl 526 se encuentra ubicado sobre Avenida Popocatépetl, en la colonia Xoco; uno de los principales ejes de la ciudad con gran afluencia vehicular y peatonal.
+				        	</p>
+		        			<ul class="contact-details">
+					        	<li>
+						        	Contacto CBRE<br>
+						        	Pauline del Ángel<br>
+						        	t. 8526 8829<br>
+						        	<a href="mailto:pauline.delangel@cbre.com">pauline.delangel@cbre.com</a>
+					        	</li>
+					        	<li>
+						        	CBRE<br>
+						        	Building Representation Popocatépetl 526<br>
+						        	Torre Virreyes I Pedregal 24, 17th floor<br>
+						        	Lomas de Chapultepec I Mexico City, DF 11040<br>
+						        	t. <a href="phone:+52 (555) 5284 0005">+52 (555) 5284 0005</a> I D <a href="phone:+52 (555) 5284 0005">+52 (55) 8226 8829</a>
+					        	</li>
+				        	</ul>
+			        	</div>
+	        		</div>
+	        	</section>
+	        	<!-- END: CONTACTO -->
 	        </div>
         </div>
         <!-- END: MAIN WRAPPER -->
