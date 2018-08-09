@@ -18,7 +18,6 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
       render: function () {
       	var scope = this;
       	this.config_slider();
-      	this.gotToSlide(0);
 	 },
 	 
 	 //SLIDER
@@ -40,15 +39,12 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 	 	 this.slide++;
 		 this.gotToSlide( this.slide );
 		 return false;
-
 	 },
 	 prevSlide: function(){
 	 	 this.slide--;
 		 this.gotToSlide( this.slide );
 		 return false;
-
 	 },
-	 
 	 gotToSlide: function( _target ){
 		 var scope = this;
 		 scope.slide =  _target;//Math.min(Math.max(parseInt(_target), 0), $(scope.el).find(".slider .slide").length - 1);

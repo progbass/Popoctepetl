@@ -477,7 +477,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
     },
 
     nextSlide: function(){
-    	console.log(this.currentSlide+'asdasdasd +')
     	this.currentSlide++;
     	if(this.currentSlide > actual_list.length-1){
     		this.currentSlide = 0;
@@ -486,7 +485,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
     	return false;
     },
     prevSlide: function(){
-    	console.log(this.currentSlide+'asdasdasd -')
     	this.currentSlide--;
     	if(this.currentSlide < 0){
     		this.currentSlide = actual_list.length-1;
@@ -512,7 +510,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 //load tab content
 		 switch(_target){
 		 	case "cortes":
-		 		content = "renders.html";
+		 		content = "cortes.html";
 		 		break;
 		 	
 		 	case "renders":

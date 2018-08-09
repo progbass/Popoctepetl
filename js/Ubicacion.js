@@ -34,6 +34,17 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         {name: 'Cineteca Nacional', location: {lat: 19.360684, lng: -99.164730}},
         {name: 'Centro Deportivo Coyoacán', location: {lat: 19.361788, lng: -99.161682}},
       ],
+      vialidades: [
+        {name: 'Insurgentes', location: {lat: 19.373847, lng: -99.178892}},
+        {name: 'Av. Emiliano Zapata', location: {lat: 19.367222, lng: -99.159076}},
+        {name: 'Av. Popocatépetl', location: {lat: 19.362353, lng: -99.157219}},
+        {name: 'Av. México-Coyoacán', location: {lat: 19.360328, lng: -99.163197}},
+        {name: 'Av. División del Norte', location: {lat: 19.364939, lng: -99.155208}},
+        {name: 'Av. Dr José María Vertiz', location: {lat: 19.373491, lng: -99.154389}},
+        {name: 'Av. Universidad', location: {lat: 19.376384, lng: -99.161279}},
+        {name: 'Av. Río Churubusco', location: {lat: 19.357964, lng: -99.157191}},
+        {name: 'Calzada de Tlalpan', location: {lat: 19.362202, lng: -99.142705}},
+      ],
       
       //INITIALIZE
       initialize: function(){
@@ -44,10 +55,10 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
       render: function (params) {
       	var scope = this;
         this.toggleLocationsList(params.type !== undefined);
-        var listener = google.maps.event.addListener(this.map, "idle", function () {
-          scope.map.setZoom(18);
-          google.maps.event.removeListener(listener);
-        });
+        // var listener = google.maps.event.addListener(this.map, "idle", function () {
+        //   scope.map.setZoom(18);
+        //   google.maps.event.removeListener(listener);
+        // });
     	},
 
       toggleLocationsList: function(force){
@@ -246,7 +257,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         })
 
         // Create all markers on map
-        var allMarkers = [this.servicios, this.hospitales, this.sitiosInteres];
+        var allMarkers = [this.vialidades, this.servicios, this.hospitales, this.sitiosInteres];
         for(var i = 0; i<allMarkers.length; i++){
           var currentMarkerList = allMarkers[i];
           for(var j = 0; j<currentMarkerList.length; j++){
@@ -290,10 +301,17 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
             this.markers = this.sitiosInteres;
             break;
           case 'servicios':
-          default:
             listTitle = 'Servicios';
             this.markers = this.servicios;
             break;
+          case 'vialidades':
+            listTitle = 'Principales Vialidades';
+            this.markers = this.vialidades;
+            break;
+          case 'home':
+          default:
+            listTitle = 'Popocatépetl 526';
+            this.markers = [];
         }
 
         // Feed locations list and title
@@ -311,8 +329,10 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
       setMarkersOnMap: function(map){
         var scope = this;
         var bounds = new google.maps.LatLngBounds();
-        for (var i = 0; i < this.markers.length-1; i++) {
-          var marker = this.markers[i].marker;
+        
+        if(this.markers.length){
+          for (var i = 0; i < this.markers.length-1; i++) {
+            var marker = this.markers[i].marker;
             marker.setMap(map);
             bounds.extend(marker.position);
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -320,9 +340,13 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
                 scope.infowindow.setContent(scope.markers[i].name);
                 scope.infowindow.open(scope.map, marker);
               }
-          })(marker, i));
+            })(marker, i));
+          }
+          this.map.fitBounds(bounds, 0);
+          this.map.panToBounds(bounds);
+        } else {
+          this.map.setCenter(this.targetLocation);
         }
-        this.map.fitBounds(bounds);
       },
 
       deleteMarkers: function(){

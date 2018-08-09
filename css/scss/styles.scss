@@ -144,6 +144,9 @@ h1, h2, h3, h4, h5{
 		&:nth-child(7){
 			background-image: url($images-directory+"bg-render7.jpg") 
 		}
+		&:nth-child(8){
+			background-image: url($images-directory+"bg-render8.jpg") 
+		}
 	}
 
 	//////
@@ -853,6 +856,9 @@ section{
 			height: 100%;
 
 			&.renders{
+				.thumbs_list{
+					display: block;
+				}
 				.info{
 					&__title{
 						&:after{
@@ -1003,6 +1009,7 @@ section{
 			}
 			
 			// THUMBNAILS LIST
+
 			ul.thumbs_list{
 				display: none;
 				//height: 20%;
@@ -1267,7 +1274,8 @@ section{
 			margin: 0; padding: 0 0 0 1em;
 			.location{
 				&.active{
-					color: $id-color2
+					//color: $id-color2;
+					font-weight: 600;
 				}
 			}
 		}

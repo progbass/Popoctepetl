@@ -42,8 +42,18 @@ function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
 			showMobileMenu(false);
 	});
 	$("#main_menu > li.proyecto .submenu li").each(function(index){
-		$(this).click(function(){
-			view_proyecto.gotToSlide(index+1);
+		$(this).click(function(e){
+			var delay = 0;
+
+			if(hash != lastSection)
+				backgroundListener()
+			if(hash != lastSection)
+				delay = 310;
+
+			//
+			setTimeout(function(){
+				view_proyecto.gotToSlide(index+1);
+			}, delay);
 			if(menuMobileOpen)
 				showMobileMenu(false);
 		});
@@ -54,10 +64,11 @@ function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
 	      	view_galeria.manageTabs( tabType );
 		});
 	});
-	$("#main_menu > li.ubicacion a.main-button").click(function(){
+	$("#main_menu > li.ubicacion a").click(function(){
 		setTimeout(loadSection, 300)
+		//loadSection()
 	});
-	$("#main_menu > li.ubicacion .submenu li > a").each(function(index){
+	$("#main_menu > li.ubicacion a.main-button, #main_menu > li.ubicacion .submenu li > a").each(function(index){
 		$(this).click(function(e){
 			var tabType = e.target.dataset.type;
 	      	view_ubicacion.setMarkers( tabType );
@@ -109,14 +120,13 @@ function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
  	$("#bg_container .image").eq(0).addClass('visible').addClass('move');
 
  	// Load first section
+ 	var backgroundContainer = window//document.querySelector('#main_wrap');
+	var backgroundListener = function(){
+		backgroundContainer.removeEventListener('click', backgroundListener);
+		loadSection();
+	}
  	if(window.location.hash === "#proyecto" || window.location.hash === ""){
-		var backgroundContainer = window//document.querySelector('#main_wrap');
-		var backgroundListener = function(){
-			backgroundContainer.removeEventListener('click', backgroundListener);
-			loadSection();
-		}
 		backgroundContainer.addEventListener('click', backgroundListener);
-
 	} else if(window.location.hash === "#ubicacion"){
 		window.location = window.location.href.replace(/#ubicacion/, '');
 	} else {
@@ -151,10 +161,13 @@ function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
 	ssm.ready();
 	
 	// LOAD SECTION FUNCTION
+	var lastSection = null;
+	var hash = (window.location.hash) || "#proyecto";
 	function loadSection() {
 		var target = null;
 		var params = {};
-	    var hash = (window.location.hash) || "#proyecto";
+	    hash = (window.location.hash) || "#proyecto";
+
 	    $('header').toggleClass('white', false);
 	    
 	    switch(hash){
@@ -174,7 +187,7 @@ function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
 		    case "#buro":
 		    	// manin page backgrouds
 			 	$("#bg_container .image").each( function(_index, _target){
-			 		if( _index !== 5 ){
+			 		if( _index !== 7 ){
 			 			$(_target).removeClass('visible');//stop().delay(400).fadeOut(200)
 			 		} else {
 						$(_target).addClass('visible');//stop().delay(400).fadeIn(800);
@@ -203,8 +216,11 @@ function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
 	    	target.render(params);
 	    
 	    //show/hide sections
-	    $("section").hide();
-  		$(hash).fadeIn(300);
+	    if(hash != lastSection){
+	    	$("section").hide();
+  			$(hash).fadeIn(300);
+	    }
+  		lastSection = hash;
   		
   		//link styles
   		$("#main_menu a").removeClass('active');
