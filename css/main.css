@@ -857,6 +857,8 @@ section {
               background: #96ACBC; }
             #galeria .col-left .gallery .photo_holder .color-codes .code.green:before {
               background: #B8C9BF; }
+            #galeria .col-left .gallery .photo_holder .color-codes .code.beige:before {
+              background: #f7ece8; }
         #galeria .col-left .gallery .photo_holder .images_display {
           display: inline;
           margin: 0 1em; }

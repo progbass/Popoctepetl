@@ -269,19 +269,20 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	    floors_list.add([
 			{
 				"title":	"Planta Baja",
-				"uri":		"img/floors/planta_baja.png",
+				"uri":		"img/floors/planta_baja.jpg",
 				"thumb": 	"img/floors/thumbs/planta_baja.jpg",
 				"info":     "<p>Cuenta con un acceso peatonal directo sobre Av. Popocatépetl así como por la plaza interior del desarrollo. De igual manera para la entrada y salida vehicular.</p><p>En planta baja, se cuenta con una bahía de ascenso y descenso además de control de accesos, vestíbulo, espacio de oficinas, áreas de servicios y elevadores para sótanos de estacionamiento y pisos de oficina.</p>",
 				"showInfo": true,
 				"colorCode": {
-					gray: 'Lobby',
+					gray: 'Lobby de Oficinas',
 					gray2: 'Comercio',
-					green: 'Circulaciones'
+					green: 'Circulaciones',
+					beige: 'Lobby de Vivienda'
 				}
 			},
 			{
 				"title":	"Planta 3",
-				"uri":		"img/floors/planta3.png",
+				"uri":		"img/floors/planta3.jpg",
 				"thumb": 	"img/floors/thumbs/planta1.jpg",
 				"info":     "<p>La planta del nivel 3 fue diseñada para poder contar con un espacio de comercio de doble altura y un segundo piso cubriendo una mayor área de comercio para el edificio de uso de los inquilinos o bien puede eventualmente funcionar como un espacio de apoyo para alguna de las oficinas.</p>",
 				"showInfo": true,
@@ -293,7 +294,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			},
 			{
 				"title":	"Planta Tipo",
-				"uri":		"img/floors/planta_tipo.png",
+				"uri":		"img/floors/planta_tipo.jpg",
 				"thumb": 	"img/floors/thumbs/planta_tipo.jpg",
 				"info":     "<p>Las plantas son sumamente eficientes y libres de columnas para poder tener el mayor espacio abierto de oficinas y las fachadas principales con un diseño que genera de acuerdo a su ubicación una alta eficiencia energética y una muy buena iluminación natural de los espacios.</p>",
 				"showInfo": true,
@@ -301,31 +302,30 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 					gray: 'Área de Oficinas',
 					blue: 'Servicios',
 					green: 'Circulaciones',
-					gray2: 'Vivienda'
+					beige: 'Área de Vivienda'
 				}
 			},
 			{
 				"title":	"Oficinas",
-				"uri":		"img/floors/oficinas.png",
+				"uri":		"img/floors/oficinas.jpg",
 				"thumb": 	"img/floors/thumbs/roof_garden.jpg",
 				"info":     "<p>Cuenta con un total de 14,723 m2 rentables de oficinas corporativas distribuidos en 19 niveles de aproximadamente 886.74 m2 rentables cada uno.</p>",
 				"showInfo": true,
 				"colorCode": {
 					gray: 'Área de Oficinas',
 					blue: 'Servicios',
-					green: 'Circulaciones',
-					gray2: 'Vivienda'
+					green: 'Circulaciones'
 				}
 			},
 			{
 				"title":	"Estacionamiento",
-				"uri":		"img/floors/estacionamiento.png",
+				"uri":		"img/floors/estacionamiento.jpg",
 				"thumb": 	"img/floors/thumbs/estacionamiento.jpg",
 				"info":     "<p>Cuenta con 9 sótanos altos y bajos de estacionamiento para cubrir la demanda de las oficinas corporativas y de la zona.</p><p>El diseño cumple con todos los requisitos de dimensiones y operatividad. Todos los sótanos cuentan con dos núcleos de servicios central independientes de la vivienda, tres escaleras internas presurizadas, dos elevadores que dan acceso al lobby del corporativo y dos elevadores que dan acceso al lobby de comercio de la vivienda.</p>",
 				"showInfo": true,
 				"colorCode": {
-					blue: 'Servicios',
-					green: 'Circulaciones'
+					blue: 'Bodegas',
+					green: 'Circulaciones Verticales'
 				}
 			}
 		]);
@@ -376,14 +376,15 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	    sideViews_list.add([
 			{
 				"title":	"Corte Longitudinal",
-				"uri":		"img/floors/corte_longitudinal.png",
+				"uri":		"img/floors/corte_longitudinal.jpg",
 				"thumb": 	"img/floors/thumbs/corte_longitudinal.jpg",
 				"info":     "",
 				"showInfo": true,
 				"colorCode": {
-					gray: 'Oficinas',
-					blue: 'Vivienda',
-					green: 'Estacionamiento'
+					gray: 'Lobby de Oficinas',
+					blue: 'Comercio',
+					green: 'Circulaciones',
+					beige: 'Lobby de Vivienda'
 				}
 			}
 		]);
