@@ -508,7 +508,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 $(scope.el).find("a.tab").removeClass("active");
 		 $(scope.el).find("a[href='#"+_target+"']").addClass("active");
 		 
-		 //load tab content
+		 // Find matching template according to tab
 		 switch(_target){
 		 	case "cortes":
 		 		content = "cortes.html";
@@ -524,11 +524,15 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 	
 		 	default:
 		 		content = "renders.html"; 
-		 }
-		 
+		}
+		
+		// load tab content
 		$(scope.el).find(".content_loader").load( content, function() {
 		 	$(scope.el).find("a.next").click(scope.nextSlide);
 			$(scope.el).find("a.prev").click(scope.prevSlide);
+
+			$(scope.el).find(".interiores").click(scope.nextSlide);
+			$(scope.el).find(".exteriores").click(scope.prevSlide);
 
 		 	if(_target == "renders"){
 			 	actual_list = renders_list;
