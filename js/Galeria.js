@@ -157,8 +157,20 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"showInfo": true
 			},
 			{
+				"uri":		"img/renders/popo_1b.png",
+				"thumb": 	"img/renders/thumbs/denn_1b.jpg",
+				"title":    "Exteriores",
+				"showInfo": true
+			},
+			{
 				"uri":		"img/renders/popo_2.jpg",
 				"thumb": 	"img/renders/thumbs/denn_2.jpg",
+				"title":    "Exteriores",
+				"showInfo": true
+			},
+			{
+				"uri":		"img/renders/popo_2b.jpg",
+				"thumb": 	"img/renders/thumbs/denn_2b.jpg",
 				"title":    "Exteriores",
 				"showInfo": true
 			},
@@ -186,6 +198,12 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"title":    "Exteriores",
 				"showInfo": true
 			},
+			{
+				"uri":		"img/renders/popo_7b.jpg",
+				"thumb": 	"img/renders/thumbs/denn_7b.jpg",
+				"title":    "Exteriores",
+				"showInfo": true
+			},
 
 			{
 				"uri":		"img/renders/popo_3.jpg",
@@ -194,17 +212,19 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"showInfo": true
 			},
 			{
-				"uri":		"img/renders/popo_11.jpg",
-				"thumb": 	"img/renders/thumbs/denn_11.jpg",
+				"uri":		"img/renders/popo_13.jpg",
+				"thumb": 	"img/renders/thumbs/denn_13.jpg",
 				"title":    "Plaza Central",
 				"showInfo": true
 			},
 			{
-				"uri":		"img/renders/popo_12.jpg",
-				"thumb": 	"img/renders/thumbs/denn_12.jpg",
+				"uri":		"img/renders/popo_14.jpg",
+				"thumb": 	"img/renders/thumbs/denn_14.jpg",
 				"title":    "Plaza Central",
 				"showInfo": true
 			},
+
+
 
 			{
 				"uri":		"img/renders/popo_8.jpg",
@@ -289,7 +309,8 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"colorCode": {
 					gray: 'Área de Oficinas',
 					blue: 'Servicios',
-					green: 'Circulaciones'
+					green: 'Circulaciones',
+					beige: 'Área de Vivienda'
 				}
 			},
 			{
@@ -381,10 +402,9 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"info":     "",
 				"showInfo": true,
 				"colorCode": {
-					gray: 'Lobby de Oficinas',
-					blue: 'Comercio',
-					green: 'Circulaciones',
-					beige: 'Lobby de Vivienda'
+					gray: 'Área de Oficinas',
+					green: 'Estacionamiento',
+					beige: 'Área de Vivienda'
 				}
 			}
 		]);
@@ -435,21 +455,21 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 photoHolder.html( image );
 	     photoHolder.find("img").hide().fadeIn(600);
 
-	     // show additional information
-	     if(selectedThumb.attributes.showInfo){
-	     	infoHolder.show();
-		    if( selectedThumb.attributes.title ){
-		     	infoHolder.find(".info__title")
-		     	.show()
-		     	.html( selectedThumb.attributes.title );
-		    } else {
-		     	infoHolder.find(".info__title").hide()
-		    }
-		    if( selectedThumb.attributes.info )
-		     	infoHolder.find(".info__content").html( selectedThumb.attributes.info );
-		 } else {
-		 	infoHolder.hide();
-		 }
+	  //    // show additional information
+	  //    if(selectedThumb.attributes.showInfo){
+	  //    	infoHolder.show();
+		 //    if( selectedThumb.attributes.title ){
+		 //     	infoHolder.find(".info__title")
+		 //     	.show()
+		 //     	.html( selectedThumb.attributes.title );
+		 //    } else {
+		 //     	infoHolder.find(".info__title").hide()
+		 //    }
+		 //    if( selectedThumb.attributes.info )
+		 //     	infoHolder.find(".info__content").html( selectedThumb.attributes.info );
+		 // } else {
+		 // 	infoHolder.hide();
+		 // }
 
 		 //
 		 var colorCodesContainer = $(this.el).find('.color-codes');
