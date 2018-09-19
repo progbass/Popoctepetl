@@ -35,15 +35,14 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         {name: 'Centro Deportivo Coyoacán', location: {lat: 19.361788, lng: -99.161682}},
       ],
       vialidades: [
-        {name: 'Insurgentes', location: {lat: 19.373847, lng: -99.178892}},
-        {name: 'Av. Emiliano Zapata', location: {lat: 19.367222, lng: -99.159076}},
-        {name: 'Av. Popocatépetl', location: {lat: 19.362353, lng: -99.157219}},
-        {name: 'Av. México-Coyoacán', location: {lat: 19.360328, lng: -99.163197}},
-        {name: 'Av. División del Norte', location: {lat: 19.364939, lng: -99.155208}},
-        {name: 'Av. Dr José María Vertiz', location: {lat: 19.373491, lng: -99.154389}},
-        {name: 'Av. Universidad', location: {lat: 19.376384, lng: -99.161279}},
-        {name: 'Av. Río Churubusco', location: {lat: 19.357964, lng: -99.157191}},
-        {name: 'Calzada de Tlalpan', location: {lat: 19.362202, lng: -99.142705}},
+        {name: 'Insurgentes (22min.)', location: {lat: 19.369198, lng: -99.180551}},
+        {name: 'Av. Emiliano Zapata (11min.)', location: {lat: 19.367222, lng: -99.159076}},
+        {name: 'Av. Popocatépetl (1min.)', location: {lat: 19.364011, lng: -99.161071}},
+        {name: 'Av. México-Coyoacán (5min.)', location: {lat: 19.369376, lng: -99.163453}},
+        {name: 'Av. División del Norte (17min.)', location: {lat: 19.364939, lng: -99.155208}},
+        {name: 'Av. Dr José María Vertiz', location: {lat: 19.369273, lng: -99.155363}},
+        {name: 'Av. Universidad (3min.)', location: {lat: 19.364971, lng: -99.168366}},
+        {name: 'Av. Río Churubusco (13min.)', location: {lat: 19.358716, lng: -99.169117}}
       ],
       
       //INITIALIZE
