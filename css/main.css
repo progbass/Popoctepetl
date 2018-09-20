@@ -755,26 +755,31 @@ section {
     background: none;
     padding-top: 1em; } }
 
-#galeria {
+#galeria,
+#plantas {
   position: relative;
   top: 0;
   width: 100%;
   min-height: 100%;
   height: 100%;
   background: #fff; }
-  #galeria h2 {
+  #galeria h2,
+  #plantas h2 {
     display: none; }
-  #galeria .container {
+  #galeria .container,
+  #plantas .container {
     display: flex;
     flex-flow: row wrap;
     position: relative;
     min-height: 100%;
     background: white; }
-  #galeria .col-left {
+  #galeria .col-left,
+  #plantas .col-left {
     position: relative;
     flex: 1 0 86.9902912621%;
     align-self: center; }
-    #galeria .col-left .video_holder {
+    #galeria .col-left .video_holder,
+    #plantas .col-left .video_holder {
       position: relative;
       margin: auto;
       height: 0;
@@ -785,7 +790,8 @@ section {
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%); }
-      #galeria .col-left .video_holder iframe {
+      #galeria .col-left .video_holder iframe,
+      #plantas .col-left .video_holder iframe {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -794,21 +800,27 @@ section {
         width: 100%;
         height: 100%;
         margin-top: -5%; }
-    #galeria .col-left .gallery {
+    #galeria .col-left .gallery,
+    #plantas .col-left .gallery {
       position: relative;
       height: 100%; }
-      #galeria .col-left .gallery.renders .thumbs_list {
+      #galeria .col-left .gallery.renders .thumbs_list,
+      #plantas .col-left .gallery.renders .thumbs_list {
         display: block; }
-      #galeria .col-left .gallery.renders .info__title:after {
+      #galeria .col-left .gallery.renders .info__title:after,
+      #plantas .col-left .gallery.renders .info__title:after {
         width: 2em;
         right: auto; }
-      #galeria .col-left .gallery .photo_holder {
+      #galeria .col-left .gallery .photo_holder,
+      #plantas .col-left .gallery .photo_holder {
         position: relative;
         padding: 6vh 0;
         text-align: center; }
-        #galeria .col-left .gallery .photo_holder.loading {
+        #galeria .col-left .gallery .photo_holder.loading,
+        #plantas .col-left .gallery .photo_holder.loading {
           background: url("../img/loader.gif") no-repeat center; }
-        #galeria .col-left .gallery .photo_holder a.navigation {
+        #galeria .col-left .gallery .photo_holder a.navigation,
+        #plantas .col-left .gallery .photo_holder a.navigation {
           display: inline-block;
           position: relative;
           top: 50%;
@@ -821,77 +833,100 @@ section {
           text-indent: -9999em;
           text-decoration: none;
           color: #222; }
-          #galeria .col-left .gallery .photo_holder a.navigation.next {
+          #galeria .col-left .gallery .photo_holder a.navigation.next,
+          #plantas .col-left .gallery .photo_holder a.navigation.next {
             background-image: url("../img/icon-slideNav-next.svg"); }
-            #galeria .col-left .gallery .photo_holder a.navigation.next:hover {
+            #galeria .col-left .gallery .photo_holder a.navigation.next:hover,
+            #plantas .col-left .gallery .photo_holder a.navigation.next:hover {
               background-position: center bottom; }
-          #galeria .col-left .gallery .photo_holder a.navigation.prev {
+          #galeria .col-left .gallery .photo_holder a.navigation.prev,
+          #plantas .col-left .gallery .photo_holder a.navigation.prev {
             background-image: url("../img/icon-slideNav-prev.svg"); }
-            #galeria .col-left .gallery .photo_holder a.navigation.prev:hover {
+            #galeria .col-left .gallery .photo_holder a.navigation.prev:hover,
+            #plantas .col-left .gallery .photo_holder a.navigation.prev:hover {
               background-position: center bottom; }
-        #galeria .col-left .gallery .photo_holder .color-codes {
+        #galeria .col-left .gallery .photo_holder .color-codes,
+        #plantas .col-left .gallery .photo_holder .color-codes {
           text-align: left;
           position: absolute;
           top: 20%;
           left: 14.0776699029%; }
-          #galeria .col-left .gallery .photo_holder .color-codes ol {
+          #galeria .col-left .gallery .photo_holder .color-codes ol,
+          #plantas .col-left .gallery .photo_holder .color-codes ol {
             position: relative;
             list-style: none;
             margin: 0;
             padding: 0; }
-          #galeria .col-left .gallery .photo_holder .color-codes .code {
+          #galeria .col-left .gallery .photo_holder .color-codes .code,
+          #plantas .col-left .gallery .photo_holder .color-codes .code {
             line-height: 2em;
             font-size: 16px; }
-            #galeria .col-left .gallery .photo_holder .color-codes .code:before {
+            #galeria .col-left .gallery .photo_holder .color-codes .code:before,
+            #plantas .col-left .gallery .photo_holder .color-codes .code:before {
               content: '';
               display: inline-block;
               position: relative;
               width: 20px;
               height: 20px;
               margin-right: 1em; }
-            #galeria .col-left .gallery .photo_holder .color-codes .code.gray:before {
+            #galeria .col-left .gallery .photo_holder .color-codes .code.gray:before,
+            #plantas .col-left .gallery .photo_holder .color-codes .code.gray:before {
               background: #D2D4D5; }
-            #galeria .col-left .gallery .photo_holder .color-codes .code.gray2:before {
+            #galeria .col-left .gallery .photo_holder .color-codes .code.gray2:before,
+            #plantas .col-left .gallery .photo_holder .color-codes .code.gray2:before {
               background: #737477; }
-            #galeria .col-left .gallery .photo_holder .color-codes .code.blue:before {
+            #galeria .col-left .gallery .photo_holder .color-codes .code.blue:before,
+            #plantas .col-left .gallery .photo_holder .color-codes .code.blue:before {
               background: #96ACBC; }
-            #galeria .col-left .gallery .photo_holder .color-codes .code.green:before {
+            #galeria .col-left .gallery .photo_holder .color-codes .code.green:before,
+            #plantas .col-left .gallery .photo_holder .color-codes .code.green:before {
               background: #B8C9BF; }
-            #galeria .col-left .gallery .photo_holder .color-codes .code.beige:before {
+            #galeria .col-left .gallery .photo_holder .color-codes .code.beige:before,
+            #plantas .col-left .gallery .photo_holder .color-codes .code.beige:before {
               background: #f7ece8; }
-        #galeria .col-left .gallery .photo_holder .images_display {
+        #galeria .col-left .gallery .photo_holder .images_display,
+        #plantas .col-left .gallery .photo_holder .images_display {
           display: inline;
           margin: 0 1em; }
-        #galeria .col-left .gallery .photo_holder img {
+        #galeria .col-left .gallery .photo_holder img,
+        #plantas .col-left .gallery .photo_holder img {
           position: relative;
           margin: auto; }
-          #galeria .col-left .gallery .photo_holder img.vertical {
+          #galeria .col-left .gallery .photo_holder img.vertical,
+          #plantas .col-left .gallery .photo_holder img.vertical {
             max-width: 38.8349514563%;
             width: 100%;
             height: auto; }
-          #galeria .col-left .gallery .photo_holder img.horizontal {
+          #galeria .col-left .gallery .photo_holder img.horizontal,
+          #plantas .col-left .gallery .photo_holder img.horizontal {
             width: 100%;
             height: auto;
             max-width: 62.1359223301%; }
-          #galeria .col-left .gallery .photo_holder img.floor {
+          #galeria .col-left .gallery .photo_holder img.floor,
+          #plantas .col-left .gallery .photo_holder img.floor {
             width: 90%;
             max-width: 95.145631068%; }
           @media (max-width: 680px) {
-            #galeria .col-left .gallery .photo_holder img.vertical {
+            #galeria .col-left .gallery .photo_holder img.vertical,
+            #plantas .col-left .gallery .photo_holder img.vertical {
               max-width: none; }
-            #galeria .col-left .gallery .photo_holder img.horizontal {
+            #galeria .col-left .gallery .photo_holder img.horizontal,
+            #plantas .col-left .gallery .photo_holder img.horizontal {
               max-width: none; } }
-      #galeria .col-left .gallery .info {
+      #galeria .col-left .gallery .info,
+      #plantas .col-left .gallery .info {
         position: relative;
         padding: 6vh 0 0;
         width: 30.0970873786%;
         left: 26.213592233%; }
-        #galeria .col-left .gallery .info__title {
+        #galeria .col-left .gallery .info__title,
+        #plantas .col-left .gallery .info__title {
           font-size: 0.925rem;
           letter-spacing: 0.05em;
           text-transform: uppercase;
           margin: 0 0; }
-          #galeria .col-left .gallery .info__title:after {
+          #galeria .col-left .gallery .info__title:after,
+          #plantas .col-left .gallery .info__title:after {
             content: '';
             display: block;
             position: relative;
@@ -900,13 +935,15 @@ section {
             height: 3px;
             background: #FF6A00;
             margin-top: 0.325em; }
-      #galeria .col-left .gallery ul.thumbs_list {
+      #galeria .col-left .gallery ul.thumbs_list,
+      #plantas .col-left .gallery ul.thumbs_list {
         display: none;
         list-style: none;
         margin: 0 0 5vh;
         padding: 0 20px;
         text-align: center; }
-        #galeria .col-left .gallery ul.thumbs_list li {
+        #galeria .col-left .gallery ul.thumbs_list li,
+        #plantas .col-left .gallery ul.thumbs_list li {
           display: inline-block;
           position: relative;
           width: 50px;
@@ -914,7 +951,8 @@ section {
           margin: 0 5px 5px;
           background: #ccc;
           cursor: pointer; }
-          #galeria .col-left .gallery ul.thumbs_list li:before {
+          #galeria .col-left .gallery ul.thumbs_list li:before,
+          #plantas .col-left .gallery ul.thumbs_list li:before {
             content: "";
             position: absolute;
             z-index: 2;
@@ -928,29 +966,37 @@ section {
             -ms-transition: box-shadow 0.22s;
             -o-transition: box-shadow 0.22s;
             transition: box-shadow 0.22s; }
-          #galeria .col-left .gallery ul.thumbs_list li:hover:before, #galeria .col-left .gallery ul.thumbs_list li.selected:before {
+          #galeria .col-left .gallery ul.thumbs_list li:hover:before, #galeria .col-left .gallery ul.thumbs_list li.selected:before,
+          #plantas .col-left .gallery ul.thumbs_list li:hover:before,
+          #plantas .col-left .gallery ul.thumbs_list li.selected:before {
             -webkit-box-shadow: inset 0px 0px 0px 4px #FF6A00;
             -moz-box-shadow: inset 0px 0px 0px 4px #FF6A00;
             box-shadow: inset 0px 0px 0px 4px #FF6A00; }
-          #galeria .col-left .gallery ul.thumbs_list li a {
+          #galeria .col-left .gallery ul.thumbs_list li a,
+          #plantas .col-left .gallery ul.thumbs_list li a {
             display: block;
             height: 100%; }
-          #galeria .col-left .gallery ul.thumbs_list li img {
+          #galeria .col-left .gallery ul.thumbs_list li img,
+          #plantas .col-left .gallery ul.thumbs_list li img {
             display: inline-block;
             width: 100%;
             height: auto; }
-  #galeria .col-right {
+  #galeria .col-right,
+  #plantas .col-right {
     display: none;
     position: relative;
     width: 13.0097087379%;
     background: #fff; }
-    #galeria .col-right ul {
+    #galeria .col-right ul,
+    #plantas .col-right ul {
       margin: 0;
       padding: 100px 25px 0;
       list-style: none; }
-      #galeria .col-right ul li {
+      #galeria .col-right ul li,
+      #plantas .col-right ul li {
         margin-bottom: 17px; }
-        #galeria .col-right ul li a {
+        #galeria .col-right ul li a,
+        #plantas .col-right ul li a {
           display: block;
           text-decoration: none;
           text-align: right;
@@ -963,88 +1009,113 @@ section {
           -ms-transition: color 0.16s ease;
           -o-transition: color 0.16s ease;
           transition: color 0.16s ease; }
-          #galeria .col-right ul li a:hover, #galeria .col-right ul li a:active, #galeria .col-right ul li a.active {
+          #galeria .col-right ul li a:hover, #galeria .col-right ul li a:active, #galeria .col-right ul li a.active,
+          #plantas .col-right ul li a:hover,
+          #plantas .col-right ul li a:active,
+          #plantas .col-right ul li a.active {
             color: #FF6A00;
             background: url("../img/icon-gallery-bullet_hover.png") no-repeat top right; }
-  @media (max-width: 960px) {
-    #galeria .container {
-      margin: 0;
-      flex-flow: row wrap;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box; }
-      #galeria .container div {
-        -webkit-box-sizing: inherit;
-        -moz-box-sizing: inherit;
-        box-sizing: inherit; }
-    #galeria .col-left {
-      width: 100%;
-      order: 1; }
-      #galeria .col-left .gallery .photo_holder {
-        height: auto;
-        padding: 0 0 2em; }
-        #galeria .col-left .gallery .photo_holder img {
-          position: relative;
-          width: 90%;
-          height: auto; }
-      #galeria .col-left .gallery .info {
-        padding: 0;
-        width: 72%;
-        min-width: 300px;
-        margin: auto;
-        left: 0; }
-        #galeria .col-left .gallery .info__title:after {
-          width: 100%;
-          left: 0; }
-      #galeria .col-left .gallery ul.thumbs_list {
-        margin-bottom: 2em; }
-      #galeria .col-left .video_holder iframe {
-        margin: 0; }
-    #galeria .col-right {
-      display: block;
-      width: 100%;
-      height: 70px;
-      text-align: center; }
-      #galeria .col-right ul {
-        height: 100%;
-        padding: 0;
-        overflow: auto;
+  #galeria .container,
+  #plantas .container {
+    margin: 0;
+    flex-flow: row wrap;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    #galeria .container div,
+    #plantas .container div {
+      -webkit-box-sizing: inherit;
+      -moz-box-sizing: inherit;
+      box-sizing: inherit; }
+  #galeria .col-left,
+  #plantas .col-left {
+    width: 100%;
+    order: 1; }
+    #galeria .col-left .gallery .photo_holder,
+    #plantas .col-left .gallery .photo_holder {
+      height: auto;
+      padding: 0 0 2em; }
+      #galeria .col-left .gallery .photo_holder img,
+      #plantas .col-left .gallery .photo_holder img {
         position: relative;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%); }
-        #galeria .col-right ul li {
-          float: left;
-          width: 33.3333333%;
-          height: 100%;
-          margin: 0;
-          line-height: 5em; }
-          #galeria .col-right ul li:nth-child(2) {
-            border: 1px solid #eee;
-            border-top: none;
-            border-bottom: none;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box; }
-          #galeria .col-right ul li a,
-          #galeria .col-right ul li a:hover,
-          #galeria .col-right ul li a.active,
-          #galeria .col-right ul li a:active {
-            text-align: center;
-            padding: 0;
-            background: none; } }
+        width: 90%;
+        height: auto; }
+    #galeria .col-left .gallery .info,
+    #plantas .col-left .gallery .info {
+      padding: 0;
+      width: 72%;
+      min-width: 300px;
+      margin: auto;
+      left: 0; }
+      #galeria .col-left .gallery .info__title:after,
+      #plantas .col-left .gallery .info__title:after {
+        width: 100%;
+        left: 0; }
+    #galeria .col-left .gallery ul.thumbs_list,
+    #plantas .col-left .gallery ul.thumbs_list {
+      margin-bottom: 2em; }
+    #galeria .col-left .video_holder iframe,
+    #plantas .col-left .video_holder iframe {
+      margin: 0; }
+  #galeria .col-right,
+  #plantas .col-right {
+    display: block;
+    width: 100%;
+    height: 70px;
+    text-align: center; }
+    #galeria .col-right ul,
+    #plantas .col-right ul {
+      height: 100%;
+      padding: 0;
+      overflow: auto;
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%); }
+      #galeria .col-right ul li,
+      #plantas .col-right ul li {
+        float: left;
+        width: 50%;
+        height: 100%;
+        margin: 0;
+        line-height: 5em; }
+        #galeria .col-right ul li:nth-child(2),
+        #plantas .col-right ul li:nth-child(2) {
+          border: 1px solid #eee;
+          border-top: none;
+          border-bottom: none;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box; }
+        #galeria .col-right ul li a,
+        #galeria .col-right ul li a:hover,
+        #galeria .col-right ul li a.active,
+        #galeria .col-right ul li a:active,
+        #plantas .col-right ul li a,
+        #plantas .col-right ul li a:hover,
+        #plantas .col-right ul li a.active,
+        #plantas .col-right ul li a:active {
+          text-align: center;
+          padding: 0;
+          background: none; }
   @media (max-width: 680px) {
-    #galeria .container {
+    #galeria .container,
+    #plantas .container {
       align-content: flex-start; }
-    #galeria .col-left .gallery .photo_holder a.navigation {
+    #galeria .col-left .gallery .photo_holder a.navigation,
+    #plantas .col-left .gallery .photo_holder a.navigation {
       display: none; }
-    #galeria .col-left .gallery .photo_holder .color-codes {
+    #galeria .col-left .gallery .photo_holder .color-codes,
+    #plantas .col-left .gallery .photo_holder .color-codes {
       position: relative;
       margin: auto;
       left: auto;
       top: auto;
       display: inline-block; } }
+
+#plantas .col-right ul li {
+  width: 33.333%; }
 
 #ubicacion {
   position: relative;

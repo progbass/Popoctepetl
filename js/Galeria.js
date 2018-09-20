@@ -41,8 +41,8 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			$("section#galeria .thumbs_list li").first().click();
 		}
     });
-    var renders_list = new ThumbsCollection();
-    var floors_list = new ThumbsCollection();
+    var interiores_list = new ThumbsCollection();
+    var exteriores_list = new ThumbsCollection();
     var sideViews_list = new ThumbsCollection();
     var actual_list = null;
 
@@ -93,63 +93,114 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       lastTab: "",
       tabType: "",
       currentSlide: 0,
-      rendersInit: false,
-      floorsInit: false,
+      interioresInit: false,
+      exterioresInit: false,
       sideViewsInit: false,
       
       //INITIALIZE
       initialize: function(){
-      	_.bindAll(this, 'nextSlide', 'prevSlide', 'manageTabs', 'configRenders', 'loadRender', 'displayList');
+      	_.bindAll(this, 'nextSlide', 'prevSlide', 'manageTabs', 'interioresRenders', 'loadRender', 'displayList');
       	this.currentSlide = 0;
-      	this.rendersInit = false;
+      	this.interioresInit = false;
 	    //this.config_accordeon();  
       },
       
       //RENDER
       render: function () {
       	var scope = this;
-      	
-      	//config accordeon
-      	//this.config_accordeon();
-      	this.manageTabs("renders");
+      	var tab = 'exteriores';
       	
       	//open default tab
       	if( window.location.hash ){
-      		var tab = window.location.hash;
+      		//tab = window.location.hash;
       		switch(tab){
-	      		case "#cortes":
-	      			tab = "cortes";
+	      		case "#interiores":
+	      			tab = "interiores";
 	      			break;
-	      		case "#renders":
-	      			tab = "renders";
+	      		case "#exteriores":
+	      			tab = "exteriores";
 	      			break;
-	      		case "#plantas":
-	      			tab = "plantas";
-	      			break;
-	      		default:
-	      			tab = null;
-	      			//break;
       		}
-      		
-      		//open tab
-      		//if(tab)
-      			//this.manageTabs(tab);
       	}
+      	
+      	//config
+      	this.manageTabs(tab);
 	 },
 	 
 	 //CONFIG RENDERS LIST
-	 configRenders: function(){
+	 interioresRenders: function(){
 	 	var scope = this;
 	 	var gallery = $(scope.el).find(".gallery");
 	 	
 	 	//update flag
-	 	scope.rendersInit = true;
+	 	scope.interioresInit = true;
 	 	
 	 	//load renders list and create a collection from them
-	    //renders_list.url = 'renders.json';
-	    renders_list.on("add", renders_list.thumbAdd);
-	    renders_list.bind('thumbs:selected', function(){scope.loadRender('render')});
-	    renders_list.add([
+	    //interiores_list.url = 'renders.json';
+	    interiores_list.on("add", interiores_list.thumbAdd);
+	    interiores_list.bind('thumbs:selected', function(){scope.loadRender('render')});
+	    interiores_list.add([
+			{
+				"uri":		"img/renders/popo_8.jpg",
+				"thumb": 	"img/renders/thumbs/denn_8.jpg",
+				"title":    "Interiores",
+				"showInfo": true
+			},
+			{
+				"uri":		"img/renders/popo_9.jpg",
+				"thumb": 	"img/renders/thumbs/denn_9.jpg",
+				"title":    "Interiores",
+				"showInfo": true
+			},
+			{
+				"uri":		"img/renders/popo_10.jpg",
+				"thumb": 	"img/renders/thumbs/denn_10.jpg",
+				"title":    "Interiores",
+				"showInfo": true
+			}	
+		]);
+		interiores_list.loadCompleteHandler();
+		/*
+	    interiores_list.fetch({
+	      add: true,
+	      success: interiores_list.loadCompleteHandler
+	      //error: loadCompleteHandler
+	    });
+		*/
+	    
+	    //config swipe detection and actions
+		Hammer.Swipe({
+			velocity: 8,
+			threshold: 18
+		})
+		var hammertime = new Hammer( this.el );
+		hammertime.on('swipe', function(ev) {
+			if( ev.direction == 2){
+		    	actualIndex++;
+		    	actualIndex = (actualIndex > $("section#galeria .thumbs_list li").length) ? 0 : actualIndex;
+		    } else if( ev.direction == 4 ){
+			    actualIndex--;
+			    actualIndex = (actualIndex < 0) ? $("section#galeria .thumbs_list li").length : actualIndex;
+		    }
+	    
+		    //select thumb
+		    $("section#galeria .thumbs_list li:eq("+actualIndex+")").click();
+		});	
+	 },
+	 
+	 //CONFIG FLOORS LIST
+	 exterioresRenders: function(){
+	 	var scope = this;
+	 	var gallery = $(scope.el).find(".gallery");
+	 	
+	 	//update flag
+	 	scope.exterioresInit = true;
+	 	
+	 	//load renders list and create a collection from them
+	    //exteriores_list.url = 'floors.json';
+	    exteriores_list.on("add", exteriores_list.thumbAdd);
+	    exteriores_list.bind('thumbs:selected', function(){scope.loadRender('floor')});
+	    exteriores_list.add([
 			{
 				"uri":		"img/renders/popo_1.jpg",
 				"thumb": 	"img/renders/thumbs/denn_1.jpg",
@@ -223,139 +274,13 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"title":    "Plaza Central",
 				"showInfo": true
 			},
-
-
-
-			{
-				"uri":		"img/renders/popo_8.jpg",
-				"thumb": 	"img/renders/thumbs/denn_8.jpg",
-				"title":    "Interiores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_9.jpg",
-				"thumb": 	"img/renders/thumbs/denn_9.jpg",
-				"title":    "Interiores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_10.jpg",
-				"thumb": 	"img/renders/thumbs/denn_10.jpg",
-				"title":    "Interiores",
-				"showInfo": true
-			}	
-		]);
-		renders_list.loadCompleteHandler();
-		/*
-	    renders_list.fetch({
-	      add: true,
-	      success: renders_list.loadCompleteHandler
-	      //error: loadCompleteHandler
-	    });
-		*/
-	    
-	    //config swipe detection and actions
-		Hammer.Swipe({
-			velocity: 8,
-			threshold: 18
-		})
-		var hammertime = new Hammer( this.el );
-		hammertime.on('swipe', function(ev) {
-			if( ev.direction == 2){
-		    	actualIndex++;
-		    	actualIndex = (actualIndex > $("section#galeria .thumbs_list li").length) ? 0 : actualIndex;
-		    } else if( ev.direction == 4 ){
-			    actualIndex--;
-			    actualIndex = (actualIndex < 0) ? $("section#galeria .thumbs_list li").length : actualIndex;
-		    }
-	    
-		    //select thumb
-		    $("section#galeria .thumbs_list li:eq("+actualIndex+")").click();
-		});	
-	 },
-	 
-	 //CONFIG FLOORS LIST
-	 configFloors: function(){
-	 	var scope = this;
-	 	var gallery = $(scope.el).find(".gallery");
-	 	
-	 	//update flag
-	 	scope.floorsInit = true;
-	 	
-	 	//load renders list and create a collection from them
-	    //floors_list.url = 'floors.json';
-	    floors_list.on("add", floors_list.thumbAdd);
-	    floors_list.bind('thumbs:selected', function(){scope.loadRender('floor')});
-	    floors_list.add([
-			{
-				"title":	"Planta Baja",
-				"uri":		"img/floors/planta_baja.jpg",
-				"thumb": 	"img/floors/thumbs/planta_baja.jpg",
-				"info":     "<p>Cuenta con un acceso peatonal directo sobre Av. Popocatépetl así como por la plaza interior del desarrollo. De igual manera para la entrada y salida vehicular.</p><p>En planta baja, se cuenta con una bahía de ascenso y descenso además de control de accesos, vestíbulo, espacio de oficinas, áreas de servicios y elevadores para sótanos de estacionamiento y pisos de oficina.</p>",
-				"showInfo": true,
-				"colorCode": {
-					gray: 'Lobby de Oficinas',
-					gray2: 'Comercio',
-					green: 'Circulaciones',
-					beige: 'Lobby de Vivienda'
-				}
-			},
-			{
-				"title":	"Planta 3",
-				"uri":		"img/floors/planta3.jpg",
-				"thumb": 	"img/floors/thumbs/planta1.jpg",
-				"info":     "<p>La planta del nivel 3 fue diseñada para poder contar con un espacio de comercio de doble altura y un segundo piso cubriendo una mayor área de comercio para el edificio de uso de los inquilinos o bien puede eventualmente funcionar como un espacio de apoyo para alguna de las oficinas.</p>",
-				"showInfo": true,
-				"colorCode": {
-					gray: 'Área de Oficinas',
-					blue: 'Servicios',
-					green: 'Circulaciones',
-					beige: 'Área de Vivienda'
-				}
-			},
-			{
-				"title":	"Planta Tipo",
-				"uri":		"img/floors/planta_tipo.jpg",
-				"thumb": 	"img/floors/thumbs/planta_tipo.jpg",
-				"info":     "<p>Las plantas son sumamente eficientes y libres de columnas para poder tener el mayor espacio abierto de oficinas y las fachadas principales con un diseño que genera de acuerdo a su ubicación una alta eficiencia energética y una muy buena iluminación natural de los espacios.</p>",
-				"showInfo": true,
-				"colorCode": {
-					gray: 'Área de Oficinas',
-					blue: 'Servicios',
-					green: 'Circulaciones',
-					beige: 'Área de Vivienda'
-				}
-			},
-			{
-				"title":	"Oficinas",
-				"uri":		"img/floors/oficinas.jpg",
-				"thumb": 	"img/floors/thumbs/roof_garden.jpg",
-				"info":     "<p>Cuenta con un total de 14,723 m2 rentables de oficinas corporativas distribuidos en 19 niveles de aproximadamente 886.74 m2 rentables cada uno.</p>",
-				"showInfo": true,
-				"colorCode": {
-					gray: 'Área de Oficinas',
-					blue: 'Servicios',
-					green: 'Circulaciones'
-				}
-			},
-			{
-				"title":	"Estacionamiento",
-				"uri":		"img/floors/estacionamiento.jpg",
-				"thumb": 	"img/floors/thumbs/estacionamiento.jpg",
-				"info":     "<p>Cuenta con 9 sótanos altos y bajos de estacionamiento para cubrir la demanda de las oficinas corporativas y de la zona.</p><p>El diseño cumple con todos los requisitos de dimensiones y operatividad. Todos los sótanos cuentan con dos núcleos de servicios central independientes de la vivienda, tres escaleras internas presurizadas, dos elevadores que dan acceso al lobby del corporativo y dos elevadores que dan acceso al lobby de comercio de la vivienda.</p>",
-				"showInfo": true,
-				"colorCode": {
-					blue: 'Bodegas',
-					green: 'Circulaciones Verticales'
-				}
-			}
 		]);
 
-		floors_list.loadCompleteHandler();
+		exteriores_list.loadCompleteHandler();
 		/*
-	    floors_list.fetch({
+	    exteriores_list.fetch({
 	      add: true,
-	      success: floors_list.loadCompleteHandler
+	      success: exteriores_list.loadCompleteHandler
 	      //error: loadCompleteHandler
 	    });
 		*/
@@ -379,54 +304,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		    //select thumb
 		    $("section#galeria .thumbs_list li:eq("+actualIndex+")").click();
 
-		});
-	 },
-
-	 //CONFIG FLOORS LIST
-	 configSideViews: function(){
-	 	var scope = this;
-	 	var gallery = $(scope.el).find(".gallery");
-	 	
-	 	//update flag
-	 	scope.sideViewsInit = true;
-	 	
-	 	//load renders list and create a collection from them
-	    //floors_list.url = 'floors.json';
-	    sideViews_list.on("add", sideViews_list.thumbAdd);
-	    sideViews_list.bind('thumbs:selected', function(){scope.loadRender('floor')});
-	    sideViews_list.add([
-			{
-				"title":	"Corte Longitudinal",
-				"uri":		"img/floors/corte_longitudinal.jpg",
-				"thumb": 	"img/floors/thumbs/corte_longitudinal.jpg",
-				"info":     "",
-				"showInfo": true,
-				"colorCode": {
-					gray: 'Área de Oficinas',
-					green: 'Estacionamiento',
-					beige: 'Área de Vivienda'
-				}
-			}
-		]);
-		sideViews_list.loadCompleteHandler();
-	    
-	    //config swipe detection and actions
-		Hammer.Swipe({
-			velocity: 8,
-			threshold: 18
-		})
-		var hammertime = new Hammer( this.el );
-		hammertime.on('swipe', function(ev) {
-			if( ev.direction == 2){
-		    	actualIndex++;
-		    	actualIndex = (actualIndex > $("section#galeria .thumbs_list li").length) ? 0 : actualIndex;
-		    } else if( ev.direction == 4 ){
-			    actualIndex--;
-			    actualIndex = (actualIndex < 0) ? $("section#galeria .thumbs_list li").length : actualIndex;
-		    }
-	    
-		    //select thumb
-		    $("section#galeria .thumbs_list li:eq("+actualIndex+")").click();
 		});
 	 },
 	 
@@ -454,37 +331,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 	 photoHolder.addClass('loading');
 		 photoHolder.html( image );
 	     photoHolder.find("img").hide().fadeIn(600);
-
-	  //    // show additional information
-	  //    if(selectedThumb.attributes.showInfo){
-	  //    	infoHolder.show();
-		 //    if( selectedThumb.attributes.title ){
-		 //     	infoHolder.find(".info__title")
-		 //     	.show()
-		 //     	.html( selectedThumb.attributes.title );
-		 //    } else {
-		 //     	infoHolder.find(".info__title").hide()
-		 //    }
-		 //    if( selectedThumb.attributes.info )
-		 //     	infoHolder.find(".info__content").html( selectedThumb.attributes.info );
-		 // } else {
-		 // 	infoHolder.hide();
-		 // }
-
-		 //
-		 var colorCodesContainer = $(this.el).find('.color-codes');
-		 var colorCodes = selectedThumb.attributes.colorCode;
-		 if(colorCodes){
-		 	colorCodesContainer.show();
-		 	var codesContent =  '';
-		 	var codesList = colorCodesContainer.find('ol');
-		 	for(var i = 0; i < Object.keys(colorCodes).length; i++){
-		 		codesContent += "<li class='code "+Object.keys(colorCodes)[i]+"' >"+colorCodes[Object.keys(colorCodes)[i]]+"</li>";
-		 	}
-		 	codesList.html(codesContent);
-		 } else {
-		 	colorCodesContainer.hide()
-		 }
 	 },
 	 
 	 displayList: function(){
@@ -516,64 +362,38 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 
 	 /////////////////////////////////////////////////////////////////
 	 manageTabs: function( _target ){
-		 var scope = this;
-		 var content = "";
+		var scope = this;
+		var content = "renders.html"; 
 		 
-		 //return if the user clicked the same tab
-		 if(scope.lastTab == _target){
-			 return false;
-		 }
-		 
-		 //style menu items
-		 $(scope.el).find("a.tab").removeClass("active");
-		 $(scope.el).find("a[href='#"+_target+"']").addClass("active");
-		 
-		 // Find matching template according to tab
-		 switch(_target){
-		 	case "cortes":
-		 		content = "cortes.html";
-		 		break;
-		 	
-		 	case "renders":
-		 		content = "renders.html";
-		 		break;
-		 	
-		 	case "plantas":
-		 		content = "plantas.html";
-		 		break;
-		 	
-		 	default:
-		 		content = "renders.html"; 
+		//return if the user clicked the same tab
+		if(scope.lastTab == _target){
+			return false;
 		}
+		 
+		//style menu items
+		$(scope.el).find("a.tab").removeClass("active");
+		$(scope.el).find("a[href='#"+_target+"']").addClass("active");
 		
 		// load tab content
 		$(scope.el).find(".content_loader").load( content, function() {
 		 	$(scope.el).find("a.next").click(scope.nextSlide);
 			$(scope.el).find("a.prev").click(scope.prevSlide);
 
-			$(scope.el).find(".interiores").click(scope.nextSlide);
-			$(scope.el).find(".exteriores").click(scope.prevSlide);
+			// $(scope.el).find(".interiores").click(scope.nextSlide);
+			// $(scope.el).find(".exteriores").click(scope.prevSlide);
 
-		 	if(_target == "renders"){
-			 	actual_list = renders_list;
-		 		if(!scope.rendersInit)
-			 		scope.configRenders();
+		 	if(_target == "interiores"){
+			 	actual_list = interiores_list;
+		 		if(!scope.interioresInit)
+			 		scope.interioresRenders();
 			 	else
 			 		scope.displayList();
 		 	}
 		 	
-		 	if(_target == "plantas"){
-			 	actual_list = floors_list;
-		 		if(!scope.floorsInit)
-			 		scope.configFloors();
-			 	else
-			 		scope.displayList();
-		 	}
-
-		 	if(_target == "cortes"){
-			 	actual_list = sideViews_list;
-		 		if(!scope.sideViewsInit)
-			 		scope.configSideViews();
+		 	if(_target == "exteriores"){
+			 	actual_list = exteriores_list;
+		 		if(!scope.exterioresInit)
+			 		scope.exterioresRenders();
 			 	else
 			 		scope.displayList();
 		 	}

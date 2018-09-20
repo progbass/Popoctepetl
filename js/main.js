@@ -20,12 +20,13 @@ requirejs.config({
 });
 
 //
-define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Galeria.js', 'js/Ubicacion.js', 'ssm', 'plugins'],
-function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
+define(['jquery', 'underscore', 'backbone', 'router', 'js/Proyecto.js', 'js/Galeria.js', 'js/Plantas.js', 'js/Ubicacion.js', 'ssm', 'plugins'],
+function($, _, Backbone, Router, Proyecto, Galeria, Plantas, Ubicacion, ssm) {
 	
 	//init sections
 	var view_proyecto = new Proyecto();
 	var view_galeria = new Galeria();
+	var view_plantas = new Plantas();
 	var view_ubicacion = new Ubicacion();
 	var ubicacionType;
 	
@@ -171,8 +172,19 @@ function($, _, Backbone, Router, Proyecto, Galeria, Ubicacion, ssm) {
 	    $('header').toggleClass('white', false);
 	    
 	    switch(hash){
-		    case "#galeria":
+		    case "#renders":
+		    case "#exteriores":
+		    case "#interiores":
+		    	hash = '#galeria';
 		    	target = view_galeria;
+		    	$('header').toggleClass('white')
+		    	break;
+
+		    case "#plantas":
+		    case "#360":
+		    case "#corte":
+		    	hash = '#plantas';
+		    	target = view_plantas;
 		    	$('header').toggleClass('white')
 		    	break;
 		    	

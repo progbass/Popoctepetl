@@ -22,7 +22,7 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         routes: {
           "": "proyecto", 
           "proyecto": "proyecto",
-          "galeria": "galeria",
+          "renders": "renders",
           "contacto": "contacto",
           "ubicacion": "ubicacion",
           "buro": "buro"
@@ -31,8 +31,8 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
         proyecto: function(){
 	       // gotoSection('#proyecto');
         },
-        galeria: function(){
-	        //gotoSection('#galeria');
+        renders: function(){
+	        //gotoSection('#renders');
         },
         contacto: function(){
 	        //gotoSection('#contacto');

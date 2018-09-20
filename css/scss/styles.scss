@@ -806,7 +806,8 @@ section{
 	}
 }
 
-#galeria{
+#galeria,
+#plantas{
 	position: relative; //absolute;
 	top: 0;
 	width: 100%;
@@ -1097,7 +1098,7 @@ section{
 	}
 	
 	///RESPONSIVE RULES
-	@include breakpoint( $bp-960 ) {
+	//@include breakpoint( $bp-960 ) {
 		//height: auto;
 		//overflow: visible;
 		
@@ -1170,7 +1171,7 @@ section{
 			    
 			    li{
 			    	float: left;
-			    	width: 33.3333333%;
+			    	width: 50%;
 			    	height: 100%;
 				    margin: 0;
 				    line-height: 5em;
@@ -1196,7 +1197,7 @@ section{
 			    }
 		    }
 		}
-	}
+	//}
 
 	///RESPONSIVE RULES
 	@include breakpoint( $bp-680 ) {
@@ -1218,6 +1219,15 @@ section{
 					}
 				}
 			}
+		}
+	}
+}
+#plantas{
+	.col-right{    
+	    ul{ 
+		    li{
+		    	width: 33.333%;
+		    }
 		}
 	}
 }
