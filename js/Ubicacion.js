@@ -9,40 +9,40 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
       map: null, 
       infowindow: null,
       servicios: [
-        {name: 'Pabellón del Valle', location: {lat: 19.373492, lng: -99.162379}},
-        {name: 'Universidad Latinoamericana', location: {lat: 19.372827, lng: -99.167235}},
-        {name: 'Sanborns', location: {lat: 19.369793, lng: -99.171307}},
-        {name: 'Sams Club Universidad', location: {lat: 19.369663, lng: -99.164200}},
-        {name: 'Walmart Universidad', location: {lat: 19.368657, lng: -99.164119}},
-        {name: 'Plaza Universidad', location: {lat: 19.367224, lng: -99.165981}},
-        {name: 'Instituto México Secundaria', location: {lat: 19.365992, lng: -99.164898}},
-        {name: 'Patio Universidad', location: {lat: 19.365841, lng: -99.166942}},
-        {name: 'Centro Coyoacán', location: {lat: 19.359798, lng: -99.170062}}
+        {name: 'Pabellón del Valle', time: '', location: {lat: 19.373492, lng: -99.162379}},
+        {name: 'Universidad Latinoamericana', time: '', location: {lat: 19.372827, lng: -99.167235}},
+        {name: 'Sanborns', time: '', location: {lat: 19.369793, lng: -99.171307}},
+        {name: 'Sams Club Universidad', time: '', location: {lat: 19.369663, lng: -99.164200}},
+        {name: 'Walmart Universidad', time: '', location: {lat: 19.368657, lng: -99.164119}},
+        {name: 'Plaza Universidad', time: '', location: {lat: 19.367224, lng: -99.165981}},
+        {name: 'Instituto México Secundaria', time: '', location: {lat: 19.365992, lng: -99.164898}},
+        {name: 'Patio Universidad', time: '', location: {lat: 19.365841, lng: -99.166942}},
+        {name: 'Centro Coyoacán', time: '', location: {lat: 19.359798, lng: -99.170062}}
       ],
       hospitales: [
-        {name: 'bios medical center', location: {lat: 19.372071, lng: -99.166329}},
-        {name: 'ISSTE', location: {lat: 19.372684, lng: -99.171231}},
-        {name: 'IMSS', location: {lat: 19.368437, lng: -99.171671}},
-        {name: 'Hospital San José', location: {lat: 19.363968, lng: -99.169536}},
-        {name: 'Hospital General Xoco', location: {lat: 19.360123, lng: -99.162272}}
+        {name: 'bios medical center', time: '', location: {lat: 19.372071, lng: -99.166329}},
+        {name: 'ISSTE', time: '', location: {lat: 19.372684, lng: -99.171231}},
+        {name: 'IMSS', time: '', location: {lat: 19.368437, lng: -99.171671}},
+        {name: 'Hospital San José', time: '', location: {lat: 19.363968, lng: -99.169536}},
+        {name: 'Hospital General Xoco', time: '', location: {lat: 19.360123, lng: -99.162272}}
       ],
       sitiosInteres: [
-        {name: 'Bowling Alley', location: {lat: 19.367227, lng: -99.170945}},
-        {name: 'Centro deportivo Benito Juárez', location: {lat: 19.371742, lng: -99.159677}},
-        {name: 'Parque público Pascual Ortíz Rubio', location: {lat: 19.370866, lng: -99.168794}},
-        {name: 'Centro cultural Roberto Cantoral', location: {lat: 19.362027, lng: -99.166368}},
-        {name: 'Cineteca Nacional', location: {lat: 19.360684, lng: -99.164730}},
-        {name: 'Centro Deportivo Coyoacán', location: {lat: 19.361788, lng: -99.161682}},
+        {name: 'Bowling Alley', time: '', location: {lat: 19.367227, lng: -99.170945}},
+        {name: 'Centro deportivo Benito Juárez', time: '', location: {lat: 19.371742, lng: -99.159677}},
+        {name: 'Parque público Pascual Ortíz Rubio', time: '', location: {lat: 19.370866, lng: -99.168794}},
+        {name: 'Centro cultural Roberto Cantoral', time: '', location: {lat: 19.362027, lng: -99.166368}},
+        {name: 'Cineteca Nacional', time: '', location: {lat: 19.360684, lng: -99.164730}},
+        {name: 'Centro Deportivo Coyoacán', time: '', location: {lat: 19.361788, lng: -99.161682}},
       ],
       vialidades: [
-        {name: 'Insurgentes (22min.)', location: {lat: 19.369198, lng: -99.180551}},
-        {name: 'Av. Emiliano Zapata (11min.)', location: {lat: 19.367222, lng: -99.159076}},
-        {name: 'Av. Popocatépetl (1min.)', location: {lat: 19.364011, lng: -99.161071}},
-        {name: 'Av. México-Coyoacán (5min.)', location: {lat: 19.369376, lng: -99.163453}},
-        {name: 'Av. División del Norte (17min.)', location: {lat: 19.364939, lng: -99.155208}},
-        {name: 'Av. Dr José María Vertiz', location: {lat: 19.369273, lng: -99.155363}},
-        {name: 'Av. Universidad (3min.)', location: {lat: 19.364971, lng: -99.168366}},
-        {name: 'Av. Río Churubusco (13min.)', location: {lat: 19.358716, lng: -99.169117}}
+        {name: 'Insurgentes', time: '22min.', location: {lat: 19.369198, lng: -99.180551}},
+        {name: 'Av. Emiliano Zapata', time: '11min.', location: {lat: 19.367222, lng: -99.159076}},
+        {name: 'Av. Popocatépetl', time: '1min.', location: {lat: 19.364011, lng: -99.161071}},
+        {name: 'Av. México-Coyoacán', time: '5min.', location: {lat: 19.369376, lng: -99.163453}},
+        {name: 'Av. División del Norte', time: '17min.', location: {lat: 19.364939, lng: -99.155208}},
+        {name: 'Av. Dr José María Vertiz', time: '', location: {lat: 19.369273, lng: -99.155363}},
+        {name: 'Av. Universidad', time: '3min.', location: {lat: 19.364971, lng: -99.168366}},
+        {name: 'Av. Río Churubusco', time: '13min.', location: {lat: 19.358716, lng: -99.169117}}
       ],
       
       //INITIALIZE
@@ -257,9 +257,15 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
 
         // Create all markers on map
         var allMarkers = [this.vialidades, this.servicios, this.hospitales, this.sitiosInteres];
+        var tempList = allMarkers;
         for(var i = 0; i<allMarkers.length; i++){
-          var currentMarkerList = allMarkers[i];
+          tempList[i] = allMarkers[i];
+          var currentMarkerList = tempList[i];
           for(var j = 0; j<currentMarkerList.length; j++){
+            currentMarkerList[j].window = new google.maps.InfoWindow({
+              content: currentMarkerList[j].time
+            });
+
             currentMarkerList[j].marker = new google.maps.Marker({
               position: currentMarkerList[j].location,
               map: this.map,
@@ -267,11 +273,15 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
               label: {text: (j+1).toString(), color: "white"}
             })
             currentMarkerList[j].marker.setMap(null);
+            currentMarkerList[j].marker.section = i;
             currentMarkerList[j].marker.index = j;
             currentMarkerList[j].marker.addListener('mouseover', function() {
+              var obj =  tempList[this.section][this.index];
+              if(obj.time !== '') obj.window.open(scope.map, this);
               $(scope.el).find('.locations-index .location').eq(this.index).addClass('active')
             });
             currentMarkerList[j].marker.addListener('mouseout', function() {
+              tempList[this.section][this.index].window.close();
               $(scope.el).find('.locations-index .location').eq(this.index).removeClass('active')
             });
           }

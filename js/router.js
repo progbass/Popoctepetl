@@ -21,8 +21,9 @@ define(['jquery', 'underscore', 'backbone', 'plugins'], function($, _, Backbone)
   var AppRouter = Backbone.Router.extend({
         routes: {
           "": "proyecto", 
-          "proyecto": "proyecto",
+          "proyectos": "proyecto",
           "renders": "renders",
+          "galeria": "galeria",
           "contacto": "contacto",
           "ubicacion": "ubicacion",
           "buro": "buro"

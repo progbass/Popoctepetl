@@ -59,10 +59,23 @@ function($, _, Backbone, Router, Proyecto, Galeria, Plantas, Ubicacion, ssm) {
 				showMobileMenu(false);
 		});
 	});
+	$("#main_menu > li.galeria a.main-button").click(function(e){
+		var tabType = e.target.dataset.type;
+		setTimeout(loadSection, 300)
+	});
 	$("#main_menu > li.galeria .submenu li > a").each(function(index){
 		$(this).click(function(e){
-			var tabType = e.target.dataset.type;
-	      	view_galeria.manageTabs( tabType );
+			setTimeout(function(){
+				loadSection();
+				var tabType = e.target.dataset.type;
+				if(lastSection === '#renders')
+		      		view_galeria.manageTabs( tabType );
+		      	else
+		      		view_plantas.manageTabs( tabType );
+			}, 300);
+
+			if(menuMobileOpen)
+				showMobileMenu(false);
 		});
 	});
 	$("#main_menu > li.ubicacion a").click(function(){
@@ -169,15 +182,15 @@ function($, _, Backbone, Router, Proyecto, Galeria, Plantas, Ubicacion, ssm) {
 		var params = {};
 	    hash = (window.location.hash) || "#proyecto";
 
-	    $('header').toggleClass('white', false);
-	    
+	    $('header').toggleClass('white', window.location);
+
 	    switch(hash){
 		    case "#renders":
 		    case "#exteriores":
 		    case "#interiores":
-		    	hash = '#galeria';
+		    	hash = '#renders';
 		    	target = view_galeria;
-		    	$('header').toggleClass('white')
+		    	$('header').toggleClass('white');
 		    	break;
 
 		    case "#plantas":

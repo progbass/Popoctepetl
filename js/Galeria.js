@@ -38,7 +38,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		},
 		
 		loadCompleteHandler: function(){
-			$("section#galeria .thumbs_list li").first().click();
+			$("section#renders .thumbs_list li").first().click();
 		}
     });
     var interiores_list = new ThumbsCollection();
@@ -50,7 +50,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	var ThumbView = Backbone.View.extend({
 		tagName   : 'li',
         template  : null,
-        thumbsList: "section#galeria .thumbs_list",
+        thumbsList: "section#renders .thumbs_list",
           
         initialize : function(){
             //slide template
@@ -89,7 +89,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	var GaleriaView = Backbone.View.extend({
 	
 	  //PROPERTIES
-      el: 'section#galeria',
+      el: 'section#renders',
       lastTab: "",
       tabType: "",
       currentSlide: 0,
@@ -177,14 +177,14 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		hammertime.on('swipe', function(ev) {
 			if( ev.direction == 2){
 		    	actualIndex++;
-		    	actualIndex = (actualIndex > $("section#galeria .thumbs_list li").length) ? 0 : actualIndex;
+		    	actualIndex = (actualIndex > $("section#renders .thumbs_list li").length) ? 0 : actualIndex;
 		    } else if( ev.direction == 4 ){
 			    actualIndex--;
-			    actualIndex = (actualIndex < 0) ? $("section#galeria .thumbs_list li").length : actualIndex;
+			    actualIndex = (actualIndex < 0) ? $("section#renders .thumbs_list li").length : actualIndex;
 		    }
 	    
 		    //select thumb
-		    $("section#galeria .thumbs_list li:eq("+actualIndex+")").click();
+		    $("section#renders .thumbs_list li:eq("+actualIndex+")").click();
 		});	
 	 },
 	 
@@ -295,14 +295,14 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		hammertime.on('swipe', function(ev) {
 			if( ev.direction == 2){
 		    	actualIndex++;
-		    	actualIndex = (actualIndex > $("section#galeria .thumbs_list li").length) ? 0 : actualIndex;
+		    	actualIndex = (actualIndex > $("section#renders .thumbs_list li").length) ? 0 : actualIndex;
 		    } else if( ev.direction == 4 ){
 			    actualIndex--;
-			    actualIndex = (actualIndex < 0) ? $("section#galeria .thumbs_list li").length : actualIndex;
+			    actualIndex = (actualIndex < 0) ? $("section#renders .thumbs_list li").length : actualIndex;
 		    }
 	    
 		    //select thumb
-		    $("section#galeria .thumbs_list li:eq("+actualIndex+")").click();
+		    $("section#renders .thumbs_list li:eq("+actualIndex+")").click();
 
 		});
 	 },
@@ -340,7 +340,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
         });
         
         //load first thumb
-        $("section#galeria .thumbs_list li").first().click();
+        $("section#renders .thumbs_list li").first().click();
     },
 
     nextSlide: function(){
@@ -348,7 +348,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
     	if(this.currentSlide > actual_list.length-1){
     		this.currentSlide = 0;
     	}
-    	$("section#galeria .thumbs_list li").eq(this.currentSlide).click();
+    	$("section#renders .thumbs_list li").eq(this.currentSlide).click();
     	return false;
     },
     prevSlide: function(){
@@ -356,7 +356,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
     	if(this.currentSlide < 0){
     		this.currentSlide = actual_list.length-1;
     	}
-    	$("section#galeria .thumbs_list li").eq(this.currentSlide).click();
+    	$("section#renders .thumbs_list li").eq(this.currentSlide).click();
     	return false;
     },
 	 

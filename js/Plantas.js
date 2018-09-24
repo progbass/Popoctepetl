@@ -399,7 +399,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			}
 		]);
 		sideViews_list.loadCompleteHandler();
-	    
+		
 	    //config swipe detection and actions
 		Hammer.Swipe({
 			velocity: 8,
