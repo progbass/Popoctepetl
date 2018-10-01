@@ -41,7 +41,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			$("section#plantas .thumbs_list li").first().click();
 		}
     });
-    var renders_list = new ThumbsCollection();
+    var panoramics_list = new ThumbsCollection();
     var floors_list = new ThumbsCollection();
     var sideViews_list = new ThumbsCollection();
     var actual_list = null;
@@ -99,7 +99,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       
       //INITIALIZE
       initialize: function(){
-      	_.bindAll(this, 'nextSlide', 'prevSlide', 'manageTabs', 'configRenders', 'loadRender', 'displayList');
+      	_.bindAll(this, 'nextSlide', 'prevSlide', 'manageTabs', 'openModal', 'configPanoramics', 'loadRender', 'displayList');
       	this.currentSlide = 0;
       	this.rendersInit = false;
 	    //this.config_accordeon();  
@@ -130,140 +130,42 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 },
 	 
 	 //CONFIG RENDERS LIST
-	 configRenders: function(){
+	 openModal: function(){
+	 	var modalbox = $(this.el).find(".modalbox");
+	 	var toggleBox = function(){
+	 		modalbox.off();
+	 		modalbox.hide();
+	 	}
+	 	modalbox.click(toggleBox);
+	 	modalbox.show();
+	 },
+	 configPanoramics: function(){
 	 	var scope = this;
 	 	var gallery = $(scope.el).find(".gallery");
-	 	
+	 	var modalbox = $(scope.el).find(".modalbox");
+	 	modalbox.hide();
+	 	gallery.off();
+	 	gallery.click(scope.openModal);
+
 	 	//update flag
-	 	scope.rendersInit = true;
+	 	scope.panoramicsInit = true;
 	 	
 	 	//load renders list and create a collection from them
-	    //renders_list.url = 'renders.json';
-	    renders_list.on("add", renders_list.thumbAdd);
-	    renders_list.bind('thumbs:selected', function(){scope.loadRender('render')});
-	    renders_list.add([
+	    //panoramics_list.url = 'renders.json';
+	    panoramics_list.on("add", panoramics_list.thumbAdd);
+	    panoramics_list.bind('thumbs:selected', function(){scope.loadRender('render')});
+	    panoramics_list.add([
 			{
-				"uri":		"img/renders/popo_1.jpg",
-				"thumb": 	"img/renders/thumbs/denn_1.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_1b.png",
-				"thumb": 	"img/renders/thumbs/denn_1b.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_2.jpg",
-				"thumb": 	"img/renders/thumbs/denn_2.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_2b.jpg",
-				"thumb": 	"img/renders/thumbs/denn_2b.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_4.jpg",
-				"thumb": 	"img/renders/thumbs/denn_4.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_5.jpg",
-				"thumb": 	"img/renders/thumbs/denn_5.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_6.jpg",
-				"thumb": 	"img/renders/thumbs/denn_6.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_7.jpg",
-				"thumb": 	"img/renders/thumbs/denn_7.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_7b.jpg",
-				"thumb": 	"img/renders/thumbs/denn_7b.jpg",
-				"title":    "Exteriores",
-				"showInfo": true
-			},
-
-			{
-				"uri":		"img/renders/popo_3.jpg",
-				"thumb": 	"img/renders/thumbs/denn_3.jpg",
-				"title":    "Plaza Central",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_13.jpg",
-				"thumb": 	"img/renders/thumbs/denn_13.jpg",
-				"title":    "Plaza Central",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_14.jpg",
-				"thumb": 	"img/renders/thumbs/denn_14.jpg",
-				"title":    "Plaza Central",
-				"showInfo": true
-			},
-
-
-
-			{
-				"uri":		"img/renders/popo_8.jpg",
-				"thumb": 	"img/renders/thumbs/denn_8.jpg",
-				"title":    "Interiores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_9.jpg",
-				"thumb": 	"img/renders/thumbs/denn_9.jpg",
-				"title":    "Interiores",
-				"showInfo": true
-			},
-			{
-				"uri":		"img/renders/popo_10.jpg",
+				"uri":		"img/floors/360.png",
 				"thumb": 	"img/renders/thumbs/denn_10.jpg",
-				"title":    "Interiores",
-				"showInfo": true
+				"title":    "Exteriores",
+				"showInfo": true,
+				"colorCode": {
+					gray: 'Área de Oficinas',
+				}
 			}	
 		]);
-		renders_list.loadCompleteHandler();
-		/*
-	    renders_list.fetch({
-	      add: true,
-	      success: renders_list.loadCompleteHandler
-	      //error: loadCompleteHandler
-	    });
-		*/
-	    
-	    //config swipe detection and actions
-		Hammer.Swipe({
-			velocity: 8,
-			threshold: 18
-		})
-		var hammertime = new Hammer( this.el );
-		hammertime.on('swipe', function(ev) {
-			if( ev.direction == 2){
-		    	actualIndex++;
-		    	actualIndex = (actualIndex > $("section#plantas .thumbs_list li").length) ? 0 : actualIndex;
-		    } else if( ev.direction == 4 ){
-			    actualIndex--;
-			    actualIndex = (actualIndex < 0) ? $("section#plantas .thumbs_list li").length : actualIndex;
-		    }
-	    
-		    //select thumb
-		    $("section#plantas .thumbs_list li:eq("+actualIndex+")").click();
-		});	
+		panoramics_list.loadCompleteHandler();	
 	 },
 	 
 	 //CONFIG FLOORS LIST
@@ -445,9 +347,9 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 photoHolder.html( image );
 	     photoHolder.find("img").hide().fadeIn(600);
 
-	  //    // show additional information
-	  //    if(selectedThumb.attributes.showInfo){
-	  //    	infoHolder.show();
+	  	// // show additional information
+	  	// if(selectedThumb.attributes.showInfo){
+	  	// 		infoHolder.show();
 		 //    if( selectedThumb.attributes.title ){
 		 //     	infoHolder.find(".info__title")
 		 //     	.show()
@@ -472,12 +374,12 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 		codesContent += "<li class='code "+Object.keys(colorCodes)[i]+"' >"+colorCodes[Object.keys(colorCodes)[i]]+"</li>";
 		 	}
 		 	codesList.html(codesContent);
-		 } else {
+		} else {
 		 	colorCodesContainer.hide()
-		 }
-	 },
+		}
+	},
 	 
-	 displayList: function(){
+	displayList: function(){
 	 	//display thumbs from collection
 		 actual_list.each(function( item ) {
             actual_list.thumbAdd(item);
@@ -514,6 +416,10 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			 return false;
 		 }
 
+		 //
+		 //var gallery = $(scope.el).find(".gallery");
+	 	 //gallery.removeEventListener('click', scope.openModal);
+
 		 //style menu items
 		 $(scope.el).find("a.tab").removeClass("active");
 		 $(scope.el).find("a[href='#"+_target+"']").addClass("active");
@@ -525,8 +431,11 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 		 		break;
 		 	
 		 	case "plantas":
-		 	case "360":
 		 		content = "plantas.html";
+		 		break;
+
+		 	case "360":
+		 		content = "360.html";
 		 		break;
 		 	
 		 	default:
@@ -539,9 +448,9 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 			$(scope.el).find("a.prev").click(scope.prevSlide);
 
 		 	if(_target == "360"){
-			 	actual_list = renders_list;
-		 		if(!scope.rendersInit)
-			 		scope.configRenders();
+			 	actual_list = panoramics_list;
+		 		if(!scope.panoramicsInit)
+			 		scope.configPanoramics();
 			 	else
 			 		scope.displayList();
 		 	}

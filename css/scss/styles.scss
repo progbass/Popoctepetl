@@ -806,6 +806,38 @@ section{
 	}
 }
 
+.s360 .photo_holder img{
+	width: 80% !important;
+	max-width: 1200px !important;
+}
+.modalbox{
+	position: fixed;
+	width: 100%; height: 100%;
+	top: 0; left: 0;
+	background:rgba(#000, .5);
+	z-index: 10;
+
+	.image_holder{
+		position: absolute;
+		top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
+		height: 30vh;
+		width: 90vw;
+		overflow: hidden;
+
+		.container{
+			overflow: auto;
+
+			img{
+				position: relative;
+				display: block;
+				height: 100%;
+				width: auto;
+			}
+		}
+	}
+}
+
 #renders,
 #plantas{
 	position: relative; //absolute;
