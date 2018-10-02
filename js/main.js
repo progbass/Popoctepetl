@@ -190,7 +190,7 @@ function($, _, Backbone, Router, Proyecto, Galeria, Plantas, Ubicacion, ssm) {
 		    case "#interiores":
 		    	hash = '#renders';
 		    	target = view_galeria;
-		    	$('header').toggleClass('white');
+		    	$('header').toggleClass('white', true);
 		    	break;
 
 		    case "#plantas":
@@ -198,12 +198,13 @@ function($, _, Backbone, Router, Proyecto, Galeria, Plantas, Ubicacion, ssm) {
 		    case "#corte":
 		    	hash = '#plantas';
 		    	target = view_plantas;
-		    	$('header').toggleClass('white')
+		    	$('header').toggleClass('white', true);
+	    		console.log('pasando por aquí con el hash: ', hash)
 		    	break;
 		    	
 		    case "#ubicacion":
 		    	target = view_ubicacion;
-		    	$('header').toggleClass('white');
+		    	$('header').toggleClass('white', true);
 		    	if(ubicacionType){
 		    		params = {type: ubicacionType}
 		    	}

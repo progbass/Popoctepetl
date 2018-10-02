@@ -96,6 +96,88 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       rendersInit: false,
       floorsInit: false,
       sideViewsInit: false,
+      officeFloors_list: [
+      	{
+      		file: 'img/floors/360-floor18.png',
+      		floor_name: '18',
+      		disabled: false,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '17',
+      		disabled: false,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '16',
+      		disabled: true,
+      	},
+      	{
+      		file: 'img/floors/360-floor15.png',
+      		floor_name: '15',
+      		disabled: false,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '14',
+      		disabled: true,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '13',
+      		disabled: true,
+      	},
+      	{
+      		file: 'img/floors/360-floor12.png',
+      		floor_name: '12',
+      		disabled: false,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '11',
+      		disabled: true,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '10',
+      		disabled: true,
+      	},
+      	{
+      		file: 'img/floors/360-floor9.png',
+      		floor_name: '9',
+      		disabled: false,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '8',
+      		disabled: true,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '7',
+      		disabled: true,
+      	},
+      	{
+      		file: 'img/floors/360-floor6.jpg',
+      		floor_name: '6',
+      		disabled: false,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '5',
+      		disabled: true,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '4',
+      		disabled: true,
+      	},
+      	{
+      		file: 'src',
+      		floor_name: '3',
+      		disabled: true,
+      	}
+      ],
       
       //INITIALIZE
       initialize: function(){
@@ -130,13 +212,14 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 },
 	 
 	 //CONFIG RENDERS LIST
-	 openModal: function(){
+	 openModal: function(floor){
 	 	var modalbox = $(this.el).find(".modalbox");
 	 	var toggleBox = function(){
 	 		modalbox.off();
 	 		modalbox.hide();
 	 	}
 	 	modalbox.click(toggleBox);
+	 	modalbox.find('img').src = floor.file;
 	 	modalbox.show();
 	 },
 	 configPanoramics: function(){
@@ -144,8 +227,6 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 	var gallery = $(scope.el).find(".gallery");
 	 	var modalbox = $(scope.el).find(".modalbox");
 	 	modalbox.hide();
-	 	gallery.off();
-	 	gallery.click(scope.openModal);
 
 	 	//update flag
 	 	scope.panoramicsInit = true;
@@ -449,6 +530,40 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 
 		 	if(_target == "360"){
 			 	actual_list = panoramics_list;
+
+		      	// disable modalbox
+			 	var gallery = $(scope.el).find(".gallery");
+			 	var modalbox = $(scope.el).find(".modalbox");
+			 	modalbox.hide();
+			 	gallery.off();
+
+			 	// Clone 'floor' buttons
+			 	var i = 0;
+			 	$.each(scope.officeFloors_list, function (key, value) {
+				    var $floor = $(scope.el).find(".floor-area .floor.template").clone();
+				    $floor.removeClass("template");
+				    $floor.find("span").html(value.floor_name);
+				    $floor.index = i;
+
+				    // Insert element into DOM
+				    $(scope.el).find(".floor-area").append( $floor );
+
+				    // Position element
+				    setTimeout(function(){
+					    this.css('top', (this.index * 6.25)+'%');
+					    this.toggleClass('disabled', value.disabled);
+					    if(!value.disabled){
+					    	this.click(function(){
+					    		scope.openModal(value);
+					    	});
+					    }
+					}.bind($floor), 200);
+
+					//
+					i++;
+				});
+
+			 	// Show view
 		 		if(!scope.panoramicsInit)
 			 		scope.configPanoramics();
 			 	else

@@ -806,9 +806,105 @@ section{
 	}
 }
 
-.s360 .photo_holder img{
+.s360 .photo_holder {
+	$context_width: 3600;
+	$context_height: 5400;
+	$office_area_width: percentage(616/$context_width);
+	$office_area_height: percentage(2075/$context_height);
+	$office_area_top: percentage(1380/$context_height);
+	$office_area_left: percentage(2132/$context_width);
+
+	position: relative;
 	width: 80% !important;
-	max-width: 1200px !important;
+	max-width: 960px !important;
+	margin: auto !important;
+	display: block !important;
+
+	.color-codes{
+		left: 2% !important;
+	}
+
+	.images_display{
+		margin: 0 !important;
+		padding: 0 !important;
+		width: 100% !important;
+	}
+
+	img{
+		width: 100% !important;
+		max-width: 100% !important;
+		height: auto;
+	}
+
+	// Floors Container
+	.floor-area{
+		position: relative;
+		z-index: 2;
+		position: absolute;
+		width: $office_area_width;
+		height: $office_area_height;
+		top: $office_area_top;
+		left: $office_area_left;
+
+		// Floor
+		.floor{
+			width: 100%;
+			height: calc(#{(100/16)+%} - 0.5%);
+			position: absolute;
+			cursor: pointer;
+			transition: background 200ms ease;
+			
+			&.template{
+				display: none;
+			}
+			.tooltip{
+				position: absolute;
+				right: -45%;
+				opacity: 0;
+				background: #716f6f;
+				line-height: 2.5em;
+				padding: 0 1em;
+				color: white;
+				font-weight: bold;
+				text-transform: uppercase;
+				//height: 100%;
+				border-right: 8px solid $id-color2;
+				transition: all 200ms ease;
+
+				&:before{
+					content: '';
+					position: absolute;
+					width: 10px; height: 10px;
+					background: #716f6f;
+					top: 50%; left: -5%;
+					transform: rotate(45deg) translate(-50%, -50%);
+				}
+			}
+
+			&:hover{
+				background: rgba($id-color2, 0.7);
+				.tooltip{
+					opacity: 1;
+					right: -55%;
+				}
+			}
+			&.disabled:hover{
+				cursor: not-allowed;
+				background: rgba( darken(#DBDADB, 20%), 0.45);
+			}
+		}
+	}
+
+	&:after{
+		content: '';
+		display: block;
+		position: absolute;
+		width: $office_area_width;
+		height: $office_area_height;
+		top: $office_area_top;
+		left: $office_area_left;
+		background: rgba( darken(#DBDADB, 20%), 0.45);
+	}
 }
 .modalbox{
 	position: fixed;
@@ -821,12 +917,37 @@ section{
 		position: absolute;
 		top: 50%; left: 50%;
 		transform: translate(-50%, -50%);
-		height: 30vh;
+		height: 40vh;
 		width: 90vw;
 		overflow: hidden;
 
+		&:before,
+		&:after{
+			content: '';
+			display: block;
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			z-index: 3;
+			top: 50%;
+			transform: translateY(-50%);
+			background: no-repeat center bottom;
+			background-size: 60%;
+		}
+		&:before{
+			left: 2.5%;
+			background-image: url($images-directory+'icon-slideNav-prev.svg');
+		}
+		&:after{
+			right: 2.5%;
+			background-image: url($images-directory+'icon-slideNav-next.svg');
+		}
+
 		.container{
 			overflow: auto;
+			height: 100%;
+			width: auto;
+			display: block !important;
 
 			img{
 				position: relative;

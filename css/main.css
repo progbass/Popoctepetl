@@ -755,9 +755,76 @@ section {
     background: none;
     padding-top: 1em; } }
 
-.s360 .photo_holder img {
+.s360 .photo_holder {
+  position: relative;
   width: 80% !important;
-  max-width: 1200px !important; }
+  max-width: 960px !important;
+  margin: auto !important;
+  display: block !important; }
+  .s360 .photo_holder .color-codes {
+    left: 2% !important; }
+  .s360 .photo_holder .images_display {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important; }
+  .s360 .photo_holder img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto; }
+  .s360 .photo_holder .floor-area {
+    position: relative;
+    z-index: 2;
+    position: absolute;
+    width: 17.1111111111%;
+    height: 38.4259259259%;
+    top: 25.5555555556%;
+    left: 59.2222222222%; }
+    .s360 .photo_holder .floor-area .floor {
+      width: 100%;
+      height: calc(6.25% - 0.5%);
+      position: absolute;
+      cursor: pointer;
+      transition: background 200ms ease; }
+      .s360 .photo_holder .floor-area .floor.template {
+        display: none; }
+      .s360 .photo_holder .floor-area .floor .tooltip {
+        position: absolute;
+        right: -45%;
+        opacity: 0;
+        background: #716f6f;
+        line-height: 2.5em;
+        padding: 0 1em;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-right: 8px solid #FF6A00;
+        transition: all 200ms ease; }
+        .s360 .photo_holder .floor-area .floor .tooltip:before {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: #716f6f;
+          top: 50%;
+          left: -5%;
+          transform: rotate(45deg) translate(-50%, -50%); }
+      .s360 .photo_holder .floor-area .floor:hover {
+        background: rgba(255, 106, 0, 0.7); }
+        .s360 .photo_holder .floor-area .floor:hover .tooltip {
+          opacity: 1;
+          right: -55%; }
+      .s360 .photo_holder .floor-area .floor.disabled:hover {
+        cursor: not-allowed;
+        background: rgba(169, 166, 169, 0.45); }
+  .s360 .photo_holder:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 17.1111111111%;
+    height: 38.4259259259%;
+    top: 25.5555555556%;
+    left: 59.2222222222%;
+    background: rgba(169, 166, 169, 0.45); }
 
 .modalbox {
   position: fixed;
@@ -772,11 +839,31 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 30vh;
+    height: 40vh;
     width: 90vw;
     overflow: hidden; }
+    .modalbox .image_holder:before, .modalbox .image_holder:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      z-index: 3;
+      top: 50%;
+      transform: translateY(-50%);
+      background: no-repeat center bottom;
+      background-size: 60%; }
+    .modalbox .image_holder:before {
+      left: 2.5%;
+      background-image: url("../img/icon-slideNav-prev.svg"); }
+    .modalbox .image_holder:after {
+      right: 2.5%;
+      background-image: url("../img/icon-slideNav-next.svg"); }
     .modalbox .image_holder .container {
-      overflow: auto; }
+      overflow: auto;
+      height: 100%;
+      width: auto;
+      display: block !important; }
       .modalbox .image_holder .container img {
         position: relative;
         display: block;
