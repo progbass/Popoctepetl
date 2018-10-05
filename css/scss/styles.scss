@@ -60,6 +60,26 @@ h1, h2, h3, h4, h5{
 	letter-spacing: 0.04em;
 }
 
+// .dragscroll {
+//   border: 1px solid rgb(31, 40, 49);
+//   background-color : #283849;
+//   overflow: auto;
+//   width: 270px;
+//   height: 380px;
+//   cursor : -webkit-grab;
+//   cursor : -moz-grab;
+//   cursor : -o-grab;
+//   cursor : grab;
+//   margin: 30px auto;
+//   color: #fff;
+// }
+// .dragscroll:active {
+//   cursor : -webkit-grabbing;
+//   cursor : -moz-grabbing;
+//   cursor : -o-grabbing;
+//   cursor : grabbing;
+// }
+
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -852,6 +872,7 @@ section{
 			height: calc(#{(100/16)+%} - 0.5%);
 			position: absolute;
 			cursor: pointer;
+			background: rgba($id-color2, 0.7);
 			transition: background 200ms ease;
 			
 			&.template{
@@ -882,15 +903,18 @@ section{
 			}
 
 			&:hover{
-				background: rgba($id-color2, 0.7);
+				background: rgba($id-color2, 0.82);
 				.tooltip{
 					opacity: 1;
 					right: -55%;
 				}
 			}
+			&.disabled{
+				cursor: default;
+				background: transparent;
+			}
 			&.disabled:hover{
-				cursor: not-allowed;
-				background: rgba( darken(#DBDADB, 20%), 0.45);
+				//background: rgba( darken(#DBDADB, 20%), 0.45);
 			}
 		}
 	}
@@ -910,8 +934,14 @@ section{
 	position: fixed;
 	width: 100%; height: 100%;
 	top: 0; left: 0;
-	background:rgba(#000, .5);
 	z-index: 10;
+
+	.overlay{
+		position: absolute;
+		display: block;
+		background:rgba(#000, .5);
+		width: 100%; height: 100%;
+	}
 
 	.image_holder{
 		position: absolute;
@@ -920,9 +950,10 @@ section{
 		height: 40vh;
 		width: 90vw;
 		overflow: hidden;
-
-		&:before,
-		&:after{
+		
+		.container_nav{
+			font-size: 0px;
+			text-indent: -9999px;
 			content: '';
 			display: block;
 			position: absolute;
@@ -933,12 +964,13 @@ section{
 			transform: translateY(-50%);
 			background: no-repeat center bottom;
 			background-size: 60%;
+			cursor: pointer
 		}
-		&:before{
+		.container_nav.prev{
 			left: 2.5%;
 			background-image: url($images-directory+'icon-slideNav-prev.svg');
 		}
-		&:after{
+		.container_nav.next{
 			right: 2.5%;
 			background-image: url($images-directory+'icon-slideNav-next.svg');
 		}
@@ -1092,6 +1124,9 @@ section{
 						}
 						&.gray2:before{
 							background: #737477;
+						}
+						&.orange:before{
+							background: $id-color2;
 						}
 						&.blue:before{
 							background: #96ACBC;

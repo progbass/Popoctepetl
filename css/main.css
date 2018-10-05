@@ -784,6 +784,7 @@ section {
       height: calc(6.25% - 0.5%);
       position: absolute;
       cursor: pointer;
+      background: rgba(255, 106, 0, 0.7);
       transition: background 200ms ease; }
       .s360 .photo_holder .floor-area .floor.template {
         display: none; }
@@ -809,13 +810,13 @@ section {
           left: -5%;
           transform: rotate(45deg) translate(-50%, -50%); }
       .s360 .photo_holder .floor-area .floor:hover {
-        background: rgba(255, 106, 0, 0.7); }
+        background: rgba(255, 106, 0, 0.82); }
         .s360 .photo_holder .floor-area .floor:hover .tooltip {
           opacity: 1;
           right: -55%; }
-      .s360 .photo_holder .floor-area .floor.disabled:hover {
-        cursor: not-allowed;
-        background: rgba(169, 166, 169, 0.45); }
+      .s360 .photo_holder .floor-area .floor.disabled {
+        cursor: default;
+        background: transparent; }
   .s360 .photo_holder:after {
     content: '';
     display: block;
@@ -832,8 +833,13 @@ section {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
   z-index: 10; }
+  .modalbox .overlay {
+    position: absolute;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%; }
   .modalbox .image_holder {
     position: absolute;
     top: 50%;
@@ -842,7 +848,9 @@ section {
     height: 40vh;
     width: 90vw;
     overflow: hidden; }
-    .modalbox .image_holder:before, .modalbox .image_holder:after {
+    .modalbox .image_holder .container_nav {
+      font-size: 0px;
+      text-indent: -9999px;
       content: '';
       display: block;
       position: absolute;
@@ -852,11 +860,12 @@ section {
       top: 50%;
       transform: translateY(-50%);
       background: no-repeat center bottom;
-      background-size: 60%; }
-    .modalbox .image_holder:before {
+      background-size: 60%;
+      cursor: pointer; }
+    .modalbox .image_holder .container_nav.prev {
       left: 2.5%;
       background-image: url("../img/icon-slideNav-prev.svg"); }
-    .modalbox .image_holder:after {
+    .modalbox .image_holder .container_nav.next {
       right: 2.5%;
       background-image: url("../img/icon-slideNav-next.svg"); }
     .modalbox .image_holder .container {
@@ -990,6 +999,9 @@ section {
             #renders .col-left .gallery .photo_holder .color-codes .code.gray2:before,
             #plantas .col-left .gallery .photo_holder .color-codes .code.gray2:before {
               background: #737477; }
+            #renders .col-left .gallery .photo_holder .color-codes .code.orange:before,
+            #plantas .col-left .gallery .photo_holder .color-codes .code.orange:before {
+              background: #FF6A00; }
             #renders .col-left .gallery .photo_holder .color-codes .code.blue:before,
             #plantas .col-left .gallery .photo_holder .color-codes .code.blue:before {
               background: #96ACBC; }

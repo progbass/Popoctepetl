@@ -98,14 +98,14 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       sideViewsInit: false,
       officeFloors_list: [
       	{
-      		file: 'img/floors/360-floor18.png',
+      		file: 'img/floors/pisos/floor-18.jpg',
       		floor_name: '18',
       		disabled: false,
       	},
       	{
       		file: 'src',
       		floor_name: '17',
-      		disabled: false,
+      		disabled: true,
       	},
       	{
       		file: 'src',
@@ -113,7 +113,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       		disabled: true,
       	},
       	{
-      		file: 'img/floors/360-floor15.png',
+      		file: 'img/floors/pisos/floor-15.jpg',
       		floor_name: '15',
       		disabled: false,
       	},
@@ -128,7 +128,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       		disabled: true,
       	},
       	{
-      		file: 'img/floors/360-floor12.png',
+      		file: 'img/floors/pisos/floor-12.jpg',
       		floor_name: '12',
       		disabled: false,
       	},
@@ -143,7 +143,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       		disabled: true,
       	},
       	{
-      		file: 'img/floors/360-floor9.png',
+      		file: 'img/floors/pisos/floor-9.jpg',
       		floor_name: '9',
       		disabled: false,
       	},
@@ -158,7 +158,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
       		disabled: true,
       	},
       	{
-      		file: 'img/floors/360-floor6.jpg',
+      		file: 'img/floors/pisos/floor-6.jpg',
       		floor_name: '6',
       		disabled: false,
       	},
@@ -218,8 +218,35 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 	 		modalbox.off();
 	 		modalbox.hide();
 	 	}
-	 	modalbox.click(toggleBox);
-	 	modalbox.find('img').src = floor.file;
+	 	modalbox.find('.overlay').click(toggleBox);
+	 	var imageContainer = modalbox.find('img');
+	 	imageContainer.attr('src', floor.file);
+	 	var container = modalbox.find('.container');
+	 	modalbox.find('.image_holder').find('.prev').click(function(){
+		 	var x = container.scrollLeft()-250//((coso.width() / 2)) - coso.scrollLeft();
+		    container.animate({
+		      scrollLeft: x
+		    });
+		});
+		modalbox.find('.image_holder').find('.next').click(function(){
+		 	var x = container.scrollLeft()+250//((coso.width() / 2)) + coso.scrollLeft();
+		    container.animate({
+		      scrollLeft: x
+		    });
+		});
+	 	imageContainer[0].onload =  function(){
+	 		// Load Drag library
+	 	// 	(function (d, s, id){
+			// 	let js, fjs = d.getElementsByTagName(s)[0];
+			// 	if (d.getElementById(id)) {return;}
+			// 	js = d.createElement(s); js.id = id;
+			// 	js.src = "bower_components/dragscroll/dragscroll.js";
+			// 	fjs.parentNode.insertBefore(js, fjs);
+	 	// 		js.onload = function(){
+	 	// 			//alert('asdasd')
+	 	// 		}
+			// }(document, 'script', 'dragscroll'));
+		}
 	 	modalbox.show();
 	 },
 	 configPanoramics: function(){
@@ -243,6 +270,7 @@ define(['jquery', 'underscore', 'backbone', 'hammer'], function($, _, Backbone, 
 				"showInfo": true,
 				"colorCode": {
 					gray: 'Área de Oficinas',
+					orange: 'Vistas Disponibles',
 				}
 			}	
 		]);

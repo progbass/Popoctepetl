@@ -1,6 +1,6 @@
 {
-  "name": "grunt-personalista",
-  "description": "Personalista Blog",
+  "name": "grunt-popocatepetl",
+  "description": "Popocatépetl",
   "main": "",
   "authors": [
     "Israel Diaz @progbass <progbass@gmail.com>"
@@ -24,7 +24,8 @@
     "jquery": "~3.0.0",
     "bourbon": "~4.2.7",
     "bootstrap": "~3.3.6",
-    "bootstrap-sass": "~3.3.6"
+    "bootstrap-sass": "~3.3.6",
+    "dragscroll": "^0.0.8"
   },
   "devDependencies": {
     "jquery.scrollTo": "~2.1.2",
